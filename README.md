@@ -1,6 +1,6 @@
 # Docker Cheat Sheet
 
-NOTE: 534 stars, 106 forks.  I love you all.  Please contribute tips and edits back to this cheat sheet -- email's will.sargent@gmail.com and you can treat gists like git repositories and send git diffs.
+NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click "edit" on README.md in the browser and it will do the rest.
 
 * [Why](https://gist.github.com/wsargent/7049221#why)
 * [I just want a dev environment](https://gist.github.com/wsargent/7049221#tldr-i-just-want-a-dev-environment)
