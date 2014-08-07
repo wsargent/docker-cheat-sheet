@@ -74,7 +74,7 @@ Then start up a container:
 sudo docker run -i -t ubuntu /bin/bash
 ```
 
-That's it, you have a running Docker container.
+That's it, you have a running Docker container.  Also note that Vagrant 1.6 has Docker [supported as a built-in provisioner](https://docs.vagrantup.com/v2/docker/index.html) which can help you when configuring images.
 
 I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands.  YMMV.
 
@@ -91,17 +91,17 @@ Some common misconceptions it's worth correcting:
 
 * [`docker run`](http://docs.docker.io/reference/commandline/cli/#run) creates a container.
 * [`docker stop`](http://docs.docker.io/reference/commandline/cli/#stop) stops it.
-* [`docker start`](http://docs.docker.io/reference/commandline/cli/#start) will start it again. 
+* [`docker start`](http://docs.docker.io/reference/commandline/cli/#start) will start it again.
 * [`docker restart`](http://docs.docker.io/reference/commandline/cli/#restart) restarts a container.
 * [`docker rm`](http://docs.docker.io/reference/commandline/cli/#rm) deletes a container.
 * [`docker kill`](http://docs.docker.io/reference/commandline/cli/#kill) sends a SIGKILL to a container.  [Has issues](https://github.com/dotcloud/docker/issues/197).
 * [`docker attach`](http://docs.docker.io/reference/commandline/cli/#attach) will connect to a running container.
 * [`docker wait`](http://docs.docker.io/reference/commandline/cli/#wait) blocks until container stops.
 
-If you want to run and then interact with a container, `docker start` then `docker attach` to get in.
+If you want to run and then interact with a container, `docker start` then `docker attach` to get in (or, as of 0.9, `nsenter`).
 
 If you want a transient container, `docker run -rm` will remove the container after it stops.
- 
+
 If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
 
 If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR` (also see Volumes section).
@@ -129,6 +129,17 @@ There doesn't seem to be a way to use docker directly to import files into a con
 * [`docker cp`](http://docs.docker.io/reference/commandline/cli/#cp) copies files or folders out of a container's filesystem.
 * [`docker export`](http://docs.docker.io/reference/commandline/cli/#export) turns container filesystem into tarball.
 
+### Entering a Docker Container
+
+The "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
+
+Unfortunately, nsenter requires some configuration and installation.  Here's how to do it on MacOS:
+
+* [How to enter a Docker container](https://blog.codecentric.de/en/2014/07/enter-docker-container/)
+* [Docker debug with nsenter on boot2docker](http://blog.sequenceiq.com/blog/2014/07/05/docker-debug-with-nsenter-on-boot2docker/)
+
+I can't quite figure out why you'd want to use `nsenter` over `docker attach`.  This would be a good place for an editor to submit a pull request.
+
 ## Images
 
 Images are just [templates for docker containers](http://docker.readthedocs.org/reference/terms/image/).
@@ -155,7 +166,7 @@ Images are just [templates for docker containers](http://docker.readthedocs.org/
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
 
-A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](http://docs.docker.io/use/workingwithrepository/). 
+A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](http://docs.docker.io/use/workingwithrepository/).
 
 Docker.io hosts its own [index](https://index.docker.io/) to a central registry which contains a large number of repositories.
 
@@ -207,7 +218,7 @@ Links are how Docker containers talk to each other [through TCP/IP ports](http:/
 
 NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
 
-If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port: 
+If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port:
 
 ```
 EXPOSE 1337
@@ -220,7 +231,7 @@ docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
 
 Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
- 
+
 ```
 $ALIAS_PORT_1337_TCP_PORT
 $ALIAS_PORT_1337_TCP_ADDR
@@ -265,7 +276,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   (49000..49900).each do |port|
     config.vm.network :forwarded_port, :host => port, :guest => port
   end
-  
+
   ...
 end
 ```
@@ -321,7 +332,7 @@ docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ### Get Environment Settings
 
 ```
-docker run -rm ubuntu env 
+docker run -rm ubuntu env
 ```
 
 ### Delete old containers
@@ -341,5 +352,3 @@ docker rm `docker ps -a -q`
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
-
-
