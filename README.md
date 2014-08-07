@@ -124,7 +124,7 @@ If you want to expose container ports through the host, see the [exposing ports]
 
 ### Import / Export
 
-There doesn't seem to be a way to use docker directly to import files into a container's filesystem.
+There doesn't seem to be a way to use docker directly to import files into a container's filesystem.  The closest thing is to mount a host file or directory as a data volume and copy it from inside the container.
 
 * [`docker cp`](http://docs.docker.io/reference/commandline/cli/#cp) copies files or folders out of a container's filesystem.
 * [`docker export`](http://docs.docker.io/reference/commandline/cli/#export) turns container filesystem into tarball.
@@ -243,7 +243,7 @@ To delete links, use `docker rm --link `.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](http://docs.docker.io/use/working_with_volumes/).  They don't have to be connected to a particular container.
+Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
