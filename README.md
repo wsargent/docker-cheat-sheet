@@ -2,19 +2,19 @@
 
 NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click "edit" on README.md in the browser and it will do the rest.
 
-* [Why](https://gist.github.com/wsargent/7049221#why)
-* [I just want a dev environment](https://gist.github.com/wsargent/7049221#tldr-i-just-want-a-dev-environment)
-* [Prerequisites](https://gist.github.com/wsargent/7049221#prequisites)
-* [Installation](https://gist.github.com/wsargent/7049221#installation)
-* [Containers](https://gist.github.com/wsargent/7049221#containers)
-* [Images](https://gist.github.com/wsargent/7049221#images)
-* [Registry and Repository](https://gist.github.com/wsargent/7049221#registry--repository)
-* [Dockerfile](https://gist.github.com/wsargent/7049221#dockerfile)
-* [Layers](https://gist.github.com/wsargent/7049221#layers)
-* [Links](https://gist.github.com/wsargent/7049221#links)
-* [Volumes](https://gist.github.com/wsargent/7049221#volumes)
-* [Exposing Ports](https://gist.github.com/wsargent/7049221#exposing-ports)
-* [Tips](https://gist.github.com/wsargent/7049221#tips)
+* [Why](https://github.com/wsargent/docker-cheat-sheet#why)
+* [I just want a dev environment](https://github.com/wsargent/docker-cheat-sheet#tldr-i-just-want-a-dev-environment)
+* [Prerequisites](https://github.com/wsargent/docker-cheat-sheet#prequisites)
+* [Installation](https://github.com/wsargent/docker-cheat-sheet#installation)
+* [Containers](https://github.com/wsargent/docker-cheat-sheet#containers)
+* [Images](https://github.com/wsargent/docker-cheat-sheet#images)
+* [Registry and Repository](https://github.com/wsargent/docker-cheat-sheet#registry--repository)
+* [Dockerfile](https://github.com/wsargent/docker-cheat-sheet#dockerfile)
+* [Layers](https://github.com/wsargent/docker-cheat-sheet#layers)
+* [Links](https://github.com/wsargent/docker-cheat-sheet#links)
+* [Volumes](https://github.com/wsargent/docker-cheat-sheet#volumes)
+* [Exposing Ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports)
+* [Tips](https://github.com/wsargent/docker-cheat-sheet#tips)
 
 ## Why
 
@@ -108,7 +108,7 @@ If you want to map a directory on the host to a docker container, `docker run -v
 
 If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
-If you want to expose container ports through the host, see the [exposing ports](https://gist.github.com/wsargent/7049221#exposing-ports) section.
+If you want to expose container ports through the host, see the [exposing ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports) section.
 
 ### Info
 
