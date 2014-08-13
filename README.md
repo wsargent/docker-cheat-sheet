@@ -133,12 +133,15 @@ There doesn't seem to be a way to use docker directly to import files into a con
 
 The "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
 
-Unfortunately, nsenter requires some configuration and installation.  Here's how to do it on MacOS:
+Unfortunately, nsenter requires some configuration and installation. If your operating system does not include nsenter (usually in a package named util-linux or similar, although it has to be quite a recent version), the easiest way is probably to install it through docker, as described in the first of the following links:
 
+* [Installing nsenter using docker](https://github.com/jpetazzo/nsenter)
 * [How to enter a Docker container](https://blog.codecentric.de/en/2014/07/enter-docker-container/)
 * [Docker debug with nsenter on boot2docker](http://blog.sequenceiq.com/blog/2014/07/05/docker-debug-with-nsenter-on-boot2docker/)
 
-I can't quite figure out why you'd want to use `nsenter` over `docker attach`.  This would be a good place for an editor to submit a pull request.
+`nsenter` allows you to run any command (e.g. a shell) inside a container that's already running another command (e.g. your database or webserver). This allows you to see all mounted volumes, check on processes, log files etc. inside a running container.
+
+The first installation method described above also installs a small wrapper script wrapping `nsenter` named `docker-enter` that makes executing a shell inside a running container as easy as `docker-enter CONTAINER` and any other command via `docker-enter CONTAINER COMMAND`.
 
 ## Images
 
