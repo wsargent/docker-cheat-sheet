@@ -1,6 +1,6 @@
 # Docker Cheat Sheet
 
-NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit. 
+NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit.
 
 * [Why](https://github.com/wsargent/docker-cheat-sheet#why)
 * [I just want a dev environment](https://github.com/wsargent/docker-cheat-sheet#tldr-i-just-want-a-dev-environment)
@@ -27,6 +27,12 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [A Docker Dev Environment in 24 Hours!](http://blog.relateiq.com/a-docker-dev-environment-in-24-hours-part-2-of-2/)
 * [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+
+You may also like to try the following tools (and add more details here after you try them):
+
+* [Fig](http://www.fig.sh/)
+* [Panamax](http://panamax.io/)
+* [Vessel](http://awvessel.github.io/)
 
 ## Prequisites
 
