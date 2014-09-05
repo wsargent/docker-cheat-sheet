@@ -106,7 +106,7 @@ Some common misconceptions it's worth correcting:
 
 If you want to run and then interact with a container, `docker start` then `docker attach` to get in (or, as of 0.9, `nsenter`).
 
-If you want a transient container, `docker run -rm` will remove the container after it stops.
+If you want a transient container, `docker run --rm` will remove the container after it stops.
 
 If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
 
@@ -341,7 +341,7 @@ docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ### Get Environment Settings
 
 ```
-docker run -rm ubuntu env
+docker run --rm ubuntu env
 ```
 
 ### Delete old containers
