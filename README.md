@@ -258,6 +258,8 @@ Volumes are useful in situations where you can't use links (which are TCP/IP onl
 
 You can mount them in several docker containers at once, using `docker run -volume-from`
 
+Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
+
 See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.
 
 ## Exposing ports
