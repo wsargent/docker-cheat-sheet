@@ -340,6 +340,12 @@ or (this is unverified)
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
+### Get port mapping
+
+```
+docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
+```
+
 ### Get Environment Settings
 
 ```
