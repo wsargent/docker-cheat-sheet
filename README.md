@@ -33,6 +33,7 @@ You may also like to try the following tools (and add more details here after yo
 * [Fig](http://www.fig.sh/)
 * [Panamax](http://panamax.io/)
 * [Vessel](http://awvessel.github.io/)
+* [Shipyard](http://shipyard-project.com/)
 
 ## Prequisites
 
