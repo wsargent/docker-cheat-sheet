@@ -33,9 +33,8 @@ Docker helps developers build and ship higher-quality applications, faster." -- 
 You may also like to try the following tools (and add more details here after you try them):
 
 * [Fig](http://www.fig.sh/)
-* [Panamax](http://panamax.io/)
+* [Panamax](http://panamax.io/) -- nice web UI, will let you set up and download multiple docker containers.
 * [Vessel](http://awvessel.github.io/)
-* [Shipyard](http://shipyard-project.com/)
 
 ## Prerequisites
 
