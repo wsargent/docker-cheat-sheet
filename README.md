@@ -145,7 +145,9 @@ There doesn't seem to be a way to use docker directly to import files into a con
 
 ### Entering a Docker Container
 
-The "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
+From Docker v.1.3 it is possible to inject a new processes to a running container using [docker-exec](https://docs.docker.com/reference/commandline/cli/#exec). To enter a running container just attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
+
+Prior to v.1.3 this the "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
 
 Unfortunately, nsenter requires some configuration and installation. If your operating system does not include nsenter (usually in a package named util-linux or similar, although it has to be quite a recent version), the easiest way is probably to install it through docker, as described in the first of the following links:
 
