@@ -104,7 +104,7 @@ Some common misconceptions it's worth correcting:
 * [`docker start`](http://docs.docker.io/reference/commandline/cli/#start) will start it again.
 * [`docker restart`](http://docs.docker.io/reference/commandline/cli/#restart) restarts a container.
 * [`docker rm`](http://docs.docker.io/reference/commandline/cli/#rm) deletes a container.
-* [`docker kill`](http://docs.docker.io/reference/commandline/cli/#kill) sends a SIGKILL to a container.  [Has issues](https://github.com/dotcloud/docker/issues/197).
+* [`docker kill`](http://docs.docker.io/reference/commandline/cli/#kill) sends a SIGKILL to a container.
 * [`docker attach`](http://docs.docker.io/reference/commandline/cli/#attach) will connect to a running container.
 * [`docker wait`](http://docs.docker.io/reference/commandline/cli/#wait) blocks until container stops.
 
