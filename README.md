@@ -37,6 +37,8 @@ You may also like to try the following tools (and add more details here after yo
 
 ## Prerequisites
 
+This is all MacOS specific.
+
 Use [Homebrew](http://brew.sh/).
 
 ```
@@ -45,7 +47,7 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 ## Installation
 
-This is all MacOS specific.
+Again, this is all MacOS specific.
 
 Install VirtualBox and Vagrant using [Brew Cask](https://github.com/phinze/homebrew-cask).
 
