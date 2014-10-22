@@ -53,41 +53,28 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 Again, this is all MacOS specific.
 
-Install VirtualBox and Vagrant using [Brew Cask](https://github.com/phinze/homebrew-cask).
+Download Docker for OSX from the [Github Releases](https://github.com/boot2docker/osx-installer/releases) page.
+
+The canonical way to use Docker is with the aid of the boot2docker VM.  However, using the out of the box boot2docker doesn't give me control over my Vagrant instances (especially the lack of port forwarding).  So here's how to use boot2docker from a Vagrant instance.
+
+We use the [YungSang modified boot2docker instance](https://github.com/YungSang/boot2docker-vagrant-box) from the [Vagrant Cloud](https://vagrantcloud.com/yungsang/boxes/boot2docker):
 
 ```
-brew tap caskroom/homebrew-cask
-brew install brew-cask
-brew cask install virtualbox
-brew cask install vagrant
-```
-
-I personally don't use boot2docker because I already know how to use Vagrant, and I don't like how boot2docker doesn't give me control over my Vagrant instances (especially the lack of port forwarding).  So this is the real way to do it.
-
-We use the [Open Vagrant files](https://github.com/phusion/open-vagrant-boxes) defined by Phusion, which have better default settings:
-
-```
-vagrant init phusion/ubuntu-14.04-amd64
+mkdir ~/boot2docker
+cd ~/boot2docker
+vagrant init yungsang/boot2docker
 vagrant up
-vagrant ssh
-```
-
-Once you're in the Vagrant instance, install Docker like any other package:
-
-```
-sudo apt-get update
-sudo apt-get install -qy software-properties-common # needed for add-apt-repository etc
-sudo apt-get install -qy docker.io
-sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+export DOCKER_HOST=tcp://localhost:2375
+docker version
 ```
 
 Then start up a container:
 
 ```
-sudo docker run -i -t ubuntu /bin/bash
+docker run -i -t busybox /bin/bash
 ```
 
-That's it, you have a running Docker container.  Also note that Vagrant 1.6 has Docker [supported as a built-in provisioner](https://docs.vagrantup.com/v2/docker/index.html) which can help you when configuring images.
+That's it, you have a running Docker container. 
 
 I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands.  YMMV.
 
