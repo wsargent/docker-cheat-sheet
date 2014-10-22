@@ -96,7 +96,8 @@ Some common misconceptions it's worth correcting:
 
 ### Lifecycle
 
-* [`docker run`](http://docs.docker.io/reference/commandline/cli/#run) creates a container.
+* [`docker create`](http://docs.docker.io/reference/commandline/cli/#create) creates a container but does not start it.
+* [`docker run`](http://docs.docker.io/reference/commandline/cli/#run) creates and starts a container in one operation.
 * [`docker stop`](http://docs.docker.io/reference/commandline/cli/#stop) stops it.
 * [`docker start`](http://docs.docker.io/reference/commandline/cli/#start) will start it again.
 * [`docker restart`](http://docs.docker.io/reference/commandline/cli/#restart) restarts a container.
