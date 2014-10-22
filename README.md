@@ -35,7 +35,7 @@ You may also like to try the following tools (and add more details here after yo
 * [Vessel](http://awvessel.github.io/)
 * [Shipyard](http://shipyard-project.com/)
 
-## Prequisites
+## Prerequisites
 
 Use [Homebrew](http://brew.sh/).
 
