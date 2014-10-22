@@ -71,7 +71,7 @@ docker version
 Then start up a container:
 
 ```
-docker run -i -t busybox /bin/bash
+docker run -i -t ubuntu /bin/bash
 ```
 
 That's it, you have a running Docker container. 
