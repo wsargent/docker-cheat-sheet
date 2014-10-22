@@ -93,7 +93,7 @@ I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker pl
 
 ## Containers
 
-[Your basic isolated Docker process](http://docker.readthedocs.org/terms/container/#container-def).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
+[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
 
 Some common misconceptions it's worth correcting:
 
