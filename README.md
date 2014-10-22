@@ -118,7 +118,7 @@ If you want a transient container, `docker run --rm` will remove the container a
 
 If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR` (also see Volumes section).
+If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
 If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
