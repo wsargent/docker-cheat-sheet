@@ -38,7 +38,13 @@ You may also like to try the following tools (and add more details here after yo
 
 ## Prerequisites
 
-This is all MacOS specific.
+I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands.  YMMV.
+
+### Linux
+
+You should have at least a 3.8 kernel, but 3.10.x is [recommended](http://docs.docker.com/installation/binaries/#check-kernel-dependencies).
+
+### MacOS
 
 Use [Homebrew](http://brew.sh/).
 
@@ -55,11 +61,6 @@ Quick and easy install script provided by Docker:
 ```
 curl -sSL https://get.docker.com/ | sh
 ```
-or
-```
-wget -qO- https://get.docker.com/ | sh
-```
-
 
 ### Mac OS X
 
@@ -85,8 +86,6 @@ docker run -i -t ubuntu /bin/bash
 ```
 
 That's it, you have a running Docker container. 
-
-I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands.  YMMV.
 
 ## Containers
 
