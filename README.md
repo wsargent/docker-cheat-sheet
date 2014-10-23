@@ -48,7 +48,20 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 ## Installation
 
-Again, this is all MacOS specific.
+### Linux
+
+Quick and easy install script provided by Docker:
+
+```
+curl -sSL https://get.docker.com/ | sh
+```
+or
+```
+wget -qO- https://get.docker.com/ | sh
+```
+
+
+### Mac OS X
 
 Download Docker for OSX from the [Github Releases](https://github.com/boot2docker/osx-installer/releases) page.
 
