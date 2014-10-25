@@ -170,8 +170,6 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 * [`docker load`](http://docs.docker.io/reference/commandline/cli/#load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
 * [`docker save`](http://docs.docker.io/reference/commandline/cli/#save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
 
-`docker import` and `docker commit` only set up the filesystem, not Dockerfile info like CMD or ENTRYPOINT or EXPOSE.  See [bug](https://github.com/dotcloud/docker/issues/1141).
-
 ### Info
 
 * [`docker history`](http://docs.docker.io/reference/commandline/cli/#history) shows history of image.
