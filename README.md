@@ -192,7 +192,7 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 
 ## Dockerfile
 
-[The configuration file](http://docs.docker.io/introduction/working-with-docker/#working-with-the-dockerfile). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.
+[The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.
 
 ### Instructions
 
@@ -225,7 +225,7 @@ If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module f
 
 ## Layers
 
-The [versioned filesystem](http://en.wikipedia.org/wiki/Aufs) in Docker is based on layers.  They're like [git commits or changesets for filesystems](http://docker.readthedocs.org/reference/terms/layer/).
+The [versioned filesystem](http://en.wikipedia.org/wiki/Aufs) in Docker is based on layers.  They're like [git commits or changesets for filesystems](https://docs.docker.com/terms/layer/).
 
 ## Links
 
