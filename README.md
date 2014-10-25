@@ -14,6 +14,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [Links](https://github.com/wsargent/docker-cheat-sheet#links)
 * [Volumes](https://github.com/wsargent/docker-cheat-sheet#volumes)
 * [Exposing Ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports)
+* [Best Practices](https://github.com/wsargent/docker-cheat-sheet#Best Practices)
 * [Tips](https://github.com/wsargent/docker-cheat-sheet#tips)
 
 ## Why
@@ -218,6 +219,8 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 * [Examples](http://docs.docker.io/reference/builder/#dockerfile-examples)
 
 ### Best Practices
+
+Docker documentation: [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
 
 Best to look at [http://github.com/wsargent/docker-devenv](http://github.com/wsargent/docker-devenv) and the [best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html) for more details.
 
