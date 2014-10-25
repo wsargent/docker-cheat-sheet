@@ -358,6 +358,12 @@ docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
+### Find containers by regular expression
+
+```
+for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done`
+```
+
 ### Get Environment Settings
 
 ```
