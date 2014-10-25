@@ -194,6 +194,7 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 
 ### Instructions
 
+* [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
 * [FROM](http://docs.docker.io/reference/builder/#from)
 * [MAINTAINER](http://docs.docker.io/reference/builder/#maintainer)
 * [RUN](http://docs.docker.io/reference/builder/#run)
@@ -201,6 +202,7 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 * [EXPOSE](http://docs.docker.io/reference/builder/#expose)
 * [ENV](http://docs.docker.io/reference/builder/#env)
 * [ADD](http://docs.docker.io/reference/builder/#add)
+* [COPY](http://docs.docker.io/reference/builder/#copy)
 * [ENTRYPOINT](http://docs.docker.io/reference/builder/#entrypoint)
 * [VOLUME](http://docs.docker.io/reference/builder/#volume)
 * [USER](http://docs.docker.io/reference/builder/#user)
