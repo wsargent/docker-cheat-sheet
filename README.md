@@ -14,7 +14,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [Links](https://github.com/wsargent/docker-cheat-sheet#links)
 * [Volumes](https://github.com/wsargent/docker-cheat-sheet#volumes)
 * [Exposing Ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports)
-* [Best Practices](https://github.com/wsargent/docker-cheat-sheet#Best Practices)
+* [Best Practices](https://github.com/wsargent/docker-cheat-sheet#best-practices)
 * [Tips](https://github.com/wsargent/docker-cheat-sheet#tips)
 
 ## Why
