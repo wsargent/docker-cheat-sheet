@@ -358,6 +358,12 @@ docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(in
 docker run --rm ubuntu env
 ```
 
+### Kill running containers
+
+```
+docker kill $(docker ps -q)
+```
+
 ### Delete old containers
 
 ```
@@ -368,6 +374,18 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 
 ```
 docker rm `docker ps -a -q`
+```
+
+### Delete dangling images
+
+```
+docker rmi $(docker images -q -f dangling=true)
+```
+
+### Delete all images
+
+```
+docker rmi $(docker images -q)
 ```
 
 ### Show image dependencies
