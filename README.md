@@ -143,7 +143,7 @@ There doesn't seem to be a way to use docker directly to import files into a con
 
 From Docker v.1.3 it is possible to inject a new processes to a running container using [docker-exec](https://docs.docker.com/reference/commandline/cli/#exec). To enter a running container just attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
 
-Prior to v.1.3 this the "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
+Prior to v.1.3, the "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
 
 Unfortunately, nsenter requires some configuration and installation. If your operating system does not include nsenter (usually in a package named util-linux or similar, although it has to be quite a recent version), the easiest way is probably to install it through docker, as described in the first of the following links:
 
@@ -157,7 +157,7 @@ The first installation method described above also installs a small wrapper scri
 
 ## Images
 
-Images are just [templates for docker containers](http://docker.readthedocs.org/reference/terms/image/).
+Images are just [templates for docker containers](https://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work).
 
 ### Lifecycle
 
@@ -267,6 +267,12 @@ You can mount them in several docker containers at once, using `docker run -volu
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
 See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.
+
+As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
+
+```
+docker run -v /Users/wsargent/myapp/src:/src
+```
 
 ## Exposing ports
 
