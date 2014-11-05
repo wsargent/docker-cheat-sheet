@@ -256,13 +256,15 @@ You can mount them in several docker containers at once, using `docker run -volu
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.
+See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.  Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
 As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
 ```
+
+You can also use remote NFS volume if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
 
 ## Exposing ports
 
