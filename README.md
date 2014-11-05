@@ -109,7 +109,7 @@ Some common misconceptions it's worth correcting:
 * [`docker attach`](http://docs.docker.io/reference/commandline/cli/#attach) will connect to a running container.
 * [`docker wait`](http://docs.docker.io/reference/commandline/cli/#wait) blocks until container stops.
 
-If you want to run and then interact with a container, `docker start` then `docker attach` to get in (or, as of 0.9, `nsenter`).
+If you want to run and then interact with a container, `docker start`, then spawn a shell as described in [Executing Commands](https://github.com/wsargent/docker-cheat-sheet/#executing-commands).
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
@@ -120,6 +120,8 @@ If you want to map a directory on the host to a docker container, `docker run -v
 If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
 If you want to expose container ports through the host, see the [exposing ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports) section.
+
+Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
 
 ### Info
 
@@ -140,21 +142,11 @@ There doesn't seem to be a way to use docker directly to import files into a con
 * [`docker cp`](http://docs.docker.io/reference/commandline/cli/#cp) copies files or folders out of a container's filesystem.
 * [`docker export`](http://docs.docker.io/reference/commandline/cli/#export) turns container filesystem into tarball.
 
-### Entering a Docker Container
+### Executing Commands
 
-From Docker v.1.3 it is possible to inject a new processes to a running container using [docker-exec](https://docs.docker.com/reference/commandline/cli/#exec). To enter a running container just attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
+* [`docker exec`](https://docs.docker.com/reference/commandline/cli/#exec) to execute a command in container.
 
-Prior to v.1.3, the "official" way to enter a docker container while it's running is to use `nsenter`, which uses [libcontainer under the hood](http://jpetazzo.github.io/2014/03/23/lxc-attach-nsinit-nsenter-docker-0-9/).  Using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/).  
-
-Unfortunately, nsenter requires some configuration and installation. If your operating system does not include nsenter (usually in a package named util-linux or similar, although it has to be quite a recent version), the easiest way is probably to install it through docker, as described in the first of the following links:
-
-* [Installing nsenter using docker](https://github.com/jpetazzo/nsenter)
-* [How to enter a Docker container](https://blog.codecentric.de/en/2014/07/enter-docker-container/)
-* [Docker debug with nsenter on boot2docker](http://blog.sequenceiq.com/blog/2014/07/05/docker-debug-with-nsenter-on-boot2docker/)
-
-`nsenter` allows you to run any command (e.g. a shell) inside a container that's already running another command (e.g. your database or webserver). This allows you to see all mounted volumes, check on processes, log files etc. inside a running container.
-
-The first installation method described above also installs a small wrapper script wrapping `nsenter` named `docker-enter` that makes executing a shell inside a running container as easy as `docker-enter CONTAINER` and any other command via `docker-enter CONTAINER COMMAND`.
+To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
 
 ## Images
 
