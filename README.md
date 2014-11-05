@@ -92,11 +92,6 @@ That's it, you have a running Docker container.
 
 [Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
 
-Some common misconceptions it's worth correcting:
-
-* __Containers are not transient__.  `docker run` doesn't do what you think.
-* __Containers are not limited to running a single command or process.__  You can use [supervisord](http://docs.docker.io/examples/using_supervisord/) or [runit](https://github.com/phusion/baseimage-docker).
-
 ### Lifecycle
 
 * [`docker create`](http://docs.docker.io/reference/commandline/cli/#create) creates a container but does not start it.
