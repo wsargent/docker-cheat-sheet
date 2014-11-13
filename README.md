@@ -52,6 +52,8 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 ## Installation
 
+Docker has recognized that installation / deployment is a PITA, and [bug 8681](https://github.com/docker/docker/issues/8681) deals with this specifically.
+
 ### Linux
 
 Quick and easy install script provided by Docker:
