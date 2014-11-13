@@ -66,9 +66,7 @@ Download Docker for OSX from the [Github Releases](https://github.com/boot2docke
 
 The canonical way to use Docker is with the aid of the boot2docker VM.  However, using the out of the box boot2docker doesn't give me control over my Vagrant instances (especially the lack of port forwarding).  So here's how to use boot2docker from a Vagrant instance.
 
-We use the [YungSang modified boot2docker instance](https://github.com/YungSang/boot2docker-vagrant-box) from the [Vagrant Cloud](https://vagrantcloud.com/yungsang/boxes/boot2docker) -- 
-
-> NOTE: this opens up port forwarding to the network, so is not safe on public wifi.  Some people consider docker without TLS to be [fundementally unsafe](https://medium.com/@kevanahlquist/never-run-docker-on-a-tcp-socket-without-tls-1e7df31cf18c).
+We use the [YungSang modified boot2docker instance](https://github.com/YungSang/boot2docker-vagrant-box) from the [Vagrant Cloud](https://vagrantcloud.com/yungsang/boxes/boot2docker):
 
 ```
 mkdir ~/boot2docker
@@ -78,6 +76,8 @@ vagrant up
 export DOCKER_HOST=tcp://localhost:2375
 docker version
 ```
+
+> NOTE: the YungSang boot2docker opens up port forwarding to the network, so is not safe on public wifi.  You can make a good argument that docker without TLS is [fundamentally unsafe](https://medium.com/@kevanahlquist/never-run-docker-on-a-tcp-socket-without-tls-1e7df31cf18c).  I only do it because I have [Hands Off](http://www.oneperiodic.com/products/handsoff/) installed to limit external network access.
 
 Then start up a container:
 
