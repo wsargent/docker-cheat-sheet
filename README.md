@@ -438,7 +438,9 @@ As part of that linking process, docker will copy any environment variables defi
 
 I can then use commands like ```fig stop``` and ```fig rm``` to stop all my containers and remove them.
 NB - docker will [eventually](https://gist.github.com/aanand/9e7ac7185ffd64c1a91a) absorb figs functionality with docker groups and docker up but it looks like they're keeping the yml config so it should be pretty seamless when it happens.
-###Troubleshooting
+
+#### Troubleshooting
+
 ```fig run``` is a useful command for debugging issues. It allows me to startup a named container (and any it links to) and run a one off command. 
 
 This allows me to do things like ```fig run web env``` which will give me a list of all the environment variables that are available on the web container including the ones generated via the link to app. 
@@ -447,7 +449,9 @@ I can also use ```fig run web bash``` to run my web container interactively the 
 
 ### Panamax
 
-[Panamax](http://panamax.io/) -- nice web UI, will let you set up and download multiple docker containers.
+* [Panamax](http://panamax.io/)
+
+Nice web UI, will let you set up and download multiple docker containers.
 
 ### Vessel
 
