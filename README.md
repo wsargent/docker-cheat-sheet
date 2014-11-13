@@ -397,6 +397,10 @@ docker images -viz | dot -Tpng -o docker.png
 
 ## Tools
 
+* [Fig](https://github.com/wsargent/docker-cheat-sheet#fig)
+* [Panamax](https://github.com/wsargent/docker-cheat-sheet#panamax)
+* [Vessel](https://github.com/wsargent/docker-cheat-sheet#vessel)
+
 ### Fig
 
 [Fig](http://www.fig.sh/) is a helper app that makes it easier to run multiple docker containers on the same host. I would expect it to be used during dev/qa more than in production.
