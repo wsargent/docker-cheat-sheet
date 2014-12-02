@@ -164,6 +164,8 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 * [`docker history`](http://docs.docker.io/reference/commandline/cli/#history) shows history of image.
 * [`docker tag`](http://docs.docker.io/reference/commandline/cli/#tag) tags an image to a name (local or registry).
 
+Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
+
 ## Registry & Repository
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
