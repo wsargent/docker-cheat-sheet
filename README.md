@@ -417,7 +417,7 @@ Once I have my config defined, I can use ```fig up -d``` to run it (the ```-d```
 
 You can do everything you do with fig using docker directly but running multiple containers with parameters would require some sort of script if you plan to do it more than once so the yml config of fig and the convenience commands it provides are worth considering.
 
-Here's an example of setting up a ```fig.yml``` for an app with a apache packaged client container and a tomcat packaged app war:
+Here's an example of setting up a ```fig.yml``` for an app with an apache packaged client container and a tomcat packaged app war:
 
 First, here are the two docker commands to run these containers:
 ```
