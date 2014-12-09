@@ -273,13 +273,8 @@ You can also use remote NFS volume if you're [feeling brave](http://www.tech-d.n
 
 ## Exposing ports
 
-Exposing ports through the host container is [fiddly but doable](http://docs.docker.io/use/port_redirection/#binding-a-port-to-an-host-interface).
+Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
-First expose the port in your Dockerfile:
-
-```
-EXPOSE <CONTAINERPORT>
-```
 
 Then map the container port to the host port (only using localhost interface):
 
@@ -287,7 +282,13 @@ Then map the container port to the host port (only using localhost interface):
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-If you're running Docker in Virtualbox, you then need to forward the port there as well.  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
+If you don't want to use the `-p` option on the command line, you can persist it by using [EXPOSE](http://docs.docker.io/reference/builder/#expose):
+
+```
+EXPOSE <CONTAINERPORT>
+```
+
+If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html).  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
 
 ```
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
