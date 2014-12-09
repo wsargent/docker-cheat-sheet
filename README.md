@@ -276,13 +276,13 @@ You can also use remote NFS volume if you're [feeling brave](http://www.tech-d.n
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
 
-Then map the container port to the host port (only using localhost interface):
+The fastest way is to map the container port to the host port (only using localhost interface) using `-p`:
 
 ```
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-If you don't want to use the `-p` option on the command line, you can persist it by using [EXPOSE](http://docs.docker.io/reference/builder/#expose):
+If you don't want to use the `-p` option on the command line, you can persist port forwarding by using [EXPOSE](http://docs.docker.io/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
