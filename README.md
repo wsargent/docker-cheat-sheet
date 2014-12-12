@@ -179,6 +179,13 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 * [`docker pull`](http://docs.docker.io/reference/commandline/cli/#pull) pulls an image from registry to local machine.
 * [`docker push`](http://docs.docker.io/reference/commandline/cli/#push) pushes an image to the registry from local machine.
 
+### Run local registry
+
+[Registry implementation](http://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
+[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
+Note that this installation does not have any authorization controls. You may use option `-P -p 127.0.0.1:5000:5000` to limit connections to localhost only.
+In order to push to this repository tag image with `repositoryHostName:5000/imageName` then push this tag.
+
 ## Dockerfile
 
 [The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.
