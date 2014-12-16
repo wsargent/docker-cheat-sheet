@@ -26,7 +26,7 @@ Developers can get going quickly by starting with one of the 13,000+ apps availa
 
 Docker helps developers build and ship higher-quality applications, faster." -- [What is Docker](https://www.docker.com/whatisdocker/#copy1)
 
-## TL;DR, I just want a dev environment
+## I just want a dev environment
 
 * [A Docker Dev Environment in 24 Hours!](http://blog.relateiq.com/a-docker-dev-environment-in-24-hours-part-2-of-2/)
 * [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
