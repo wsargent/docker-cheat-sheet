@@ -62,6 +62,12 @@ Quick and easy install script provided by Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
+If you're running Debian based distro (like Ubuntu) just run:
+
+```
+apt-get update && apt-get install docker.io
+```
+
 ### Mac OS X
 
 Download Docker for OSX from the [Github Releases](https://github.com/boot2docker/osx-installer/releases) page.
