@@ -392,7 +392,7 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ### Delete stopped containers
 
 ```
-docker rm `docker ps -a -q`
+docker rm `docker ps -a -q -f status=exited`
 ```
 
 ### Delete dangling images
