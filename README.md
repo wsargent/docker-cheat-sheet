@@ -81,7 +81,7 @@ export DOCKER_HOST=tcp://localhost:2375
 docker version
 ```
 
-> NOTE: the YungSang boot2docker opens up port forwarding to the network, so is not safe on public wifi.  You can make a good argument that docker without TLS is [fundamentally unsafe](https://medium.com/@kevanahlquist/never-run-docker-on-a-tcp-socket-without-tls-1e7df31cf18c).  I only do it because I have [Hands Off](http://www.oneperiodic.com/products/handsoff/) installed to limit external network access.
+> NOTE: the YungSang boot2docker opens up port forwarding to the network, so is not safe on public wifi.  You can make a good argument that docker without TLS is [fundamentally unsafe](https://medium.com/@kevanahlquist/never-run-docker-on-a-tcp-socket-without-tls-1e7df31cf18c).  I only do it because I have [Hands Off](http://www.oneperiodic.com/products/handsoff/) installed to limit external network access.  
 
 Then start up a container:
 
@@ -174,7 +174,7 @@ A repository is a *hosted* collection of tagged images that together create the 
 
 A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](http://docs.docker.io/use/workingwithrepository/).
 
-Docker.io hosts its own [index](https://index.docker.io/) to a central registry which contains a large number of repositories.
+Docker.io hosts its own [index](https://index.docker.io/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
 
 * [`docker login`](http://docs.docker.io/reference/commandline/cli/#login) to login to a registry.
 * [`docker search`](http://docs.docker.io/reference/commandline/cli/#search) searches registry for image.
