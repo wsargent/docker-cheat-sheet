@@ -413,6 +413,25 @@ docker rmi $(docker images -q)
 docker images -viz | dot -Tpng -o docker.png
 ```
 
+### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1DycW5A)
+
+- Cleaning APT
+```
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+```
+- Flatten an image
+```
+ID=$(docker run -d image-name /bin/bash)
+docker export $ID | docker import – flat-image-name
+```
+
+- For backup
+```
+ID=$(docker run -d image-name /bin/bash)
+(docker export $ID | gzip -c > image.tgz)
+gzip -dc image.tgz | docker import - flat-image-name
+```
 ## Tools
 
 * [Fig](https://github.com/wsargent/docker-cheat-sheet#fig)
