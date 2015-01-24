@@ -52,7 +52,7 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 ## Installation
 
-[installation Instrunctions](https://docs.docker.com/installation/) are available.  Docker has recognized that installation / deployment is a PITA, and [Docker Machine](https://github.com/docker/machine) aka [bug 8681](https://github.com/docker/docker/issues/8681) deals with this specifically.
+[Installation instructions](https://docs.docker.com/installation/) are available.  Docker has recognized that installation / deployment is a PITA, and [Docker Machine](https://github.com/docker/machine) aka [bug 8681](https://github.com/docker/docker/issues/8681) deals with this specifically.
 
 ### Linux
 
