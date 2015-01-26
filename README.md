@@ -497,3 +497,5 @@ Nice web UI, will let you set up and download multiple docker containers.
 ### Vessel
 
 * [Vessel](http://awvessel.github.io/)
+
+Vessel automates the setup & use of dockerized development environments 
