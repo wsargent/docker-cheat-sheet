@@ -262,11 +262,11 @@ To delete links, use `docker rm --link `.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.
+Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use [use volumes mounted from data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
-You can mount them in several docker containers at once, using `docker run -volume-from`
+You can mount them in several docker containers at once, using `docker run -volume-from`.
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
@@ -278,7 +278,7 @@ As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.do
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-You can also use remote NFS volume if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
+You can also use remote NFS volumes if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
 
 ## Exposing ports
 
