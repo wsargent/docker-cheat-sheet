@@ -354,7 +354,7 @@ cd jq-1.3
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or (this is unverified)
+or using a [go template](https://docs.docker.com/reference/commandline/cli/#inspect)
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
