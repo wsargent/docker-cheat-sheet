@@ -129,6 +129,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 * [`docker events`](http://docs.docker.io/reference/commandline/cli/#events) gets events from container.
 * [`docker port`](http://docs.docker.io/reference/commandline/cli/#port) shows public facing port of container.
 * [`docker top`](http://docs.docker.io/reference/commandline/cli/#top) shows running processes in container.
+* [`docker stats`](http://docs.docker.com/reference/commandline/cli/#stats) shows containers' resource usage statistics.
 * [`docker diff`](http://docs.docker.io/reference/commandline/cli/#diff) shows changed files in the container's FS.
 
 `docker ps -a` shows running and stopped containers.
