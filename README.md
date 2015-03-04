@@ -261,6 +261,8 @@ And you can connect to it that way.
 
 To delete links, use `docker rm --link `.
 
+If you want to link across docker hosts then you should look at [Swarm](http://docs.docker.com/swarm/). This [link on stackoverflow](http://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
+
 ## Volumes
 
 Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
@@ -280,6 +282,8 @@ docker run -v /Users/wsargent/myapp/src:/src
 ```
 
 You can also use remote NFS volumes if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
+
+You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
 ## Exposing ports
 
