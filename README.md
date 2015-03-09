@@ -14,7 +14,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [Links](https://github.com/wsargent/docker-cheat-sheet#links)
 * [Volumes](https://github.com/wsargent/docker-cheat-sheet#volumes)
 * [Exposing Ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports)
-* [Machine, Swarm and Compose](https://github.com/wsargent/docker-cheat-sheet#machine-swarm-compose)
+* [Machine, Swarm and Compose](https://github.com/wsargent/docker-cheat-sheet#machines-swarm--and-compose)
 * [Best Practices](https://github.com/wsargent/docker-cheat-sheet#best-practices)
 * [Tips](https://github.com/wsargent/docker-cheat-sheet#tips)
 * [Tools](https://github.com/wsargent/docker-cheat-sheet#tools)
@@ -325,7 +325,7 @@ In early 2015 Docker developed and open sourced a number of components that use 
 * [Machine](https://docs.docker.com/machine/), is a tool for easily creatinf a docker host either locally or on cloud provider (i.e. AWS, Digital Ocean etc).
 * [Swarm](https://docs.docker.com/swarm/), is clustering for docker. It provides a way to group a number of docker hosts into a single virtual entity and provides 
 mechanisms to schedule containers across these hosts.
-* [Compose](https://docs.docker.com/compose/), provides a tool for describing a multi-container application within a single file.
+* [Compose](https://docs.docker.com/compose/), provides a tool for describing a multi-container application within a single file. Compose primarily Fig renamed.
 
 The [Demo of the Machine + Swarm + Compose integration](https://www.youtube.com/watch?v=M4PFY6RZQHQ) video provides a good introduction to the 
 various components and how they work together.
