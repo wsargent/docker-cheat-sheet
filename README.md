@@ -454,6 +454,7 @@ gzip -dc image.tgz | docker import - flat-image-name
 ## Tools
 
 * [Fig](https://github.com/wsargent/docker-cheat-sheet#fig)
+* [Kitematik](https://kitematic.com/)
 * [Panamax](https://github.com/wsargent/docker-cheat-sheet#panamax)
 * [Vessel](https://github.com/wsargent/docker-cheat-sheet#vessel)
 
