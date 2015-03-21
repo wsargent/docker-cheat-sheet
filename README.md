@@ -324,13 +324,11 @@ docker port CONTAINER $CONTAINERPORT
 ## Machines, Swarm  and Compose
 In early 2015 Docker developed and open sourced a number of components that use the Docker API to provide some higher level services.
 
-* [Machine](https://docs.docker.com/machine/), is a tool for easily creatinf a docker host either locally or on cloud provider (i.e. AWS, Digital Ocean etc).
-* [Swarm](https://docs.docker.com/swarm/), is clustering for docker. It provides a way to group a number of docker hosts into a single virtual entity and provides 
-mechanisms to schedule containers across these hosts.
+* [Machine](https://docs.docker.com/machine/), is a tool for easily creating a docker host either locally or on cloud provider (i.e. AWS, Digital Ocean etc).
+* [Swarm](https://docs.docker.com/swarm/), is clustering for docker. It provides a way to group a number of docker hosts into a single virtual entity and provides mechanisms to schedule containers across these hosts.
 * [Compose](https://docs.docker.com/compose/), provides a tool for describing a multi-container application within a single file. Compose primarily Fig renamed.
 
-The [Demo of the Machine + Swarm + Compose integration](https://www.youtube.com/watch?v=M4PFY6RZQHQ) video provides a good introduction to the 
-various components and how they work together.
+The [Demo of the Machine + Swarm + Compose integration](https://www.youtube.com/watch?v=M4PFY6RZQHQ) video provides a good introduction to the various components and how they work together.
 
 
 
