@@ -2,21 +2,21 @@
 
 NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit.
 
-* [Why](https://github.com/wsargent/docker-cheat-sheet#why)
-* [Prerequisites](https://github.com/wsargent/docker-cheat-sheet#prerequisites)
-* [Installation](https://github.com/wsargent/docker-cheat-sheet#installation)
-* [Containers](https://github.com/wsargent/docker-cheat-sheet#containers)
-* [Images](https://github.com/wsargent/docker-cheat-sheet#images)
-* [Registry and Repository](https://github.com/wsargent/docker-cheat-sheet#registry--repository)
-* [Dockerfile](https://github.com/wsargent/docker-cheat-sheet#dockerfile)
-* [Layers](https://github.com/wsargent/docker-cheat-sheet#layers)
-* [Links](https://github.com/wsargent/docker-cheat-sheet#links)
-* [Volumes](https://github.com/wsargent/docker-cheat-sheet#volumes)
-* [Exposing Ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports)
-* [Machine, Swarm and Compose](https://github.com/wsargent/docker-cheat-sheet#machines-swarm--and-compose)
-* [Best Practices](https://github.com/wsargent/docker-cheat-sheet#best-practices)
-* [Tips](https://github.com/wsargent/docker-cheat-sheet#tips)
-* [Tools](https://github.com/wsargent/docker-cheat-sheet#tools)
+* [Why](#why)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Containers](#containers)
+* [Images](#images)
+* [Registry and Repository](#registry--repository)
+* [Dockerfile](#dockerfile)
+* [Layers](#layers)
+* [Links](#links)
+* [Volumes](#volumes)
+* [Exposing Ports](#exposing-ports)
+* [Machine, Swarm and Compose](#machines-swarm--and-compose)
+* [Best Practices](#best-practices)
+* [Tips](#tips)
+* [Tools](#tools)
 
 ## Why
 
@@ -111,7 +111,7 @@ If you want to map a directory on the host to a docker container, `docker run -v
 
 If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
-If you want to expose container ports through the host, see the [exposing ports](https://github.com/wsargent/docker-cheat-sheet#exposing-ports) section.
+If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
 
 Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
 
@@ -185,7 +185,7 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.  You may also like to try the [tools section](https://github.com/wsargent/docker-cheat-sheet#tools).
+[The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.  You may also like to try the [tools section](#tools).
 
 ### Instructions
 
@@ -449,9 +449,9 @@ gzip -dc image.tgz | docker import - flat-image-name
 ```
 ## Tools
 
-* [Fig](https://github.com/wsargent/docker-cheat-sheet#fig)
-* [Panamax](https://github.com/wsargent/docker-cheat-sheet#panamax)
-* [Vessel](https://github.com/wsargent/docker-cheat-sheet#vessel)
+* [Fig](#fig)
+* [Panamax](#panamax)
+* [Vessel](#vessel)
 
 ### Fig
 
