@@ -32,7 +32,7 @@ I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker pl
 
 ### Linux
 
-You should have at least a 3.8 kernel, but 3.10.x is [recommended](http://docs.docker.com/installation/binaries/#check-kernel-dependencies).
+The 3.10.x kernel is [the minimum requirement](http://docs.docker.com/installation/binaries/#check-kernel-dependencies) for Docker.
 
 ### MacOS
 
