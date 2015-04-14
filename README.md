@@ -51,7 +51,7 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 Quick and easy install script provided by Docker:
 
 ```
-curl -sSL https://get.docker.com/ | sh
+curl --silent --show-error --location https://get.docker.com/ | sh
 ```
 
 If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.
@@ -78,7 +78,7 @@ docker version
 Then start up a container:
 
 ```
-docker run -i -t ubuntu /bin/bash
+docker run --interactive --tty ubuntu /bin/bash
 ```
 
 That's it, you have a running Docker container. 
@@ -103,13 +103,13 @@ If you want to run and then interact with a container, `docker start`, then spaw
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
+If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm --volume`.
 
-If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
+If you want to poke around in an image, `docker run --tty --interactive <myimage> <myshell>` to open a tty.
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+If you want to map a directory on the host to a docker container, `docker run --volume $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
-If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
+~~If you want to integrate a container with a [host process manager](http://docs.docker.io/use/host_integration/), start the daemon with `-r=false` then use `docker start --attach`.~~
 
 If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
 
@@ -126,7 +126,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 * [`docker stats`](http://docs.docker.com/reference/commandline/cli/#stats) shows containers' resource usage statistics.
 * [`docker diff`](http://docs.docker.io/reference/commandline/cli/#diff) shows changed files in the container's FS.
 
-`docker ps -a` shows running and stopped containers.
+`docker ps --all` shows running and stopped containers.
 
 ### Import / Export
 
@@ -139,7 +139,7 @@ There doesn't seem to be a way to use docker directly to import files into a con
 
 * [`docker exec`](https://docs.docker.com/reference/commandline/cli/#exec) to execute a command in container.
 
-To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
+To enter a running container, attach a new shell process to a running container called foo, use: `docker exec --interactive --tty foo /bin/bash`.
 
 ## Images
 
@@ -179,8 +179,8 @@ Docker.io hosts its own [index](https://index.docker.io/) to a central registry 
 ### Run local registry
 
 [Registry implementation](http://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
-[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
-Note that this installation does not have any authorization controls. You may use option `-P -p 127.0.0.1:5000:5000` to limit connections to localhost only.
+[`docker run --publish 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
+Note that this installation does not have any authorization controls. You may use option `--publish-all --publish 127.0.0.1:5000:5000` to limit connections to localhost only.
 In order to push to this repository tag image with `repositoryHostName:5000/imageName` then push this tag.
 
 ## Dockerfile
@@ -235,7 +235,7 @@ Note that if you're using [aufs](http://en.wikipedia.org/wiki/Aufs) as your file
 
 Links are how Docker containers talk to each other [through TCP/IP ports](http://docs.docker.io/use/working_with_links_names/).  [Linking into Redis](http://docs.docker.io/use/working_with_links_names/#links-service-discovery-for-docker) and [Atlassian](http://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](http://docs.docker.io/use/working_with_links_names/#resolving-links-by-name).
 
-NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
+NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `--icc=false` to disable inter process communication.
 
 If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port:
 
@@ -246,7 +246,7 @@ EXPOSE 1337
 Then if we create another container called LINKED like so:
 
 ```
-docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
+docker run --detach --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
 
 Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
@@ -268,7 +268,7 @@ Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
-You can mount them in several docker containers at once, using `docker run -volume-from`.
+You can mount them in several docker containers at once, using `docker run --volumes-from`.
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
@@ -277,7 +277,7 @@ See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) fo
 As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
 
 ```
-docker run -v /Users/wsargent/myapp/src:/src
+docker run --volume /Users/wsargent/myapp/src:/src
 ```
 
 You can also use remote NFS volumes if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
@@ -289,13 +289,13 @@ You may also consider running data-only containers as described [here](http://co
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
 
-The fastest way is to map the container port to the host port (only using localhost interface) using `-p`:
+The fastest way is to map a host port to the container port (only using localhost interface) using `--publish`:
 
 ```
-docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+docker run --publish 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER --tty someimage
 ```
 
-If you don't want to use the `-p` option on the command line, you can persist port forwarding by using [EXPOSE](http://docs.docker.io/reference/builder/#expose):
+If you don't want to use the `--publish` option on the command line, you can persist port forwarding by using [EXPOSE](http://docs.docker.io/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
@@ -341,12 +341,12 @@ Sources:
 ### Last Ids
 
 ```
-alias dl='docker ps -l -q'
+alias dl='docker ps --latest --quiet'
 docker run ubuntu echo hello world
 docker commit `dl` helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### Commit with command (needs Dockerfile) *deprecated*
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
@@ -355,35 +355,35 @@ docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
 ### Get IP address
 
 ```
-docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
+docker inspect `dl` | grep IPAddress | cut --delimiter '"' --fields 4
 ```
 
 or
 
 ```
 wget http://stedolan.github.io/jq/download/source/jq-1.3.tar.gz
-tar xzvf jq-1.3.tar.gz
+tar --extract --file jq-1.3.tar.gz
 cd jq-1.3
 ./configure && make && sudo make install
-docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
+docker inspect `dl` | jq --raw-output '.[0].NetworkSettings.IPAddress'
 ```
 
 or using a [go template](https://docs.docker.com/reference/commandline/cli/#inspect)
 
 ```
-docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
 ### Get port mapping
 
 ```
-docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
+docker inspect --format '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
 ### Find containers by regular expression
 
 ```
-for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done`
+for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut --fields 1 --delimiter " "); do echo $i; done`
 ```
 
 ### Get Environment Settings
@@ -395,34 +395,34 @@ docker run --rm ubuntu env
 ### Kill running containers
 
 ```
-docker kill $(docker ps -q)
+docker kill $(docker ps --quiet)
 ```
 
 ### Delete old containers
 
 ```
-docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
+docker ps --all | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
 ### Delete stopped containers
 
 ```
-docker rm -v `docker ps -a -q -f status=exited`
+docker rm --volumes `docker ps --all --quiet --filter status=exited`
 ```
 
 ### Delete dangling images
 
 ```
-docker rmi $(docker images -q -f dangling=true)
+docker rmi $(docker images --quiet --filter dangling=true)
 ```
 
 ### Delete all images
 
 ```
-docker rmi $(docker images -q)
+docker rmi $(docker images --quiet)
 ```
 
-### Show image dependencies
+### Show image dependencies *deprecated*
 
 ```
 docker images -viz | dot -Tpng -o docker.png
@@ -433,19 +433,19 @@ docker images -viz | dot -Tpng -o docker.png
 - Cleaning APT
 ```
 RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 - Flatten an image
 ```
-ID=$(docker run -d image-name /bin/bash)
+ID=$(docker run --detach image-name /bin/bash)
 docker export $ID | docker import – flat-image-name
 ```
 
 - For backup
 ```
-ID=$(docker run -d image-name /bin/bash)
-(docker export $ID | gzip -c > image.tgz)
-gzip -dc image.tgz | docker import - flat-image-name
+ID=$(docker run --detach image-name /bin/bash)
+(docker export $ID | gzip --stdout > image.tgz)
+gzip --decompress --stdout image.tgz | docker import - flat-image-name
 ```
 ## Tools
 
@@ -453,7 +453,7 @@ gzip -dc image.tgz | docker import - flat-image-name
 * [Panamax](#panamax)
 * [Vessel](#vessel)
 
-### Fig
+### Fig *deprecated by docker compose*
 
 [Fig](http://www.fig.sh/) is a helper app that makes it easier to run multiple docker containers on the same host. I would expect it to be used during dev/qa more than in production.
 
