@@ -274,6 +274,8 @@ Because volumes are isolated filesystems, they are often used to store state fro
 
 See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.  Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
+For an easy way to clean abandoned volumes, see [docker-cleanup-volumes](https://github.com/chadoe/docker-cleanup-volumes)
+
 As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
 
 ```
