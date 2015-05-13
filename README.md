@@ -107,6 +107,8 @@ If you want to remove also the volumes associated with the container, the deleti
 
 If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
 
+If you want to poke around in a running container, `docker exec -t -i <mycontainer> <myshell>` to open a tty.
+
 If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
 If you want to integrate a container with a [host process manager](https://docs.docker.com/articles/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
