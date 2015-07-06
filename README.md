@@ -270,7 +270,7 @@ Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
-You can mount them in several docker containers at once, using `docker run -volume-from`.
+You can mount them in several docker containers at once, using `docker run --volumes-from`.
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
