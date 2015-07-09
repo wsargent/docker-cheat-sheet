@@ -452,6 +452,21 @@ ID=$(docker run -d image-name /bin/bash)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
+### Monitor system resource utilization for running containers
+
+To check the CPU, memory and network i/o usage, you can use:
+
+```
+docker stats <container>
+``` 
+
+for a single container or 
+
+```
+docker stats $(docker ps -q)
+```
+
+to monitor all containers on the docker host.
 
 ## Tools
 
