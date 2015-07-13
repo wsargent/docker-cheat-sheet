@@ -103,7 +103,7 @@ If you want to run and then interact with a container, `docker start`, then spaw
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker --rm -v`.
+If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
 
 If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
 
