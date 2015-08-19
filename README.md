@@ -89,15 +89,15 @@ That's it, you have a running Docker container.
 
 ### Lifecycle
 
-* [`docker create`](https://docs.docker.com/reference/commandline/cli/#create) creates a container but does not start it.
-* [`docker run`](https://docs.docker.com/reference/commandline/cli/#run) creates and starts a container in one operation.
-* [`docker stop`](https://docs.docker.com/reference/commandline/cli/#stop) stops it.
-* [`docker start`](https://docs.docker.com/reference/commandline/cli/#start) will start it again.
-* [`docker restart`](https://docs.docker.com/reference/commandline/cli/#restart) restarts a container.
-* [`docker rm`](https://docs.docker.com/reference/commandline/cli/#rm) deletes a container.
-* [`docker kill`](https://docs.docker.com/reference/commandline/cli/#kill) sends a SIGKILL to a container.
-* [`docker attach`](https://docs.docker.com/reference/commandline/cli/#attach) will connect to a running container.
-* [`docker wait`](https://docs.docker.com/reference/commandline/cli/#wait) blocks until container stops.
+* [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
+* [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
+* [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops it.
+* [`docker start`](https://docs.docker.com/reference/commandline/start) will start it again.
+* [`docker restart`](https://docs.docker.com/reference/commandline/restart) restarts a container.
+* [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
+* [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a container.
+* [`docker attach`](https://docs.docker.com/reference/commandline/attach) will connect to a running container.
+* [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until container stops.
 
 If you want to run and then interact with a container, `docker start`, then spawn a shell as described in [Executing Commands](https://github.com/wsargent/docker-cheat-sheet/#executing-commands).
 
@@ -119,14 +119,14 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 ### Info
 
-* [`docker ps`](https://docs.docker.com/reference/commandline/cli/#ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/reference/commandline/cli/#logs) gets logs from container.
-* [`docker inspect`](https://docs.docker.com/reference/commandline/cli/#inspect) looks at all the info on a container (including IP address).
-* [`docker events`](https://docs.docker.com/reference/commandline/cli/#events) gets events from container.
-* [`docker port`](https://docs.docker.com/reference/commandline/cli/#port) shows public facing port of container.
-* [`docker top`](https://docs.docker.com/reference/commandline/cli/#top) shows running processes in container.
-* [`docker stats`](https://docs.docker.com/reference/commandline/cli/#stats) shows containers' resource usage statistics.
-* [`docker diff`](https://docs.docker.com/reference/commandline/cli/#diff) shows changed files in the container's FS.
+* [`docker ps`](https://docs.docker.com/reference/commandline/ps) shows running containers.
+* [`docker logs`](https://docs.docker.com/reference/commandline/logs) gets logs from container.
+* [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) looks at all the info on a container (including IP address).
+* [`docker events`](https://docs.docker.com/reference/commandline/events) gets events from container.
+* [`docker port`](https://docs.docker.com/reference/commandline/port) shows public facing port of container.
+* [`docker top`](https://docs.docker.com/reference/commandline/top) shows running processes in container.
+* [`docker stats`](https://docs.docker.com/reference/commandline/stats) shows containers' resource usage statistics.
+* [`docker diff`](https://docs.docker.com/reference/commandline/diff) shows changed files in the container's FS.
 
 `docker ps -a` shows running and stopped containers.
 
@@ -134,12 +134,12 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 There doesn't seem to be a way to use docker directly to import files into a container's filesystem.  The closest thing is to mount a host file or directory as a data volume and copy it from inside the container.
 
-* [`docker cp`](http://docs.docker.com/reference/commandline/cli/#cp) copies files or folders out of a container's filesystem.
-* [`docker export`](https://docs.docker.com/reference/commandline/cli/#export) turns container filesystem into tarball archive stream to STDOUT.
+* [`docker cp`](http://docs.docker.com/reference/commandline/cp) copies files or folders out of a container's filesystem.
+* [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
 
 ### Executing Commands
 
-* [`docker exec`](https://docs.docker.com/reference/commandline/cli/#exec) to execute a command in container.
+* [`docker exec`](https://docs.docker.com/reference/commandline/exec) to execute a command in container.
 
 To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
 
@@ -149,19 +149,19 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 
 ### Lifecycle
 
-* [`docker images`](https://docs.docker.com/reference/commandline/cli/#images) shows all images.
-* [`docker import`](https://docs.docker.com/reference/commandline/cli/#import) creates an image from a tarball.
-* [`docker build`](https://docs.docker.com/reference/commandline/cli/#build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/reference/commandline/cli/#commit) creates image from a container.
-* [`docker rmi`](https://docs.docker.com/reference/commandline/cli/#rmi) removes an image.
-* [`docker insert`](https://docs.docker.com/reference/commandline/cli/#insert) inserts a file from URL into image. (kind of odd, you'd think images would be immutable after create)
-* [`docker load`](https://docs.docker.com/reference/commandline/cli/#load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
-* [`docker save`](https://docs.docker.com/reference/commandline/cli/#save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+* [`docker images`](https://docs.docker.com/reference/commandline/images) shows all images.
+* [`docker import`](https://docs.docker.com/reference/commandline/import) creates an image from a tarball.
+* [`docker build`](https://docs.docker.com/reference/commandline/build) creates image from Dockerfile.
+* [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container.
+* [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) removes an image.
+* [`docker insert`](https://docs.docker.com/reference/commandline/insert) inserts a file from URL into image. (kind of odd, you'd think images would be immutable after create)
+* [`docker load`](https://docs.docker.com/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
+* [`docker save`](https://docs.docker.com/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
 
 ### Info
 
-* [`docker history`](https://docs.docker.com/reference/commandline/cli/#history) shows history of image.
-* [`docker tag`](https://docs.docker.com/reference/commandline/cli/#tag) tags an image to a name (local or registry).
+* [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
+* [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
 
 Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
 
@@ -173,10 +173,10 @@ A registry is a *host* -- a server that stores repositories and provides an HTTP
 
 Docker.com hosts its own [index](https://registry.hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
 
-* [`docker login`](https://docs.docker.com/reference/commandline/cli/#login) to login to a registry.
-* [`docker search`](https://docs.docker.com/reference/commandline/cli/#search) searches registry for image.
-* [`docker pull`](https://docs.docker.com/reference/commandline/cli/#pull) pulls an image from registry to local machine.
-* [`docker push`](https://docs.docker.com/reference/commandline/cli/#push) pushes an image to the registry from local machine.
+* [`docker login`](https://docs.docker.com/reference/commandline/login) to login to a registry.
+* [`docker search`](https://docs.docker.com/reference/commandline/search) searches registry for image.
+* [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
+* [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
 
 ### Run local registry
 
@@ -270,7 +270,7 @@ Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
-You can mount them in several docker containers at once, using `docker run -volume-from`.
+You can mount them in several docker containers at once, using `docker run --volumes-from`.
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
@@ -372,7 +372,7 @@ cd jq-1.3
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/reference/commandline/cli/#inspect)
+or using a [go template](https://docs.docker.com/reference/commandline/inspect)
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
@@ -452,6 +452,21 @@ ID=$(docker run -d image-name /bin/bash)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
+### Monitor system resource utilization for running containers
+
+To check the CPU, memory and network i/o usage, you can use:
+
+```
+docker stats <container>
+``` 
+
+for a single container or 
+
+```
+docker stats $(docker ps -q)
+```
+
+to monitor all containers on the docker host.
 
 ## Tools
 
