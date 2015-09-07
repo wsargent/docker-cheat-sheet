@@ -154,7 +154,6 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 * [`docker build`](https://docs.docker.com/reference/commandline/build) creates image from Dockerfile.
 * [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container.
 * [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) removes an image.
-* [`docker insert`](https://docs.docker.com/reference/commandline/insert) inserts a file from URL into image. (kind of odd, you'd think images would be immutable after create)
 * [`docker load`](https://docs.docker.com/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
 * [`docker save`](https://docs.docker.com/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
 
