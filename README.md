@@ -132,9 +132,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 ### Import / Export
 
-There doesn't seem to be a way to use docker directly to import files into a container's filesystem.  The closest thing is to mount a host file or directory as a data volume and copy it from inside the container.
-
-* [`docker cp`](http://docs.docker.com/reference/commandline/cp) copies files or folders out of a container's filesystem.
+* [`docker cp`](http://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
 * [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
 
 ### Executing Commands
