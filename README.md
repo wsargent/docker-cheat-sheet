@@ -38,8 +38,6 @@ The 3.10.x kernel is [the minimum requirement](http://docs.docker.com/installati
 
 ## Installation
 
-[Installation instructions](https://docs.docker.com/installation/) are available. 
-
 ### Linux
 
 Quick and easy install script provided by Docker:
@@ -49,6 +47,8 @@ curl -sSL https://get.docker.com/ | sh
 ```
 
 If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.  
+
+If you are a complete Docker newbie, you should follow the [series of tutorials](http://docs.docker.com/linux/started/) now.
 
 ### Mac OS X
 
@@ -70,7 +70,9 @@ Then start up a container:
 docker run hello-world
 ```
 
-That's it, you have a running Docker container.  If you are a complete Docker newbie, you should probably follow the [series of tutorials](http://docs.docker.com/mac/started/) now.
+That's it, you have a running Docker container. 
+
+If you are a complete Docker newbie, you should probably follow the [series of tutorials](http://docs.docker.com/mac/started/) now.
 
 ## Containers
 
