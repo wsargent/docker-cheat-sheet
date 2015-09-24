@@ -13,10 +13,8 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [Links](#links)
 * [Volumes](#volumes)
 * [Exposing Ports](#exposing-ports)
-* [Machine, Swarm and Compose](#machines-swarm--and-compose)
 * [Best Practices](#best-practices)
 * [Tips](#tips)
-* [Tools](#tools)
 
 ## Why
 
@@ -36,15 +34,11 @@ The 3.10.x kernel is [the minimum requirement](http://docs.docker.com/installati
 
 ### MacOS
 
-Use [Homebrew](http://brew.sh/).
-
-```
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-```
+ 10.8 “Mountain Lion” or newer is required.
 
 ## Installation
 
-[Installation instructions](https://docs.docker.com/installation/) are available.  Docker has recognized that installation / deployment is a PITA, and [Docker Machine](https://github.com/docker/machine) aka [bug 8681](https://github.com/docker/docker/issues/8681) deals with this specifically.
+[Installation instructions](https://docs.docker.com/installation/) are available. 
 
 ### Linux
 
@@ -54,31 +48,26 @@ Quick and easy install script provided by Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
-If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.
+If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.  
 
 ### Mac OS X
 
-Download Docker for OSX from the [Github Releases](https://github.com/boot2docker/osx-installer/releases) page.
+Download and install Docker Toolbox using the [installation instructions](http://docs.docker.com/installation/mac/).
 
-The canonical way to use Docker is with the aid of the boot2docker VM.  However, using the out of the box boot2docker doesn't give me control over my Vagrant instances (especially the lack of port forwarding).  So here's how to use boot2docker from a Vagrant instance.
+Docker used to use boot2docker, but you should be using docker machine now. The Docker website has instructions on [how to upgrade](https://docs.docker.com/installation/mac/#migrate-from-boot2docker).  If you have an existing docker instance, you can also install the [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly.
 
-We use the [YungSang modified boot2docker instance](https://github.com/YungSang/boot2docker-vagrant-box) from the [Vagrant Cloud](https://vagrantcloud.com/yungsang/boxes/boot2docker):
+Create a VM with Docker Machine, using the VirtualBox provider:
 
 ```
-mkdir ~/boot2docker
-cd ~/boot2docker
-vagrant init yungsang/boot2docker
-vagrant up
-export DOCKER_HOST=tcp://localhost:2375
-docker version
+docker-machine create --driver=virtualbox default
+docker-machine ls
+eval "$(docker-machine env default)"
 ```
-
-> NOTE: the YungSang boot2docker opens up port forwarding to the network, so is not safe on public wifi.  You can make a good argument that docker without TLS is [fundamentally unsafe](https://medium.com/@kevanahlquist/never-run-docker-on-a-tcp-socket-without-tls-1e7df31cf18c).  I only do it because I have [Hands Off](http://www.oneperiodic.com/products/handsoff/) installed to limit external network access.  
 
 Then start up a container:
 
 ```
-docker run -i -t ubuntu /bin/bash
+docker run hello-world
 ```
 
 That's it, you have a running Docker container. 
@@ -322,17 +311,6 @@ If you forget what you mapped the port to on the host container, use `docker por
 docker port CONTAINER $CONTAINERPORT
 ```
 
-## Machines, Swarm  and Compose
-In early 2015 Docker developed and open sourced a number of components that use the Docker API to provide some higher level services.
-
-* [Machine](https://docs.docker.com/machine/), is a tool for easily creating a docker host either locally or on cloud provider (i.e. AWS, Digital Ocean etc).
-* [Swarm](https://docs.docker.com/swarm/), is clustering for docker. It provides a way to group a number of docker hosts into a single virtual entity and provides mechanisms to schedule containers across these hosts.
-* [Compose](https://docs.docker.com/compose/), provides a tool for describing a multi-container application within a single file. Compose primarily Fig renamed.
-
-The [Demo of the Machine + Swarm + Compose integration](https://www.youtube.com/watch?v=M4PFY6RZQHQ) video provides a good introduction to the various components and how they work together.
-
-
-
 ## Tips
 
 Sources:
@@ -464,82 +442,3 @@ docker stats $(docker ps -q)
 ```
 
 to monitor all containers on the docker host.
-
-## Tools
-
-* [Compose](#compose)
-* [Panamax](#panamax)
-* [Vessel](#vessel)
-
-### Compose
-
-[Compose](https://github.com/docker/compose) (originally named fig) is a helper app that makes it easier to run multiple docker containers on the same host.
-I would expect it to be used during dev/qa more than in production.
-
-Compose works with a YAML file (default name can be ```docker-compose.yml```, use ```-f``` to provide a different filename)  that defines the containers you wish to use with it.
-Compose will take its project name from the name of the folder containing your yml configuration but you can override that with the ```-p``` parameter.
-
-Once I have my config defined, I can use ```docker-compose up -d``` to run it (the ```-d``` runs it as a detached task). This will start and link any containers.
-
-You can do everything you do with compose using docker directly but running multiple containers with parameters
-would require some sort of script if you plan to do it more than once so the yml config of compose
-and the convenience commands it provides are worth considering.
-
-Here's an example of setting up a ```docker-compose.yml``` for an app with an apache packaged client container and a tomcat packaged app war:
-
-First, here are the two docker commands to run these containers:
-
-```
-docker run -p 8080:8080 -v /Users/me/tomcatwork/trial.properties:/usr/share/tomcat6/trial.properties:rw -d me/tcfull
-docker run -p 80:80 -v /Users/me/dockerwork/localproxy.conf:/etc/apache2/conf-enabled/proxy.conf:rw -d me/afull
-```
-
-At this point, I haven't linked the containers - I'm using the proxy.conf to specify the tomcat address.
-my docker-compose.yml looks like this:
-
-```
-app:
-  image: me/tcfull
-  ports:
-    - "8080"
-  volumes:
-    - /Users/me/tomcatwork/trial.properties:/usr/share/tomcat6/trial.properties:rw
-web:
-  image: me/afull
-  ports:
-    - "80:80"
-  volumes:
-    - /Users/me/figwork/proxy.conf:/etc/apache2/conf-enabled/proxy.conf:rw
-  links:
-    - app
-```
-
-As you can see it follows the docker commands with the addition of names for the containers and a links section for the web container, linking it to the app container.
-
-As part of that linking process, docker will copy any environment variables defined in the app container over to the web container, define new environment variables for the address the app container is running at and also add an app entry in the etc/hosts file for the web container. I can modify my proxy conf to address ```http://app:8080``` and fig/docker will take care of the rest.
-
-I can then use commands like ```docker-compose stop``` and ```docker-compose rm``` to stop all my containers and remove them.
-NB - docker will [eventually](https://gist.github.com/aanand/9e7ac7185ffd64c1a91a) absorb figs functionality with docker groups and docker up but it looks like they're keeping the yml config so it should be pretty seamless when it happens.
-
-
-#### Troubleshooting
-
-```docker-compose run``` is a useful command for debugging issues. It allows me to startup a named container (and any it links to) and run a one off command. 
-
-This allows me to do things like ```docker-compose run web env``` which will give me a list of all the environment variables that are available on the web container including the ones generated via the link to app. 
-
-I can also use ```docker-compose run web bash``` to run my web container interactively the way it has been setup by compose with the link to app so I can debug any issues from the command line.
-
-
-### Panamax
-
-* [Panamax](http://panamax.io/)
-
-Nice web UI, will let you set up and download multiple docker containers.
-
-
-### Vessel
-
-* [Vessel](http://awvessel.github.io/)
-
-Vessel automates the setup & use of dockerized development environments.
