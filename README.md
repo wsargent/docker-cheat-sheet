@@ -52,11 +52,11 @@ If you're not willing to run a random shell script, please see the [installation
 
 ### Mac OS X
 
-Download and install Docker Toolbox using the [installation instructions](http://docs.docker.com/installation/mac/).
+Download and install [Docker Toolbox](https://www.docker.com/toolbox).  If that doesn't work, see the [installation instructions](http://docs.docker.com/installation/mac/).
 
 Docker used to use boot2docker, but you should be using docker machine now. The Docker website has instructions on [how to upgrade](https://docs.docker.com/installation/mac/#migrate-from-boot2docker).  If you have an existing docker instance, you can also install the [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly.
 
-Create a VM with Docker Machine, using the VirtualBox provider:
+Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
 
 ```
 docker-machine create --driver=virtualbox default
@@ -70,7 +70,7 @@ Then start up a container:
 docker run hello-world
 ```
 
-That's it, you have a running Docker container. 
+That's it, you have a running Docker container.  If you are a complete Docker newbie, you should probably follow the [series of tutorials](http://docs.docker.com/mac/started/) now.
 
 ## Containers
 
