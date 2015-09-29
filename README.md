@@ -409,7 +409,7 @@ docker rmi $(docker images -q)
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1DycW5A)
+### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
 
 - Cleaning APT
 ```
