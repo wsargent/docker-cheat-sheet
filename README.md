@@ -14,6 +14,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a github proje
 * [Volumes](#volumes)
 * [Exposing Ports](#exposing-ports)
 * [Best Practices](#best-practices)
+* [Security](#security)
 * [Tips](#tips)
 
 ## Why
@@ -151,8 +152,6 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 * [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
 
-Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
-
 ## Registry & Repository
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
@@ -214,6 +213,14 @@ This is where general Docker best practices and war stories go:
 * [A Docker Dev Environment in 24 Hours!](http://blog.relateiq.com/a-docker-dev-environment-in-24-hours-part-2-of-2/)
 * [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+
+## Security
+
+If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).
+
+Likewise, if you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).
+
+Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
 
 ## Layers
 
