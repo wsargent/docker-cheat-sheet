@@ -314,11 +314,55 @@ This is where general Docker best practices and war stories go:
 
 ## Security
 
+This is where security tips about Docker go.
+
 If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).
 
 Likewise, if you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).
 
 Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
+
+See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md) by [Thomas Sjögren](https://github.com/konstruktoid).
+
+From the [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (it's in PDF which makes it hard to use, so copying below) by [Container Solutions](http://container-solutions.com/is-docker-safe-for-production/):
+
+Turn off interprocess communication with:
+
+```
+docker -d --icc=false --iptables
+```
+
+Set the container to be read-only:
+
+```
+docker run --read-only
+```
+
+Verify images with a hashsum:
+
+```
+docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
+```
+
+Set volumes to be read only:
+
+```
+docker run -v $(pwd)/secrets:/secrets:ro debian 
+```
+
+Set memory and CPU sharing:
+
+```
+docker -c 512 -mem 512m
+```
+
+Define and run a user in your Dockerfile so you don't run as root inside the container:
+
+```
+RUN groupadd -r user && useradd -r -g user user
+USER user
+```
+
 
 ## Tips
 
