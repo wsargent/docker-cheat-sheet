@@ -1,6 +1,6 @@
 # Docker Cheat Sheet
 
-NOTE: This used to be a gist that continually expanded.  It's now a github project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit.
+NOTE: This used to be a gist that continually expanded.  It's now a GitHub project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit.
 
 * [Why](#why)
 * [Prerequisites](#prerequisites)
@@ -31,7 +31,7 @@ I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker pl
 
 ### Linux
 
-The 3.10.x kernel is [the minimum requirement](http://docs.docker.com/installation/binaries/#check-kernel-dependencies) for Docker.
+The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/installation/binaries/#check-kernel-dependencies) for Docker.
 
 ### MacOS
 
@@ -49,11 +49,11 @@ curl -sSL https://get.docker.com/ | sh
 
 If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.  
 
-If you are a complete Docker newbie, you should follow the [series of tutorials](http://docs.docker.com/linux/started/) now.
+If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/linux/started/) now.
 
 ### Mac OS X
 
-Download and install [Docker Toolbox](https://www.docker.com/toolbox).  If that doesn't work, see the [installation instructions](http://docs.docker.com/installation/mac/).
+Download and install [Docker Toolbox](https://www.docker.com/toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
 Docker used to use boot2docker, but you should be using docker machine now. The Docker website has instructions on [how to upgrade](https://docs.docker.com/installation/mac/#migrate-from-boot2docker).  If you have an existing docker instance, you can also install the [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly.
 
@@ -73,7 +73,7 @@ docker run hello-world
 
 That's it, you have a running Docker container. 
 
-If you are a complete Docker newbie, you should probably follow the [series of tutorials](http://docs.docker.com/mac/started/) now.
+If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/mac/started/) now.
 
 ## Containers
 
@@ -124,7 +124,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 ### Import / Export
 
-* [`docker cp`](http://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
+* [`docker cp`](https://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
 * [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
 
 ### Executing Commands
@@ -167,7 +167,7 @@ Docker.com hosts its own [index](https://registry.hub.docker.com/) to a central 
 
 ### Run local registry
 
-[Registry implementation](http://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
+[Registry implementation](https://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
 [`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
 Note that this installation does not have any authorization controls. You may use option `-P -p 127.0.0.1:5000:5000` to limit connections to localhost only.
 In order to push to this repository tag image with `repositoryHostName:5000/imageName` then push this tag.
@@ -201,11 +201,11 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 
 The versioned filesystem in Docker is based on layers.  They're like [git commits or changesets for filesystems](https://docs.docker.com/terms/layer/).
 
-Note that if you're using [aufs](http://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container!  See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
+Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container!  See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
 
 ## Links
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/examples/running_redis_service/) and [Atlassian](http://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
+Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
 
 NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
 
@@ -232,11 +232,11 @@ And you can connect to it that way.
 
 To delete links, use `docker rm --link `.
 
-If you want to link across docker hosts then you should look at [Swarm](http://docs.docker.com/swarm/). This [link on stackoverflow](http://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
+If you want to link across docker hosts then you should look at [Swarm](https://docs.docker.com/swarm/). This [link on stackoverflow](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](http://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
+Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
@@ -248,7 +248,7 @@ See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) fo
 
 For an easy way to clean abandoned volumes, see [docker-cleanup-volumes](https://github.com/chadoe/docker-cleanup-volumes)
 
-As of 1.3, you can [map MacOS host directories as docker volumes](http://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
+As of 1.3, you can [map MacOS host directories as docker volumes](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
