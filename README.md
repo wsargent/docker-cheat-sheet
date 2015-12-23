@@ -71,7 +71,7 @@ Then start up a container:
 docker run hello-world
 ```
 
-That's it, you have a running Docker container. 
+That's it, you have a running Docker container.
 
 If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/mac/started/) now.
 
@@ -347,7 +347,7 @@ docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 Set volumes to be read only:
 
 ```
-docker run -v $(pwd)/secrets:/secrets:ro debian 
+docker run -v $(pwd)/secrets:/secrets:ro debian
 ```
 
 Set memory and CPU sharing:
@@ -482,16 +482,20 @@ gzip -dc image.tgz | docker import - flat-image-name
 
 ### Monitor system resource utilization for running containers
 
-To check the CPU, memory and network i/o usage, you can use:
+To check the CPU, memory, and network i/o usage of a single container, you can use:
 
 ```
 docker stats <container>
-``` 
+```
 
-for a single container or 
+For all containers listed by id:
 
 ```
 docker stats $(docker ps -q)
 ```
 
-to monitor all containers on the docker host.
+For all containers listed by name:
+
+```
+docker stats $(docker ps --format '{{.Names}}')
+```
