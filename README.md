@@ -196,6 +196,7 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 ### Tutorial
 
 * [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+* [A thorough introduction guide to Docker containers](http://www.dedoimedo.com/computers/docker-guide.html)
 
 ## Layers
 
