@@ -84,13 +84,18 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 * [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
 * [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
-* [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops it.
-* [`docker start`](https://docs.docker.com/reference/commandline/start) will start it again.
-* [`docker restart`](https://docs.docker.com/reference/commandline/restart) restarts a container.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
-* [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a container.
+
+## Starting and Stopping
+
+* [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
+* [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops a running container.
+* [`docker restart`](https://docs.docker.com/reference/commandline/restart) stops and starts a container.
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) pauses a running container, "freezing" it in place.
+* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
+* [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until running container stops.
+* [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a running container.
 * [`docker attach`](https://docs.docker.com/reference/commandline/attach) will connect to a running container.
-* [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until container stops.
 
 If you want to run and then interact with a container, `docker start`, then spawn a shell as described in [Executing Commands](https://github.com/wsargent/docker-cheat-sheet/#executing-commands).
 
