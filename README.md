@@ -7,6 +7,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a GitHub proje
 * [Installation](#installation)
 * [Containers](#containers)
 * [Images](#images)
+* [Networks](#networks)
 * [Registry and Repository](#registry--repository)
 * [Dockerfile](#dockerfile)
 * [Layers](#layers)
