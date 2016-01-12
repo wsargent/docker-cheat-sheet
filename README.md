@@ -1,4 +1,4 @@
-# Docker Cheat Sheet
+﻿# Docker Cheat Sheet
 
 NOTE: This used to be a gist that continually expanded.  It's now a GitHub project because it's considerably easier for other people to edit, fix and expand on Docker using Github.  Just click  [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit.
 
@@ -151,6 +151,10 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 
 * [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
+
+### Cleaning up
+
+While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
 ## Registry & Repository
 
