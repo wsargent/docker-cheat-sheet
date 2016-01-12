@@ -142,7 +142,7 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 * [`docker images`](https://docs.docker.com/reference/commandline/images) shows all images.
 * [`docker import`](https://docs.docker.com/reference/commandline/import) creates an image from a tarball.
 * [`docker build`](https://docs.docker.com/reference/commandline/build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container.
+* [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
 * [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) removes an image.
 * [`docker load`](https://docs.docker.com/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
 * [`docker save`](https://docs.docker.com/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
@@ -219,6 +219,12 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 ### Tutorial
 
 * [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+
+### Examples
+
+* [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
+* [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
 
 ## Layers
 
@@ -326,12 +332,6 @@ If you forget what you mapped the port to on the host container, use `docker por
 ```
 docker port CONTAINER $CONTAINERPORT
 ```
-
-### Examples
-
-* [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
-* [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
 
 ## Best Practices
 
