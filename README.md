@@ -159,22 +159,22 @@ While you can use the `docker rmi` command to remove specific images, there's a 
 
 ## Networks 
 
-Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.
+Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.  See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
 
 ### Lifecycle
 
-* [`docker network create`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
-* [`docker network rm`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/)
+* [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/)
 
 ### Info
 
-* [`docker network ls`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
-* [`docker network inspect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/)
+* [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/)
 
 ### Connection
 
-* [`docker network connect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
-* [`docker network disconnect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
+* [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
 
 ## Registry & Repository
 
