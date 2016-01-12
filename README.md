@@ -401,7 +401,6 @@ USER user
 ### Security Videos
 
 * [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
-* [Securing your application using Docker](https://youtu.be/KmxOXmPhZbk) 
 * [Securing your applications using Docker](https://youtu.be/KmxOXmPhZbk)
 * [Container security: Do containers actually contain?](https://youtu.be/a9lE9Urr6AQ)
 
