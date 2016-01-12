@@ -86,6 +86,12 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
 
+If you want a transient container, `docker run --rm` will remove the container after it stops.
+
+If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+
+If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
+
 ## Starting and Stopping
 
 * [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
@@ -96,18 +102,6 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until running container stops.
 * [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a running container.
 * [`docker attach`](https://docs.docker.com/reference/commandline/attach) will connect to a running container.
-
-If you want to run and then interact with a container, `docker start`, then spawn a shell as described in [Executing Commands](https://github.com/wsargent/docker-cheat-sheet/#executing-commands).
-
-If you want a transient container, `docker run --rm` will remove the container after it stops.
-
-If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
-
-If you want to poke around in an image, `docker run -t -i <myimage> <myshell>` to open a tty.
-
-If you want to poke around in a running container, `docker exec -t -i <mycontainer> <myshell>` to open a tty.
-
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
 If you want to integrate a container with a [host process manager](https://docs.docker.com/articles/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
