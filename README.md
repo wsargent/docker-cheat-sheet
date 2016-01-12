@@ -156,6 +156,25 @@ Images are just [templates for docker containers](https://docs.docker.com/introd
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
+## Networks 
+
+Docker has a (Networks)[https://docs.docker.com/engine/userguide/networking/dockernetworks/] feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.
+
+### Lifecycle
+
+* [`docker network create`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network rm`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+
+### Info
+
+* [`docker network ls`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network inspect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+
+### Connection
+
+* [`docker network connect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+* [`docker network disconnect`](https://docs.docker.com/engine/userguide/networking/work-with-networks/)
+
 ## Registry & Repository
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
@@ -268,18 +287,19 @@ You may also consider running data-only containers as described [here](http://co
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
-
-The fastest way is to map the container port to the host port (only using localhost interface) using `-p`:
+This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
 
 ```
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-If you don't want to use the `-p` option on the command line, you can persist port forwarding by using [EXPOSE](https://docs.docker.com/reference/builder/#expose):
+You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
 ```
+
+But note that EXPOSE does not expose the port itself, only `-p` will do that.
 
 If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html).  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
 
