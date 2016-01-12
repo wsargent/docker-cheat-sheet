@@ -159,7 +159,7 @@ While you can use the `docker rmi` command to remove specific images, there's a 
 
 ## Networks 
 
-Docker has a (Networks)[https://docs.docker.com/engine/userguide/networking/dockernetworks/] feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.
+Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.
 
 ### Lifecycle
 
