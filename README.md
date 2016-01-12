@@ -346,17 +346,20 @@ This is where general Docker best practices and war stories go:
 
 ## Security
 
-This is where security tips about Docker go.
+This is where security tips about Docker go.  The [security](https://docs.docker.com/engine/articles/security/) page goes into more detail.
 
-If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).
+First things first: Docker runs as root.  If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).  If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  Docker should not be your only defense.
 
-Likewise, if you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).
+### Security Tips
+
+For greatest security, you want to run Docker inside a virtual machine, on on a host.  This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/).  Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/).
 
 Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
 
 See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md) by [Thomas Sjögren](https://github.com/konstruktoid).
 
 From the [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (it's in PDF which makes it hard to use, so copying below) by [Container Solutions](http://container-solutions.com/is-docker-safe-for-production/):
+
 
 Turn off interprocess communication with:
 
@@ -395,6 +398,17 @@ RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
 
+### Security Videos
+
+* [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
+* [Securing your application using Docker](https://youtu.be/KmxOXmPhZbk) 
+* [Securing your applications using Docker](https://youtu.be/KmxOXmPhZbk)
+* [Container security: Do containers actually contain?](https://youtu.be/a9lE9Urr6AQ)
+
+### Security Roadmap
+
+The Docker roadmap talks about [seccomp support](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
+There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).  There's also work on [user namespaces](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/).
 
 ## Tips
 
