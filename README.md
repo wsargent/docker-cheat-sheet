@@ -262,6 +262,16 @@ If you want to link across docker hosts then you should look at [Swarm](https://
 
 Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
 
+### Lifecycle
+
+* [`docker volumes create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
+* [`docker volumes rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
+
+### Info
+
+* [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
+* [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
+
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
 You can mount them in several docker containers at once, using `docker run --volumes-from`.
