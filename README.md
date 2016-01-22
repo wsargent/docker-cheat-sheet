@@ -202,19 +202,21 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 ### Instructions
 
 * [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
-* [FROM](https://docs.docker.com/reference/builder/#from)
-* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer)
-* [RUN](https://docs.docker.com/reference/builder/#run)
-* [CMD](https://docs.docker.com/reference/builder/#cmd)
-* [EXPOSE](https://docs.docker.com/reference/builder/#expose)
-* [ENV](https://docs.docker.com/reference/builder/#env)
-* [ADD](https://docs.docker.com/reference/builder/#add)
-* [COPY](https://docs.docker.com/reference/builder/#copy)
-* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint)
-* [VOLUME](https://docs.docker.com/reference/builder/#volume)
-* [USER](https://docs.docker.com/reference/builder/#user)
-* [WORKDIR](https://docs.docker.com/reference/builder/#workdir)
-* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild)
+* [FROM](https://docs.docker.com/reference/builder/#from) Sets the Base Image for subsequent instructions.
+* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) Set the Author field of the generated images..
+* [RUN](https://docs.docker.com/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
+* [CMD](https://docs.docker.com/reference/builder/#cmd) provide defaults for an executing container.
+* [EXPOSE](https://docs.docker.com/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
+* [ENV](https://docs.docker.com/reference/builder/#env) sets environment variable.
+* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches.
+* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories.
+* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
+* [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
+* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
+* [WORKDIR](https://docs.docker.com/reference/builder/#workdir) sets the working directory.
+* [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
+* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
+* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
 
 ### Tutorial
 
@@ -225,6 +227,7 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 * [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
 * [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
+* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
 
 ## Layers
 
