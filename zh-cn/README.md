@@ -109,18 +109,18 @@ docker run hello-world
 
 故障 docker 实例的重启策略在[这里](http://container42.com/2014/09/30/docker-restart-policies/)。
 
-### Info
+### 信息
 
-* [`docker ps`](https://docs.docker.com/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) gets logs from container.
-* [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) looks at all the info on a container (including IP address).
-* [`docker events`](https://docs.docker.com/reference/commandline/events) gets events from container.
-* [`docker port`](https://docs.docker.com/reference/commandline/port) shows public facing port of container.
-* [`docker top`](https://docs.docker.com/reference/commandline/top) shows running processes in container.
-* [`docker stats`](https://docs.docker.com/reference/commandline/stats) shows containers' resource usage statistics.
-* [`docker diff`](https://docs.docker.com/reference/commandline/diff) shows changed files in the container's FS.
+* [`docker ps`](https://docs.docker.com/reference/commandline/ps) 查看运行中的所有容器。
+* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。
+* [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) 查看某个容器的所有信息(包括 IP 地址)。
+* [`docker events`](https://docs.docker.com/reference/commandline/events) 从容器中获取事件(events)。
+* [`docker port`](https://docs.docker.com/reference/commandline/port) 查看容器的公开端口。
+* [`docker top`](https://docs.docker.com/reference/commandline/top) 查看容器中活动进程。
+* [`docker stats`](https://docs.docker.com/reference/commandline/stats) 查看容器的资源使用情况统计信息。
+* [`docker diff`](https://docs.docker.com/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
 
-`docker ps -a` shows running and stopped containers.
+`docker ps -a` 查看所有容器，包括正在运行的和已停止的。
 
 ### Import / Export
 
