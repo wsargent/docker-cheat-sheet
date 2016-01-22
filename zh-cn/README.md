@@ -8,13 +8,13 @@
 * [容器(Containers)](#containers)
 * [镜像(Images)](#images)
 * [网络(Networks)](#networks)
-* [Registry 和 Repository](#registry--repository)
+* [仓管中心和仓库(Registry & Repository)](#registry--repository)
 * [Dockerfile](#dockerfile)
-* [Layers](#layers)
-* [Links](#links)
-* [Volumes](#volumes)
+* [层(Layers)](#layers)
+* [链接(Links)](#links)
+* [卷标(Volumes)](#volumes)
 * [暴露端口(Exposing Ports)](#exposing-ports)
-* [最佳方案](#best-practices)
+* [最佳实践](#best-practices)
 * [安全](#security)
 * [小贴士](#tips)
 
@@ -192,7 +192,7 @@ Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了
 
 [如何实现仓管中心](https://github.com/docker/docker-registry)，官方提供了一个镜像，实现了基本的安装，可以通过执行
 [`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)启动。
-但请注意，该实现并没有提供任何的权限控制。所以你可以通过选项 `-P -p 127.0.0.1:5000:5000` 来限制只能从本机接入。
+注意: 该实现并没有提供任何的权限控制。所以你可以通过选项 `-P -p 127.0.0.1:5000:5000` 来限制只能从本机接入。
 为了推送仓库到该中心，请把镜像的标签命名为 `repositoryHostName:5000/imageName` ，然后推送该标签。
 
 ## Dockerfile
@@ -226,46 +226,46 @@ Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了
 * [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
 
-## Layers
+## 层(Layers)
 
-The versioned filesystem in Docker is based on layers.  They're like [git commits or changesets for filesystems](https://docs.docker.com/terms/layer/).
+Docker 的版本化文件系统是基于层的。就像[git的提交或文件变更系统](https://docs.docker.com/terms/layer/)一样。
 
-Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container!  See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
+注意: 如果你使用 [aufs](https://en.wikipedia.org/wiki/Aufs) 作为你的文件系统，当删除一个容器的时候，Docker 并不一定能成功删除的文件卷标！更多详细信息请参阅 [PR 8484](https://github.com/docker/docker/pull/8484)。
 
-## Links
+## 链接(Links)
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
+链接(Links)[通过 TCP/IP 端口](https://docs.docker.com/userguide/dockerlinks/)实现了 Docker 容器之间的通讯。[链接到 Redis](https://docs.docker.com/examples/running_redis_service/) 和 [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) 是两个可用的例子。你还可以(0.11 开始)[通过 hostname 关联链接](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file)。
 
-NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
+注意: 如果你希望容器之间**只**通过链接进行通讯，在启动 docker 守护进程的时候请添加参数 `-icc=false` 来禁用内部进程通讯。
 
-If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port:
+如果你有一个名为 CONTAINER 的容器(通过 `docker run --name CONTAINER` 指定) 并且在 Dockerfile 中，它的端口暴露为:
 
 ```
 EXPOSE 1337
 ```
 
-Then if we create another container called LINKED like so:
+然后，我们创建另外一个名为 LINKED 的容器:
 
 ```
 docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
 
-Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
+然后 CONTAINER 的端口和别名将会以如下的环境变量出现在 LINKED 中:
 
 ```
 $ALIAS_PORT_1337_TCP_PORT
 $ALIAS_PORT_1337_TCP_ADDR
 ```
 
-And you can connect to it that way.
+之后你就可以通过这种方式来链接它了。
 
-To delete links, use `docker rm --link `.
+要删除链接，通过命令 `docker rm --link `。
 
-If you want to link across docker hosts then you should look at [Swarm](https://docs.docker.com/swarm/). This [link on stackoverflow](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
+如果你想跨 docker 主机链接，你可以查看 [Swarm](https://docs.docker.com/swarm/) 部分。. 在 [stackoverflow 上的这个链接](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts)也提供了一些关于如何跨 docker 主机进行链接的好方式。
 
-## Volumes
+## 卷标(Volumes)
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
+Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.docker.com/userguide/dockervolumes/)。它们不应该链接到特定的容器上。好的做法是如果可能，应当把卷标挂载到[纯数据容器(data-only containers)](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)上。
 
 ### 生命周期
 
@@ -277,25 +277,25 @@ Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide
 * [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 * [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
-Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
+卷标在不能使用链接(只有 TCP/IP )的情况下非常有用。例如，如果你有两个 docker 实例需要通讯并在文件系统上留下记录。
 
-You can mount them in several docker containers at once, using `docker run --volumes-from`.
+你可以一次性将其挂载到多个 docker 容器上，通过 `docker run --volumes-from`。
 
-Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
+因为卷标是独立的文件系统，它们通常被用于存储各容器之间的瞬时状态。也就是说，你可以配置一个无状态临时容器，关掉之后，当你有第二个这种临时容器实例的时候，你可以从上一次保存的状态继续执行。
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.  Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
+查看[卷标进阶](http://crosbymichael.com/advanced-docker-volumes.html)来获取更多细节。Container42 [非常有用](http://container42.com/2014/11/03/docker-indepth-volumes/)。
 
-As of 1.3, you can [map MacOS host directories as docker volumes](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume) through boot2docker:
+从 1.3 开始，你可以[映射宿主 MacOS 的文件夹作为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume)通过 boot2docker:
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-You can also use remote NFS volumes if you're [feeling brave](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
+你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
 
-You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
+可还可以考虑运行一个纯数据容器，像[这里](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/)所说的那样，提供可移植数据。
 
-## Exposing ports
+## 暴露端口(Exposing ports)
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
@@ -333,7 +333,7 @@ If you forget what you mapped the port to on the host container, use `docker por
 docker port CONTAINER $CONTAINERPORT
 ```
 
-## Best Practices
+## 最佳实践
 
 This is where general Docker best practices and war stories go:
 
