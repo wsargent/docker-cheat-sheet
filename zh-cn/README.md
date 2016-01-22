@@ -6,8 +6,8 @@
 * [系统环境](#prerequisites)
 * [安装](#installation)
 * [容器(Containers)](#containers)
-* [Images](#images)
-* [Networks](#networks)
+* [镜像(Images)](#images)
+* [网络(Networks)](#networks)
 * [Registry 和 Repository](#registry--repository)
 * [Dockerfile](#dockerfile)
 * [Layers](#layers)
@@ -122,84 +122,84 @@ docker run hello-world
 
 `docker ps -a` 查看所有容器，包括正在运行的和已停止的。
 
-### Import / Export
+### 导入 / 导出
 
-* [`docker cp`](https://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
-* [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
+* [`docker cp`](https://docs.docker.com/reference/commandline/cp) 在容器和本地文件系统之间复制文件或文件夹。
+* [`docker export`](https://docs.docker.com/reference/commandline/export) 将容器的文件系统切换为压缩包(tarball archive stream)输出到 STDOUT。
 
-### Executing Commands
+### 执行命令
 
-* [`docker exec`](https://docs.docker.com/reference/commandline/exec) to execute a command in container.
+* [`docker exec`](https://docs.docker.com/reference/commandline/exec) 在容器中执行命令。
 
-To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
+比如，进入正在运行的容器，在名为 foo 的容器中打开一个新的 shell 进程: `docker exec -it foo /bin/bash`.
 
-## Images
+## 镜像(Images)
 
-Images are just [templates for docker containers](https://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work).
+镜像是[docker 容器的模板](https://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work)。
 
-### Lifecycle
+### 生命周期
 
-* [`docker images`](https://docs.docker.com/reference/commandline/images) shows all images.
-* [`docker import`](https://docs.docker.com/reference/commandline/import) creates an image from a tarball.
-* [`docker build`](https://docs.docker.com/reference/commandline/build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
-* [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) removes an image.
-* [`docker load`](https://docs.docker.com/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
-* [`docker save`](https://docs.docker.com/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+* [`docker images`](https://docs.docker.com/reference/commandline/images) 查看所有镜像。
+* [`docker import`](https://docs.docker.com/reference/commandline/import) 从压缩文件中创建镜像。
+* [`docker build`](https://docs.docker.com/reference/commandline/build) 从 Dockerfile 创建镜像。
+* [`docker commit`](https://docs.docker.com/reference/commandline/commit) 为容器创建镜像，如果容器正在运行则会临时暂停。
+* [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) 删除镜像。
+* [`docker load`](https://docs.docker.com/reference/commandline/load) 通过 STDIN 从压缩包加载镜像，包括镜像和标签(images and tags) (0.7 起).
+* [`docker save`](https://docs.docker.com/reference/commandline/save) 通过 STDOUT 保存镜像到压缩包，包括所有的父层，标签和版本(parent layers, tags & versions) (0.7 起).
 
-### Info
+### 信息
 
-* [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
-* [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
+* [`docker history`](https://docs.docker.com/reference/commandline/history) 查看镜像历史记录。
+* [`docker tag`](https://docs.docker.com/reference/commandline/tag) 给镜像命名打标(tags) (本地或者仓库)。
 
-### Cleaning up
+### 清理
 
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
+虽然你可以用 `docker rmi` 命令来删除指定的镜像，但是这里有个称为 [docker-gc](https://github.com/spotify/docker-gc) 的工具，它可以以一种安全的方式，清理掉那些不再被任何容器使用的镜像。
 
-## Networks 
+## 网络(Networks) 
 
-Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.  See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
+Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking/dockernetworks/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
 
-### Lifecycle
+### 生命周期
 
 * [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/)
 * [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/)
 
-### Info
+### 信息
 
 * [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/)
 * [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/)
 
-### Connection
+### 链接
 
 * [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
 * [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
 
-## Registry & Repository
+## Registry 和 Repository
 
-A repository is a *hosted* collection of tagged images that together create the file system for a container.
+仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
 
-A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/userguide/dockerrepos/).
+仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/userguide/dockerrepos/)。
 
-Docker.com hosts its own [index](https://registry.hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
+Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
-* [`docker login`](https://docs.docker.com/reference/commandline/login) to login to a registry.
-* [`docker search`](https://docs.docker.com/reference/commandline/search) searches registry for image.
-* [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
-* [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
+* [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
+* [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
+* [`docker pull`](https://docs.docker.com/reference/commandline/pull) 从仓管中心拉去镜像到本地。
+* [`docker push`](https://docs.docker.com/reference/commandline/push) 从本地推送镜像到仓管中心。
 
-### Run local registry
+### 本地仓管中心
 
-[Registry implementation](https://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
-[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
-Note that this installation does not have any authorization controls. You may use option `-P -p 127.0.0.1:5000:5000` to limit connections to localhost only.
-In order to push to this repository tag image with `repositoryHostName:5000/imageName` then push this tag.
+[如何实现仓管中心](https://github.com/docker/docker-registry)，官方提供了一个镜像，实现了基本的安装，可以通过执行
+[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)启动。
+但请注意，该实现并没有提供任何的权限控制。所以你可以通过选项 `-P -p 127.0.0.1:5000:5000` 来限制只能从本机接入。
+为了推送仓库到该中心，请把镜像的标签命名为 `repositoryHostName:5000/imageName` ，然后推送该标签。
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.  You may also like to try the [tools section](#tools).
+[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode)做了个语法高亮模块。你还可以试试 [工具集](#tools)部分的内容。
 
-### Instructions
+### 指令
 
 * [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
 * [FROM](https://docs.docker.com/reference/builder/#from)
@@ -216,11 +216,11 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 * [WORKDIR](https://docs.docker.com/reference/builder/#workdir)
 * [ONBUILD](https://docs.docker.com/reference/builder/#onbuild)
 
-### Tutorial
+### 教程
 
 * [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
 
-### Examples
+### 例子
 
 * [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
 * [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
@@ -267,12 +267,12 @@ If you want to link across docker hosts then you should look at [Swarm](https://
 
 Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.
 
-### Lifecycle
+### 生命周期
 
 * [`docker volumes create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * [`docker volumes rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
 
-### Info
+### 信息
 
 * [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 * [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
