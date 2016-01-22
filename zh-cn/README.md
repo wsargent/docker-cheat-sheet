@@ -335,7 +335,7 @@ docker port CONTAINER $CONTAINERPORT
 
 ## 最佳实践
 
-This is where general Docker best practices and war stories go:
+这里有一些最佳实践的总结，以及一些讨论:
 
 * [The Rabbit Hole of Using Docker in Automated Tests](http://gregoryszorc.com/blog/2014/10/16/the-rabbit-hole-of-using-docker-in-automated-tests/)
 * [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.  
@@ -344,81 +344,81 @@ This is where general Docker best practices and war stories go:
 * [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
-## Security
+## 安全(Security)
 
-This is where security tips about Docker go.  The [security](https://docs.docker.com/engine/articles/security/) page goes into more detail.
+这节准备讨论一些关于 Docker 的安全性问题。[安全](https://docs.docker.com/engine/articles/security/)这章讲述了更多细节。
 
-First things first: Docker runs as root.  If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).  If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  Docker should not be your only defense.
+首先第一件事: Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有[ root 权限](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你暴露了 docker unix socket 给容器，意味着你赋予了容器[宿主的 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。Docker 不应该是你唯一的防御措施。
 
-### Security Tips
+### 安全提示
 
-For greatest security, you want to run Docker inside a virtual machine, or on a host.  This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/).  Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/).
+为了更安全期间，你应该会希望在一台虚拟机上，或在托管主机上运行 Docker 。这是直接从 Docker 安全团队拿来的资料 -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/)。然后是，执行 AppArmor / seccomp / SELinux / grsec 之类的来[限制容器的权限](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/)。
 
-Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
+Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) 所以它不应该向外界公开。你应该把他们当成密码来对待。
 
-See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md) by [Thomas Sjögren](https://github.com/konstruktoid): some good stuff about container hardening in there.
+参考 [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md)中 - 作者是 [Thomas Sjögren](https://github.com/konstruktoid) - 关于如何提高容器安全的建议。
 
-Check out the [docker bench security script](https://github.com/docker/docker-bench-security), download the [white papers](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) and subscribe to the [mailing lists](https://www.docker.com/docker-security) (unfortunately Docker does not have a unique mailing list, only dev / user).
+下载[docker 安全测试脚本](https://github.com/docker/docker-bench-security)，下载[白皮书](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) 以及订阅[邮件列表](https://www.docker.com/docker-security) (不幸的是 Docker 并没有独立的邮件列表，只有 dev / user)。
 
-You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux).  If you are using grsecurity in production, you should spring for [commercial support](https://grsecurity.net/business_support.php) for the [stable patches](https://grsecurity.net/announce.php), same as you would do for RedHat.  It's $200 a month, which is nothing to your devops budget.
+你应该远离那些使用编译版本 grsecurity / pax 的不稳定内核，比如 [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux)。如果在产品中用了 grsecurity ，那么你应该考虑使用有[商业支持](https://grsecurity.net/business_support.php)的[稳定版本](https://grsecurity.net/announce.php)，就像你对待 RedHat 那样。它要 $200 每月，对于你的运维预算来说不值一提。
 
-From the [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (it's in PDF which makes it hard to use, so copying below) by [Container Solutions](http://container-solutions.com/is-docker-safe-for-production/):
+参考 [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (它是个 PDF 版本，搞得非常难用，所以拷贝出来了) 的 [容器解決案](http://container-solutions.com/is-docker-safe-for-production/):
 
-Turn off interprocess communication with:
+关闭内部进程通讯:
 
 ```
 docker -d --icc=false --iptables
 ```
 
-Set the container to be read-only:
+设置容器为只读:
 
 ```
 docker run --read-only
 ```
 
-Verify images with a hashsum:
+通过 hashsum 来验证卷标:
 
 ```
 docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 ```
 
-Set volumes to be read only:
+设置卷标为只读:
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
 ```
 
-Set memory and CPU sharing:
+设置内存和 CPU 共享:
 
 ```
 docker -c 512 -mem 512m
 ```
 
-Define and run a user in your Dockerfile so you don't run as root inside the container:
+在 Dockerfile 中定义并运行一个用户，避免在容器中以 root 身份操作:
 
 ```
 RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
 
-### Security Videos
+### 安全相关视频
 
 * [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
 * [Securing your applications using Docker](https://youtu.be/KmxOXmPhZbk)
 * [Container security: Do containers actually contain?](https://youtu.be/a9lE9Urr6AQ)
 
-### Security Roadmap
+### 安全路线图
 
-The Docker roadmap talks about [seccomp support](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
-There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).  There's also work on [user namespaces](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/) which [just made it out of experimental](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632).
+Docker 的路线图提到关于[seccomp 的支持](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security)。
+这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在致力于[安全配置文件](https://github.com/docker/docker/issues/17142)部分。还有可以通过[用户命名空间](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/)的方式，[刚刚开始实验](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632)。
 
-## Tips
+## 小贴士
 
-Sources:
+来源:
 
 * [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
 
-### Last Ids
+### 最后的 Ids
 
 ```
 alias dl='docker ps -l -q'
@@ -426,19 +426,19 @@ docker run ubuntu echo hello world
 docker commit `dl` helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### 带命令行的提交 (需要 Dockerfile)
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
 ```
 
-### Get IP address
+### 获取 IP 地址
 
 ```
 docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
 ```
 
-or
+或者
 
 ```
 wget http://stedolan.github.io/jq/download/source/jq-1.3.tar.gz
@@ -448,111 +448,111 @@ cd jq-1.3
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/reference/commandline/inspect)
+或者用[go 模板](https://docs.docker.com/reference/commandline/inspect)
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-### Get port mapping
+### 获取端口映射
 
 ```
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
-### Find containers by regular expression
+### 通过正则获取容器
 
 ```
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done`
 ```
 
-### Get Environment Settings
+### 获取环境设定
 
 ```
 docker run --rm ubuntu env
 ```
 
-### Kill running containers
+### 强迫关闭正在运行的容器
 
 ```
 docker kill $(docker ps -q)
 ```
 
-### Delete old containers
+### 删除旧容器
 
 ```
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
-### Delete stopped containers
+### 删除停止容器
 
 ```
 docker rm -v `docker ps -a -q -f status=exited`
 ```
 
-### Delete dangling images
+### 删除 dangling 镜像
 
 ```
 docker rmi $(docker images -q -f dangling=true)
 ```
 
-### Delete all images
+### 删除所有镜像
 
 ```
 docker rmi $(docker images -q)
 ```
 
-### Delete dangling volumes
+### 删除 dangling 卷标
 
-As of Docker 1.9:
+Docker 1.9 开始:
 
 ```
 docker volume rm $(docker volume ls -q -f dangling=true)
 ```
 
-In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will list all volumes.
+1.9.0 中，过滤器 `dangling=false` 居然 _没_ 用 - 它会被忽略然后列出所有的卷标。
 
-### Show image dependencies
+### 查看镜像依赖
 
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
+### Docker 容器瘦身  [Intercity 博客](http://bit.ly/1Wwo61N)
 
-- Cleaning APT
+- 清理 APT
 ```
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
-- Flatten an image
+- 压缩镜像
 ```
 ID=$(docker run -d image-name /bin/bash)
 docker export $ID | docker import – flat-image-name
 ```
 
-- For backup
+- 备份
 ```
 ID=$(docker run -d image-name /bin/bash)
 (docker export $ID | gzip -c > image.tgz)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
-### Monitor system resource utilization for running containers
+### 监视运行中容器的系统资源利用率
 
-To check the CPU, memory, and network i/o usage of a single container, you can use:
+检查某个单独容器的 CPU, 内存, 和 网络 i/o 使用情况，你可以:
 
 ```
 docker stats <container>
 ```
 
-For all containers listed by id:
+按 id 列出所有的容器:
 
 ```
 docker stats $(docker ps -q)
 ```
 
-For all containers listed by name:
+按名称列出所有容器:
 
 ```
 docker stats $(docker ps --format '{{.Names}}')
