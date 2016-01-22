@@ -297,23 +297,23 @@ docker run -v /Users/wsargent/myapp/src:/src
 
 ## 暴露端口(Exposing ports)
 
-Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
+通过宿主容器暴露输入端口是相当[繁琐，但有效](https://docs.docker.com/reference/run/#expose-incoming-ports)的。
 
-This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
+这种方式可以将容器端口映射到宿主端口上(只使用本地主机(localhost)接口)，通过使用 `-p`:
 
 ```
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/reference/builder/#expose):
+你可以告诉 Docker 容器在运行时监听指定的网络端口，通过使用 [EXPOSE](https://docs.docker.com/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
 ```
 
-But note that EXPOSE does not expose the port itself, only `-p` will do that.
+但是注意 EXPOSE 并不会暴露端口本身，只有 `-p` 这样做。
 
-If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html).  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
+如果你是在 Virtualbox 中运行 Docker，那么你需要转发端口(forward the port)，使用 [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html)。它可以用于在 Vagrantfile 上配置暴露端口段，这样你就可以动态的映射它们了:
 
 ```
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -327,7 +327,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ```
 
-If you forget what you mapped the port to on the host container, use `docker port` to show it:
+如果你忘记你将什么端口映射到宿主容器上的话，使用 `docker port` 来查看它:
 
 ```
 docker port CONTAINER $CONTAINERPORT
