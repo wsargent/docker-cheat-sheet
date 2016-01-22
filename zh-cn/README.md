@@ -5,7 +5,7 @@
 * [为何使用 Docker](#why)
 * [系统环境](#prerequisites)
 * [安装](#installation)
-* [Containers](#containers)
+* [容器(Containers)](#containers)
 * [Images](#images)
 * [Networks](#networks)
 * [Registry 和 Repository](#registry--repository)
@@ -13,7 +13,7 @@
 * [Layers](#layers)
 * [Links](#links)
 * [Volumes](#volumes)
-* [暴露 Ports](#exposing-ports)
+* [暴露端口(Exposing Ports)](#exposing-ports)
 * [最佳方案](#best-practices)
 * [安全](#security)
 * [小贴士](#tips)
@@ -76,38 +76,38 @@ docker run hello-world
 
 如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/mac/started/)。
 
-## Containers
+## 容器(Container)
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
+[最基本的 Docker 进程](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/)。容器(Container)之于虚拟机(Virtual Machine)就好比线程之于进程。或者你可以把他们想成是 chroots on steroids。
 
-### Lifecycle
+### 生命周期
 
-* [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
-* [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
-* [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
+* [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
+* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器.
+* [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
 
-If you want a transient container, `docker run --rm` will remove the container after it stops.
+如果你想要一个临时容器，`docker run --rm` 会在容器停止之后删除它。
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+如果你想映射宿主(host)的一个文件夹到 docker 容器，`docker run -v $HOSTDIR:$DOCKERDIR`。参考 [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes)。
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
+如果你想同时删除和容器关联的 volumes ，那么在删除容器的时候必须包含 -v 选项，像这样 `docker rm -v`。
 
-## Starting and Stopping
+## 启动和停止
 
-* [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
-* [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops a running container.
-* [`docker restart`](https://docs.docker.com/reference/commandline/restart) stops and starts a container.
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) pauses a running container, "freezing" it in place.
-* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
-* [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until running container stops.
-* [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a running container.
-* [`docker attach`](https://docs.docker.com/reference/commandline/attach) will connect to a running container.
+* [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
+* [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
+* [`docker restart`](https://docs.docker.com/reference/commandline/restart) 停止之后再启动容器。
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
+* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) 结束容器暂停状态。
+* [`docker wait`](https://docs.docker.com/reference/commandline/wait) 阻塞，到运行中的容器停止为止。
+* [`docker kill`](https://docs.docker.com/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
+* [`docker attach`](https://docs.docker.com/reference/commandline/attach) 链接到运行中容器。
 
-If you want to integrate a container with a [host process manager](https://docs.docker.com/articles/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
+如果你想整合容器到[宿主进程管理(host process manager)](https://docs.docker.com/articles/host_integration/)，那么以 `-r=false` 启动守护进程(daemon)然后使用 `docker start -a`。
 
-If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
+如果你想通过宿主暴露容器的端口(ports)，请看[暴露端口](#exposing-ports)一节。
 
-Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
+故障 docker 实例的重启策略在[这里](http://container42.com/2014/09/30/docker-restart-policies/)。
 
 ### Info
 
