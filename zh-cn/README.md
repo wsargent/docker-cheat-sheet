@@ -22,7 +22,7 @@
 
 "通过 Docker, 开发者可以使用任何语言任何工具创建任何应用。“Dockerized” 的应用是完全可移植的，能在任何地方运行 - 不管是同事的 OS X 和 Windows 笔记本，或是在云端运行的 Ubuntu QA 服务，还是在虚拟机运行的 Red Hat 产品数据中心。
 
- Docker Hub 上有 13,000+ 应用雏形，开发者可以从中选取一个进行快速扩展开发。Docker 跟踪管理变更和依赖关系，让系统管理员能更容易理解开发人员是如何让应用运转起来的。而开发者可以通过 Docker Hub 的共有/私有仓库，构建他们的自动化编译，与其他合作者共享成果。
+ Docker Hub 上有 13,000+ 的应用，开发者可以从中选取一个进行快速扩展开发。Docker 跟踪管理变更和依赖关系，让系统管理员能更容易理解开发人员是如何让应用运转起来的。而开发者可以通过 Docker Hub 的共有/私有仓库，构建他们的自动化编译，与其他合作者共享成果。
 
 Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/whatisdocker/#copy1)
 
@@ -346,13 +346,13 @@ docker port CONTAINER $CONTAINERPORT
 
 ## 安全(Security)
 
-这节准备讨论一些关于 Docker 的安全性问题。[安全](https://docs.docker.com/engine/articles/security/)这章讲述了更多细节。
+这节准备讨论一些关于 Docker 安全性的问题。[安全](https://docs.docker.com/engine/articles/security/)这章讲述了更多细节。
 
 首先第一件事: Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有[ root 权限](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你暴露了 docker unix socket 给容器，意味着你赋予了容器[宿主的 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。Docker 不应该是你唯一的防御措施。
 
 ### 安全提示
 
-为了更安全期间，你应该会希望在一台虚拟机上，或在托管主机上运行 Docker 。这是直接从 Docker 安全团队拿来的资料 -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/)。然后是，执行 AppArmor / seccomp / SELinux / grsec 之类的来[限制容器的权限](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/)。
+为了最大的安全性，你应该会希望在一台虚拟机上，或在托管主机上运行 Docker 。这是直接从 Docker 安全团队拿来的资料 -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/)。然后，可以使用 AppArmor / seccomp / SELinux / grsec 之类的来[限制容器的权限](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/)。
 
 Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) 所以它不应该向外界公开。你应该把他们当成密码来对待。
 
@@ -362,7 +362,7 @@ Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-ima
 
 你应该远离那些使用编译版本 grsecurity / pax 的不稳定内核，比如 [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux)。如果在产品中用了 grsecurity ，那么你应该考虑使用有[商业支持](https://grsecurity.net/business_support.php)的[稳定版本](https://grsecurity.net/announce.php)，就像你对待 RedHat 那样。它要 $200 每月，对于你的运维预算来说不值一提。
 
-参考 [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (它是个 PDF 版本，搞得非常难用，所以拷贝出来了) 的 [容器解決案](http://container-solutions.com/is-docker-safe-for-production/):
+参考 [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (它是个 PDF 版本，搞得非常难用，所以拷贝出来了) 的 [容器解決方案](http://container-solutions.com/is-docker-safe-for-production/):
 
 关闭内部进程通讯:
 
@@ -410,7 +410,7 @@ USER user
 ### 安全路线图
 
 Docker 的路线图提到关于[seccomp 的支持](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security)。
-这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在致力于[安全配置文件](https://github.com/docker/docker/issues/17142)部分。还有可以通过[用户命名空间](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/)的方式，[刚刚开始实验](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632)。
+这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在实现[安全配置文件](https://github.com/docker/docker/issues/17142)。也可以使用[刚刚成为试验特性](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632)的[用户命名空间](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/)
 
 ## 小贴士
 
