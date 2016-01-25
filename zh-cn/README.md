@@ -202,19 +202,21 @@ Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了
 ### 指令
 
 * [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
-* [FROM](https://docs.docker.com/reference/builder/#from)
-* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer)
-* [RUN](https://docs.docker.com/reference/builder/#run)
-* [CMD](https://docs.docker.com/reference/builder/#cmd)
-* [EXPOSE](https://docs.docker.com/reference/builder/#expose)
-* [ENV](https://docs.docker.com/reference/builder/#env)
-* [ADD](https://docs.docker.com/reference/builder/#add)
-* [COPY](https://docs.docker.com/reference/builder/#copy)
-* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint)
-* [VOLUME](https://docs.docker.com/reference/builder/#volume)
-* [USER](https://docs.docker.com/reference/builder/#user)
-* [WORKDIR](https://docs.docker.com/reference/builder/#workdir)
-* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild)
+* [FROM](https://docs.docker.com/reference/builder/#from) 为其他指令设置基础镜像(Base Image)。
+* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) 为生成的镜像设置作者字段。
+* [RUN](https://docs.docker.com/reference/builder/#run) 在当前镜像的基础上生成一个新层并执行命令。
+* [CMD](https://docs.docker.com/reference/builder/#cmd) 设置容器默认执行命令。
+* [EXPOSE](https://docs.docker.com/reference/builder/#expose) 告知 Docker 容器在运行时所要监听的网络端口。注意：并没有实际上将端口设置为可访问。
+* [ENV](https://docs.docker.com/reference/builder/#env) 设置环境变量。
+* [ADD](https://docs.docker.com/reference/builder/#add) 将文件，文件夹或者远程文件复制到容器中。缓存无效。
+* [COPY](https://docs.docker.com/reference/builder/#copy) 复制文件或文件夹。
+* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) 将一个容器设置为可执行。
+* [VOLUME](https://docs.docker.com/reference/builder/#volume) 为外部挂载卷标或其他容器设置挂载点(mount point)。
+* [USER](https://docs.docker.com/reference/builder/#user) 设置执行 RUN / CMD / ENTRYPOINT 命令的用户名。
+* [WORKDIR](https://docs.docker.com/reference/builder/#workdir) 设置工作目录。
+* [ARG](https://docs.docker.com/engine/reference/builder/#arg) 定义编译时(build-time)变量。
+* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) 添加触发指令，当该镜像被作为其他镜像的基础镜像时该指令会被触发。
+* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) 设置通过系统向容器发出退出指令。
 
 ### 教程
 
