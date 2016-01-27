@@ -97,7 +97,7 @@ If you want to remove also the volumes associated with the container, the deleti
 * [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops a running container.
 * [`docker restart`](https://docs.docker.com/reference/commandline/restart) stops and starts a container.
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) pauses a running container, "freezing" it in place.
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pauses a running container, "freezing" it in place.
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
 * [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until running container stops.
 * [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a running container.
