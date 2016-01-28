@@ -523,10 +523,13 @@ docker images -viz | dot -Tpng -o docker.png
 
 ### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
 
-- Cleaning APT
+- Cleaning APT in a RUN layer  
+This should be done in the same layer as other apt commands.  
+Otherwise, the previous layers still persist the original information and your images will still be fat.  
 ```
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN {apt commands} \
+ && apt-get clean \  
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 - Flatten an image
 ```
