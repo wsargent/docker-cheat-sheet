@@ -272,13 +272,13 @@ Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide
 
 ### Lifecycle
 
-* [`docker volumes create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
-* [`docker volumes rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
+* [`docker volume create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
+* [`docker volume rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
 
 ### Info
 
-* [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
-* [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
+* [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
+* [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
 Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
