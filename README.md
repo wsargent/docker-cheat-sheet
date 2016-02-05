@@ -24,7 +24,7 @@ NOTE: This used to be a gist that continually expanded.  It's now a GitHub proje
 
 Developers can get going quickly by starting with one of the 13,000+ apps available on Docker Hub. Docker manages and tracks changes and dependencies, making it easier for sysadmins to understand how the apps that developers build work. And with Docker Hub, developers can automate their build pipeline and share artifacts with collaborators through public or private repositories.
 
-Docker helps developers build and ship higher-quality applications, faster." -- [What is Docker](https://www.docker.com/whatisdocker/#copy1)
+Docker helps developers build and ship higher-quality applications, faster." -- [What is Docker](https://www.docker.com/what-docker#copy1)
 
 ## Prerequisites
 
@@ -54,7 +54,7 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 ### Mac OS X
 
-Download and install [Docker Toolbox](https://www.docker.com/toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
+Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
 Docker used to use boot2docker, but you should be using docker machine now. The Docker website has instructions on [how to upgrade](https://docs.docker.com/installation/mac/#migrate-from-boot2docker).  If you have an existing docker instance, you can also install the [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly.
 
@@ -181,7 +181,7 @@ A repository is a *hosted* collection of tagged images that together create the 
 
 A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/userguide/dockerrepos/).
 
-Docker.com hosts its own [index](https://registry.hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
+Docker.com hosts its own [index](https://hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) to login to a registry.
 * [`docker search`](https://docs.docker.com/reference/commandline/search) searches registry for image.
@@ -344,8 +344,8 @@ This is where general Docker best practices and war stories go:
 * [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.  
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [A Docker Dev Environment in 24 Hours!](https://engineering.salesforceiq.com/2013/11/05/a-docker-dev-environment-in-24-hours-part-2-of-2.html)
-* [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
-* [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+* [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
+* [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
 ## Security
 
