@@ -271,13 +271,13 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 ### 生命周期
 
-* [`docker volumes create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
-* [`docker volumes rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
+* [`docker volume create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
+* [`docker volume rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
 
 ### 信息
 
-* [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
-* [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
+* [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
+* [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
 卷标在不能使用链接(只有 TCP/IP )的情况下非常有用。例如，如果你有两个 docker 实例需要通讯并在文件系统上留下记录。
 
