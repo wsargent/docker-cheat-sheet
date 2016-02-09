@@ -24,7 +24,7 @@
 
  Docker Hub 上有 13,000+ 的应用，开发者可以从中选取一个进行快速扩展开发。Docker 跟踪管理变更和依赖关系，让系统管理员能更容易理解开发人员是如何让应用运转起来的。而开发者可以通过 Docker Hub 的共有/私有仓库，构建他们的自动化编译，与其他合作者共享成果。
 
-Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/whatisdocker/#copy1)
+Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/what-docker/#copy1)
 
 ## 系统环境
 
@@ -54,7 +54,7 @@ curl -sSL https://get.docker.com/ | sh
 
 ### Mac OS X
 
-下载和安装 [Docker Toolbox](https://www.docker.com/toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
+下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
 
 Docker 原来用的是 boot2docker，不过现在已经改成 docker machine 了。Docker 网站有说明[如何升级](https://docs.docker.com/installation/mac/#migrate-from-boot2docker)。如果你有一个 docker 实例的话，你还是可以直接安装[Docker Machine](https://docs.docker.com/machine/install-machine/)的。
 
@@ -181,7 +181,7 @@ Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking
 
 仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/userguide/dockerrepos/)。
 
-Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
+Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
 * [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
@@ -346,8 +346,8 @@ docker port CONTAINER $CONTAINERPORT
 * [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.  
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [A Docker Dev Environment in 24 Hours!](https://engineering.salesforceiq.com/2013/11/05/a-docker-dev-environment-in-24-hours-part-2-of-2.html)
-* [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
-* [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+* [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
+* [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
 ## 安全(Security)
 
