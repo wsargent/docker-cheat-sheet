@@ -24,7 +24,7 @@
 
  Docker Hub 上有 13,000+ 的应用，开发者可以从中选取一个进行快速扩展开发。Docker 跟踪管理变更和依赖关系，让系统管理员能更容易理解开发人员是如何让应用运转起来的。而开发者可以通过 Docker Hub 的共有/私有仓库，构建他们的自动化编译，与其他合作者共享成果。
 
-Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/whatisdocker/#copy1)
+Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/what-docker/#copy1)
 
 ## 系统环境
 
@@ -54,7 +54,7 @@ curl -sSL https://get.docker.com/ | sh
 
 ### Mac OS X
 
-下载和安装 [Docker Toolbox](https://www.docker.com/toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
+下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
 
 Docker 原来用的是 boot2docker，不过现在已经改成 docker machine 了。Docker 网站有说明[如何升级](https://docs.docker.com/installation/mac/#migrate-from-boot2docker)。如果你有一个 docker 实例的话，你还是可以直接安装[Docker Machine](https://docs.docker.com/machine/install-machine/)的。
 
@@ -97,7 +97,7 @@ docker run hello-world
 * [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
 * [`docker restart`](https://docs.docker.com/reference/commandline/restart) 停止之后再启动容器。
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) 结束容器暂停状态。
 * [`docker wait`](https://docs.docker.com/reference/commandline/wait) 阻塞，到运行中的容器停止为止。
 * [`docker kill`](https://docs.docker.com/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
@@ -181,7 +181,7 @@ Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking
 
 仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/userguide/dockerrepos/)。
 
-Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
+Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
 * [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
@@ -217,6 +217,7 @@ Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) 定义编译时(build-time)变量。
 * [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) 添加触发指令，当该镜像被作为其他镜像的基础镜像时该指令会被触发。
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) 设置通过系统向容器发出退出指令。
+* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) 将键值对元数据(key/value metadata)应用到你的镜像，容器，或者守护进程。 
 
 ### 教程
 
@@ -226,7 +227,9 @@ Docker.com 把它自己的[索引](https://registry.hub.docker.com/)托管到了
 
 * [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
 * [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
-* [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
+* [Michael Crosby](http://crosbymichael.com/) 还有更多的 [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html)
+* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
+* [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
 
 ## 层(Layers)
 
@@ -271,13 +274,13 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 ### 生命周期
 
-* [`docker volumes create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
-* [`docker volumes rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
+* [`docker volume create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
+* [`docker volume rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
 
 ### 信息
 
-* [`docker volumes ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
-* [`docker volumes inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
+* [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
+* [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
 卷标在不能使用链接(只有 TCP/IP )的情况下非常有用。例如，如果你有两个 docker 实例需要通讯并在文件系统上留下记录。
 
@@ -343,8 +346,8 @@ docker port CONTAINER $CONTAINERPORT
 * [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.  
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [A Docker Dev Environment in 24 Hours!](https://engineering.salesforceiq.com/2013/11/05/a-docker-dev-environment-in-24-hours-part-2-of-2.html)
-* [Building a Development Environment With Docker](http://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
-* [Discourse in a Docker Container](http://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+* [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
+* [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
 ## 安全(Security)
 
@@ -522,10 +525,15 @@ docker images -viz | dot -Tpng -o docker.png
 
 ### Docker 容器瘦身  [Intercity 博客](http://bit.ly/1Wwo61N)
 
-- 清理 APT
+- 在当前运行层(RUN layer)清理 APT
+
+这应当和其他 apt 命令在同一层中完成。
+否则，前面的层将会保持原有信息，而你的镜像则依旧臃肿。
+ 
 ```
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN {apt commands} \
+  && apt-get clean \  
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 - 压缩镜像
 ```
