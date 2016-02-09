@@ -522,10 +522,15 @@ docker images -viz | dot -Tpng -o docker.png
 
 ### Docker 容器瘦身  [Intercity 博客](http://bit.ly/1Wwo61N)
 
-- 清理 APT
+- 在当前运行层(RUN layer)清理 APT
+
+这应当和其他 apt 命令在同一层中完成。
+否则，前面的层将会保持原有信息，而你的镜像则依旧臃肿。
+ 
 ```
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN {apt commands} \
+  && apt-get clean \  
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 - 压缩镜像
 ```
