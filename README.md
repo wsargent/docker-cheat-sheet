@@ -208,8 +208,8 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 * [CMD](https://docs.docker.com/reference/builder/#cmd) provide defaults for an executing container.
 * [EXPOSE](https://docs.docker.com/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
 * [ENV](https://docs.docker.com/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches.
-* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories.
+* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
+* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container.
 * [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
 * [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
