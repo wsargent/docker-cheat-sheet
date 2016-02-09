@@ -97,7 +97,7 @@ docker run hello-world
 * [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
 * [`docker restart`](https://docs.docker.com/reference/commandline/restart) 停止之后再启动容器。
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/unpause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) 结束容器暂停状态。
 * [`docker wait`](https://docs.docker.com/reference/commandline/wait) 阻塞，到运行中的容器停止为止。
 * [`docker kill`](https://docs.docker.com/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
