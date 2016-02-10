@@ -201,7 +201,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ### 指令
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
+* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
 * [FROM](https://docs.docker.com/reference/builder/#from) 为其他指令设置基础镜像(Base Image)。
 * [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) 为生成的镜像设置作者字段。
 * [RUN](https://docs.docker.com/reference/builder/#run) 在当前镜像的基础上生成一个新层并执行命令。
