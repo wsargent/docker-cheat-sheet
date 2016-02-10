@@ -201,7 +201,7 @@ In order to push to this repository tag image with `repositoryHostName:5000/imag
 
 ### Instructions
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#the-dockerignore-file)
+* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
 * [FROM](https://docs.docker.com/reference/builder/#from) Sets the Base Image for subsequent instructions.
 * [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) Set the Author field of the generated images..
 * [RUN](https://docs.docker.com/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
