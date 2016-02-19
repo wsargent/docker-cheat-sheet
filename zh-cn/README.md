@@ -233,7 +233,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ## 层(Layers)
 
-Docker 的版本化文件系统是基于层的。就像[git的提交或文件变更系统](https://docs.docker.com/terms/layer/)一样。
+Docker 的版本化文件系统是基于层的。就像[git的提交或文件变更系统](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/)一样。
 
 注意: 如果你使用 [aufs](https://en.wikipedia.org/wiki/Aufs) 作为你的文件系统，当删除一个容器的时候，Docker 并不一定能成功删除的文件卷标！更多详细信息请参阅 [PR 8484](https://github.com/docker/docker/pull/8484)。
 
