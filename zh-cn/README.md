@@ -135,7 +135,7 @@ docker run hello-world
 
 ## 镜像(Images)
 
-镜像是[docker 容器的模板](https://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work)。
+镜像是[docker 容器的模板](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work)。
 
 ### 生命周期
 

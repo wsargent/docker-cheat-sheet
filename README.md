@@ -135,7 +135,7 @@ To enter a running container, attach a new shell process to a running container 
 
 ## Images
 
-Images are just [templates for docker containers](https://docs.docker.com/introduction/understanding-docker/#how-does-a-docker-image-work).
+Images are just [templates for docker containers](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
 
 ### Lifecycle
 
