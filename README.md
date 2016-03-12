@@ -443,13 +443,9 @@ docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
 docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
 ```
 
-or
+or install [jq](https://stedolan.github.io/jq/):
 
 ```
-wget http://stedolan.github.io/jq/download/source/jq-1.3.tar.gz
-tar xzvf jq-1.3.tar.gz
-cd jq-1.3
-./configure && make && sudo make install
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
