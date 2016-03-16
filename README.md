@@ -573,16 +573,14 @@ Here's how to contribute to this cheat sheet.
 
 Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
 
-![Click This](click.png)
+![Click This](images/click.png)
 
 ### Edit Page
 
-![Edit This](edit.png)
+![Edit This](images/edit.png)
 
-### Make Changes
+### Make Changes and Commit
 
-![Change This](change.png)
+![Change This](images/change.png)
 
-### Create Pull Request
-
-![Commit](commit.png)
+![Commit](images/commit.png)
