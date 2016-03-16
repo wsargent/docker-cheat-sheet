@@ -90,12 +90,15 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
 * [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container.
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
 If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
 If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
+
+There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10.  To run docker with a custom log driver (i.e. to syslog), use `docker run --log-driver=syslog`
 
 ## Starting and Stopping
 
@@ -117,7 +120,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 ### Info
 
 * [`docker ps`](https://docs.docker.com/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) gets logs from container.
+* [`docker logs`](https://docs.docker.com/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10)
 * [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) looks at all the info on a container (including IP address).
 * [`docker events`](https://docs.docker.com/reference/commandline/events) gets events from container.
 * [`docker port`](https://docs.docker.com/reference/commandline/port) shows public facing port of container.
