@@ -90,7 +90,7 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
 * [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
-* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container.
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
