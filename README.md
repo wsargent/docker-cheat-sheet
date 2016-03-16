@@ -1,6 +1,26 @@
 # Docker Cheat Sheet
 
-**Want to edit this? Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit and submit a pull request!**
+## Editing
+
+**Want to improve this cheat sheet?  This is how!**
+
+Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)
+
+![Click This](click.png)
+
+Click "writing pen" icon on the right to edit and submit a pull request:
+
+![Edit This](edit.png)
+
+Make your changes:
+
+![Change This](change.png) 
+
+Commit the page:
+
+![Commit](commit.png)
+
+## Table of Contents
 
 * [Why](#why)
 * [Prerequisites](#prerequisites)
