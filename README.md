@@ -185,6 +185,19 @@ Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dock
 * [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
 * [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
 
+You can specify a [specific IP address for a container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
+
+```
+# create a new bridge network with your subnet and gateway for your ip block
+docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
+
+# run a nginx container with a specific ip in that block
+$ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
+
+# curl the ip from any other place (assuming this is a public ip block duh)
+$ curl 203.0.113.2
+```
+
 ## Registry & Repository
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
