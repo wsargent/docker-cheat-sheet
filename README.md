@@ -213,10 +213,9 @@ Docker.com hosts its own [index](https://hub.docker.com/) to a central registry 
 
 ### Run local registry
 
-[Registry implementation](https://github.com/docker/docker-registry) has an official image for basic setup that can be launched with
-[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)
-Note that this installation does not have any authorization controls. You may use option `-P -p 127.0.0.1:5000:5000` to limit connections to localhost only.
-In order to push to this repository tag image with `repositoryHostName:5000/imageName` then push this tag.
+You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.  
+
+Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
 
 ## Dockerfile
 
