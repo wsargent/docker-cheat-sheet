@@ -1,7 +1,5 @@
 # Docker Cheat Sheet
 
-## Editing
-
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
 ## Table of Contents
