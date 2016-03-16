@@ -61,7 +61,7 @@ Download and install [Docker Toolbox](https://www.docker.com/products/docker-too
 
 > **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
 >
-> You are much better off upgrading from the docker toolbox DMG file every time.
+> You are much better off using `docker-machine upgrade default` to upgrade.
 
 Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
 
