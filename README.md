@@ -59,7 +59,9 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
-Docker used to use boot2docker, but you should be using docker machine now. The Docker website has instructions on [how to upgrade](https://docs.docker.com/installation/mac/#migrate-from-boot2docker).  If you have an existing docker instance, you can also install the [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly.
+> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
+>
+> You are much better off upgrading from the docker toolbox DMG file every time.
 
 Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
 
@@ -124,6 +126,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 * [`docker diff`](https://docs.docker.com/reference/commandline/diff) shows changed files in the container's FS.
 
 `docker ps -a` shows running and stopped containers.
+`docker stats --all` shows 
 
 ### Import / Export
 
