@@ -59,9 +59,9 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
-> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
+> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
 >
-> You are much better off using `docker-machine upgrade default` to upgrade.
+> You are much better off using Docker Toolbox DMG file to upgrade, which will take care of all the binaries at once.
 
 Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
 
