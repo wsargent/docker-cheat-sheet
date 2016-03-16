@@ -1,6 +1,10 @@
 # Docker Cheat Sheet
 
-**Want to edit this? Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md), and then on the "writing pen" icon on the right to edit and submit a pull request!**
+## Editing
+
+**Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
+
+## Table of Contents
 
 * [Why](#why)
 * [Prerequisites](#prerequisites)
@@ -17,6 +21,7 @@
 * [Best Practices](#best-practices)
 * [Security](#security)
 * [Tips](#tips)
+* [Contributing](#contributing)
 
 ## Why
 
@@ -156,7 +161,7 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
-## Networks 
+## Networks
 
 Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.  See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
 
@@ -561,3 +566,25 @@ For all containers listed by name:
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
+
+## Contributing
+
+Here's how to contribute to this cheat sheet.
+
+### Open README.md
+
+Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
+
+![Click This](click.png)
+
+### Edit Page
+
+![Edit This](edit.png)
+
+### Make Changes
+
+![Change This](change.png)
+
+### Create Pull Request
+
+![Commit](commit.png)
