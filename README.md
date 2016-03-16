@@ -126,7 +126,8 @@ Restart policies on crashed docker instances are [covered here](http://container
 * [`docker diff`](https://docs.docker.com/reference/commandline/diff) shows changed files in the container's FS.
 
 `docker ps -a` shows running and stopped containers.
-`docker stats --all` shows 
+
+`docker stats --all` shows a running list of containers.
 
 ### Import / Export
 
