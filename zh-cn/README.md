@@ -575,16 +575,14 @@ docker stats $(docker ps --format '{{.Names}}')
 
 点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- 这个链接
 
-![点击它](click.png)
+![点击它](../images/click.png)
 
 ### 编辑页面
 
-![选择它](edit.png)
+![选择它](../images/edit.png)
 
-### 做一些必要的更新
+### 更新和提交
 
-![改变它](change.png)
+![改变它](../images/change.png)
 
-### 创建一个 Pull Request
-
-![提交](commit.png)
+![提交](../images/commit.png)
