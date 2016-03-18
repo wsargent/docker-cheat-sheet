@@ -213,10 +213,9 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ### 本地仓管中心
 
-[如何实现仓管中心](https://github.com/docker/docker-registry)，官方提供了一个镜像，实现了基本的安装，可以通过执行
-[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)启动。
-注意: 该实现并没有提供任何的权限控制。所以你可以通过选项 `-P -p 127.0.0.1:5000:5000` 来限制只能从本机接入。
-为了推送仓库到该中心，请把镜像的标签命名为 `repositoryHostName:5000/imageName` ，然后推送该标签。
+你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/distribution/blob/master/docs/deploying.md) 介绍。  
+
+也可以参考 [邮件列表](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution)。
 
 ## Dockerfile
 
