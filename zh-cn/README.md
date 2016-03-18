@@ -413,6 +413,12 @@ RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
 
+### 用户命名空间(User Namespaces)
+
+还可以通过使用 [user namespaces](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/) -- 这已经是 1.10 内建功能了，但默认情况下是不启用的。
+
+要在 Ubuntu 15.10 中启用用户命名空间 ("remap the userns")，请[跟着这篇博客的例子](https://raesene.github.io/blog/2016/02/04/Docker-User-Namespaces/)来做。
+
 ### 安全相关视频
 
 * [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
@@ -422,7 +428,7 @@ USER user
 ### 安全路线图
 
 Docker 的路线图提到关于[seccomp 的支持](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security)。
-这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在实现[安全配置文件](https://github.com/docker/docker/issues/17142)。也可以使用[刚刚成为试验特性](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632)的[用户命名空间](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/)
+这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在实现[安全配置文件](https://github.com/docker/docker/issues/17142)。
 
 ## 小贴士
 
