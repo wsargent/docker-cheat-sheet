@@ -1,6 +1,9 @@
 # Docker Cheat Sheet
 
-**想要一起来完善这部文档吗？点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)，然后点击右上角的 "writing pen" 图标开始编辑，完成之后你点提交便可以了！**
+## 编辑
+**想要一起来完善这份速查表吗？请看[贡献手册](#contributing)部分！**
+
+## 目录
 
 * [为何使用 Docker](#why)
 * [系统环境](#prerequisites)
@@ -17,6 +20,7 @@
 * [最佳实践](#best-practices)
 * [安全](#security)
 * [小贴士](#tips)
+* [贡献手册(Contributing)](#contributing)
 
 ## 为何使用 Docker
 
@@ -563,3 +567,25 @@ docker stats $(docker ps -q)
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
+
+## 贡献手册(Contributing)
+
+这是关于如何为这份速查表做贡献的说明。
+
+### 打开 README.md
+
+点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- 这个链接
+
+![点击它](click.png)
+
+### 编辑页面
+
+![选择它](edit.png)
+
+### 做一些必要的更新
+
+![改变它](change.png)
+
+### 创建一个 Pull Request
+
+![提交](commit.png)
