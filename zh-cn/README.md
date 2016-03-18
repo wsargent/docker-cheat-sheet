@@ -59,9 +59,9 @@ curl -sSL https://get.docker.com/ | sh
 
 下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
 
-> **注意** 如果你已经有安装了 docker toolbox，那么你可以考虑直接通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包升级，它会自己处理所有的事情。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
+> **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
 >
-> 所以你最好是每次通过命令行 `docker-machine upgrade default` 升级。
+> 所以你最好是通过 Docker Toolbox DMG 文件来升级，它会一次性的帮你处理好所有的升级。
 
 安装好 Docker Toolbox 之后，通过 VirtualBox provider 安装带 Docker Machine 的 VM:
 
