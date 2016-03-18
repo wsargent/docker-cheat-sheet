@@ -126,7 +126,8 @@ docker run hello-world
 * [`docker diff`](https://docs.docker.com/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
 
 `docker ps -a` 查看所有容器，包括正在运行的和已停止的。
-`docker stats --all` 显示 
+
+`docker stats --all` 显示正在运行的容器列表 
 
 ### 导入 / 导出
 
