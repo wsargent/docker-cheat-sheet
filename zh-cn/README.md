@@ -59,7 +59,9 @@ curl -sSL https://get.docker.com/ | sh
 
 下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
 
-Docker 原来用的是 boot2docker，不过现在已经改成 docker machine 了。Docker 网站有说明[如何升级](https://docs.docker.com/installation/mac/#migrate-from-boot2docker)。如果你有一个 docker 实例的话，你还是可以直接安装[Docker Machine](https://docs.docker.com/machine/install-machine/)的。
+> **注意** 如果你已经有安装了 docker toolbox，那么你可以考虑直接通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包升级，它会自己处理所有的事情。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
+>
+> 所以你最好是每次通过 docker toolbox DMG 文件来升级。
 
 安装好 Docker Toolbox 之后，通过 VirtualBox provider 安装带 Docker Machine 的 VM:
 
@@ -124,6 +126,7 @@ docker run hello-world
 * [`docker diff`](https://docs.docker.com/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
 
 `docker ps -a` 查看所有容器，包括正在运行的和已停止的。
+`docker stats --all` 显示 
 
 ### 导入 / 导出
 
