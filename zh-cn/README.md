@@ -1,6 +1,6 @@
 # Docker Cheat Sheet
 
-注意: 本文由 gist 不断扩展而来。现在它已经成为了一个 GitHub 工程，这样便于其他 Github 用户编辑，修改以及在 Docker 上扩展它。只需要点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)，然后点击右上角的 "writing pen" 图标便能开始编辑了。
+> 发现本文档有错误或者想添加一些内容怎么办？点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)，然后点击右上角的 "writing pen" 图标开始编辑，完成之后你点提交便可以了！
 
 * [为何使用 Docker](#why)
 * [系统环境](#prerequisites)
