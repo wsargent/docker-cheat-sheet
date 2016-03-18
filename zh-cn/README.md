@@ -90,12 +90,15 @@ docker run hello-world
 * [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
 * [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) 更新容器。
 
 如果你想要一个临时容器，`docker run --rm` 会在容器停止之后删除它。
 
 如果你想映射宿主(host)的一个文件夹到 docker 容器，`docker run -v $HOSTDIR:$DOCKERDIR`。参考 [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes)。
 
 如果你想同时删除和容器关联的 volumes ，那么在删除容器的时候必须包含 -v 选项，像这样 `docker rm -v`。
+
+在 docker 1.10 中还有一个 [logging driver](https://docs.docker.com/engine/admin/logging/overview/)，每个容器可以独立使用。如果你想执行 docker 并带上自定义日志驱动，这样 `docker run --log-driver=syslog`
 
 ## 启动和停止
 
@@ -117,7 +120,7 @@ docker run hello-world
 ### 信息
 
 * [`docker ps`](https://docs.docker.com/reference/commandline/ps) 查看运行中的所有容器。
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。
+* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。(你也可以使用自定义日志驱动，不过在 1.10 中，它只支持 `json-file` 和 `journald`)
 * [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) 查看某个容器的所有信息(包括 IP 地址)。
 * [`docker events`](https://docs.docker.com/reference/commandline/events) 从容器中获取事件(events)。
 * [`docker port`](https://docs.docker.com/reference/commandline/port) 查看容器的公开端口。
