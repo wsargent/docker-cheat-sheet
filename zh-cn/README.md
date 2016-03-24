@@ -1,6 +1,8 @@
 # Docker Cheat Sheet
 
-注意: 本文由 gist 不断扩展而来。现在它已经成为了一个 GitHub 工程，这样便于其他 Github 用户编辑，修改以及在 Docker 上扩展它。只需要点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md)，然后点击右上角的 "writing pen" 图标便能开始编辑了。
+**想要一起来完善这份速查表吗？请看[贡献手册](#contributing)部分！**
+
+## 目录
 
 * [为何使用 Docker](#why)
 * [系统环境](#prerequisites)
@@ -17,6 +19,7 @@
 * [最佳实践](#best-practices)
 * [安全](#security)
 * [小贴士](#tips)
+* [贡献手册(Contributing)](#contributing)
 
 ## 为何使用 Docker
 
@@ -56,7 +59,9 @@ curl -sSL https://get.docker.com/ | sh
 
 下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
 
-Docker 原来用的是 boot2docker，不过现在已经改成 docker machine 了。Docker 网站有说明[如何升级](https://docs.docker.com/installation/mac/#migrate-from-boot2docker)。如果你有一个 docker 实例的话，你还是可以直接安装[Docker Machine](https://docs.docker.com/machine/install-machine/)的。
+> **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
+>
+> 所以你最好是通过 Docker Toolbox DMG 文件来升级，它会一次性的帮你处理好所有的升级。
 
 安装好 Docker Toolbox 之后，通过 VirtualBox provider 安装带 Docker Machine 的 VM:
 
@@ -85,12 +90,15 @@ docker run hello-world
 * [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
 * [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器.
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) 更新容器的资源限制。
 
 如果你想要一个临时容器，`docker run --rm` 会在容器停止之后删除它。
 
 如果你想映射宿主(host)的一个文件夹到 docker 容器，`docker run -v $HOSTDIR:$DOCKERDIR`。参考 [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes)。
 
 如果你想同时删除和容器关联的 volumes ，那么在删除容器的时候必须包含 -v 选项，像这样 `docker rm -v`。
+
+在 docker 1.10 中还有一个 [logging driver](https://docs.docker.com/engine/admin/logging/overview/)，每个容器可以独立使用。如果你想执行 docker 并带上自定义日志驱动，这样 `docker run --log-driver=syslog`
 
 ## 启动和停止
 
@@ -112,7 +120,7 @@ docker run hello-world
 ### 信息
 
 * [`docker ps`](https://docs.docker.com/reference/commandline/ps) 查看运行中的所有容器。
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。
+* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。(你也可以使用自定义日志驱动，不过在 1.10 中，它只支持 `json-file` 和 `journald`)
 * [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) 查看某个容器的所有信息(包括 IP 地址)。
 * [`docker events`](https://docs.docker.com/reference/commandline/events) 从容器中获取事件(events)。
 * [`docker port`](https://docs.docker.com/reference/commandline/port) 查看容器的公开端口。
@@ -121,6 +129,8 @@ docker run hello-world
 * [`docker diff`](https://docs.docker.com/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
 
 `docker ps -a` 查看所有容器，包括正在运行的和已停止的。
+
+`docker stats --all` 显示正在运行的容器列表 
 
 ### 导入 / 导出
 
@@ -175,6 +185,19 @@ Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking
 * [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
 * [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
 
+你可以为[容器指定 IP 地址](https://blog.jessfraz.com/post/ips-for-all-the-things/):
+
+```
+# create a new bridge network with your subnet and gateway for your ip block
+docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
+
+# run a nginx container with a specific ip in that block
+$ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
+
+# curl the ip from any other place (assuming this is a public ip block duh)
+$ curl 203.0.113.2
+```
+
 ## Registry 和 Repository
 
 仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
@@ -190,10 +213,9 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ### 本地仓管中心
 
-[如何实现仓管中心](https://github.com/docker/docker-registry)，官方提供了一个镜像，实现了基本的安装，可以通过执行
-[`docker run -p 5000:5000 registry`](https://github.com/docker/docker-registry#quick-start)启动。
-注意: 该实现并没有提供任何的权限控制。所以你可以通过选项 `-P -p 127.0.0.1:5000:5000` 来限制只能从本机接入。
-为了推送仓库到该中心，请把镜像的标签命名为 `repositoryHostName:5000/imageName` ，然后推送该标签。
+你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/distribution/blob/master/docs/deploying.md) 介绍。  
+
+也可以参考 [邮件列表](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution)。
 
 ## Dockerfile
 
@@ -296,7 +318,7 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
+你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://web.archive.org/web/20150306065158/http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
 
 可还可以考虑运行一个纯数据容器，像[这里](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/)所说的那样，提供可移植数据。
 
@@ -357,11 +379,11 @@ docker port CONTAINER $CONTAINERPORT
 
 ### 安全提示
 
-为了最大的安全性，你应该会希望在一台虚拟机上，或在托管主机上运行 Docker 。这是直接从 Docker 安全团队拿来的资料 -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/)。然后，可以使用 AppArmor / seccomp / SELinux / grsec 之类的来[限制容器的权限](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/)。
+为了最大的安全性，你应该会考虑在虚拟机上运行 Docker 。这是直接从 Docker 安全团队拿来的资料 -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/)。然后，可以使用 AppArmor / seccomp / SELinux / grsec 之类的来[限制容器的权限](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/)。更多细节，请查阅 [Docker 1.10 security features](https://blog.docker.com/2016/02/docker-engine-1-10-security/)。
 
 Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) 所以它不应该向外界公开。你应该把他们当成密码来对待。
 
-参考 [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md)中 - 作者是 [Thomas Sjögren](https://github.com/konstruktoid) - 关于如何提高容器安全的建议。
+参考 [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc)中 - 作者是 [Thomas Sjögren](https://github.com/konstruktoid) - 关于如何提高容器安全的建议。
 
 下载[docker 安全测试脚本](https://github.com/docker/docker-bench-security)，下载[白皮书](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) 以及订阅[邮件列表](https://www.docker.com/docker-security) (不幸的是 Docker 并没有独立的邮件列表，只有 dev / user)。
 
@@ -406,6 +428,12 @@ RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
 
+### 用户命名空间(User Namespaces)
+
+还可以通过使用 [user namespaces](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/) -- 这已经是 1.10 内建功能了，但默认情况下是不启用的。
+
+要在 Ubuntu 15.10 中启用用户命名空间 ("remap the userns")，请[跟着这篇博客的例子](https://raesene.github.io/blog/2016/02/04/Docker-User-Namespaces/)来做。
+
 ### 安全相关视频
 
 * [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
@@ -415,7 +443,7 @@ USER user
 ### 安全路线图
 
 Docker 的路线图提到关于[seccomp 的支持](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security)。
-这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在实现[安全配置文件](https://github.com/docker/docker/issues/17142)。也可以使用[刚刚成为试验特性](https://github.com/docker/docker/commit/cc63db4fd19f99372a84cc97a87a023fa9193734#diff-991890e619874cd6bb0277584bb7f7a4R632)的[用户命名空间](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/)
+这里有个 AppArmor 策略生成器，叫做 [bane](https://github.com/jfrazelle/bane)，他们正在实现[安全配置文件](https://github.com/docker/docker/issues/17142)。
 
 ## 小贴士
 
@@ -443,13 +471,9 @@ docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
 docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
 ```
 
-或者
+或者安装 [jq](https://stedolan.github.io/jq/):
 
 ```
-wget http://stedolan.github.io/jq/download/source/jq-1.3.tar.gz
-tar xzvf jq-1.3.tar.gz
-cd jq-1.3
-./configure && make && sudo make install
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
@@ -567,3 +591,23 @@ docker stats $(docker ps -q)
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
+
+## 贡献手册(Contributing)
+
+这是关于如何为这份速查表做贡献的说明。
+
+### 打开 README.md
+
+点击 [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- 这个链接
+
+![点击它](../images/click.png)
+
+### 编辑页面
+
+![选择它](../images/edit.png)
+
+### 更新和提交
+
+![改变它](../images/change.png)
+
+![提交](../images/commit.png)
