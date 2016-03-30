@@ -92,6 +92,8 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
 
+If you want to rename a container, use `docker rename $OLDNAME $NEWNAME`
+
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
 If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
