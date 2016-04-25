@@ -4,22 +4,22 @@
 
 ## 目录
 
-* [为何使用 Docker](#why)
-* [系统环境](#prerequisites)
-* [安装](#installation)
-* [容器(Containers)](#containers)
-* [镜像(Images)](#images)
-* [网络(Networks)](#networks)
-* [仓管中心和仓库(Registry & Repository)](#registry--repository)
+* [为何使用 Docker](#为何使用-docker)
+* [系统环境](#系统环境)
+* [安装](#安装)
+* [容器(Containers)](#容器container)
+* [镜像(Images)](#镜像images)
+* [网络(Networks)](#网络networks)
+* [仓管中心和仓库(Registry & Repository)](#仓管中心和仓库registry--repository)
 * [Dockerfile](#dockerfile)
-* [层(Layers)](#layers)
-* [链接(Links)](#links)
-* [卷标(Volumes)](#volumes)
-* [暴露端口(Exposing Ports)](#exposing-ports)
-* [最佳实践](#best-practices)
-* [安全](#security)
-* [小贴士](#tips)
-* [贡献手册(Contributing)](#contributing)
+* [层(Layers)](#层layers)
+* [链接(Links)](#链接links)
+* [卷标(Volumes)](#卷标volumes)
+* [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
+* [最佳实践](#最佳实践)
+* [安全](#安全security)
+* [小贴士](#小贴士)
+* [贡献手册(Contributing)](#贡献手册contributing)
 
 ## 为何使用 Docker
 
@@ -88,7 +88,8 @@ docker run hello-world
 ### 生命周期
 
 * [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
-* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器.
+* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) 允许重命名容器。
+* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器。
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) 更新容器的资源限制。
 
@@ -198,7 +199,7 @@ $ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
 $ curl 203.0.113.2
 ```
 
-## Registry 和 Repository
+## 仓管中心和仓库(Registry & Repository)
 
 仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
 
@@ -219,7 +220,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ## Dockerfile
 
-[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode)做了个语法高亮模块。你还可以试试 [工具集](#tools)部分的内容。
+[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode)做了个语法高亮模块。
 
 ### 指令
 
@@ -388,6 +389,18 @@ Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-ima
 下载[docker 安全测试脚本](https://github.com/docker/docker-bench-security)，下载[白皮书](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) 以及订阅[邮件列表](https://www.docker.com/docker-security) (不幸的是 Docker 并没有独立的邮件列表，只有 dev / user)。
 
 你应该远离那些使用编译版本 grsecurity / pax 的不稳定内核，比如 [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux)。如果在产品中用了 grsecurity ，那么你应该考虑使用有[商业支持](https://grsecurity.net/business_support.php)的[稳定版本](https://grsecurity.net/announce.php)，就像你对待 RedHat 那样。它要 $200 每月，对于你的运维预算来说不值一提。
+
+从 docker 1.11 开始，你可以轻松的限制在容器中可用的进程数，以防止 fork bombs。 这要求 linux 内核 >= 4.3 并且要在内核配置中打开 CGROUP_PIDS=y 。
+
+```
+docker run --pids-limit=64
+```
+
+同时，从 docker 1.11 开始，你也可以限制进程有再获取新权限的能力了。该功能是 linux 内核从 version 3.5 开始就拥有的。你可以从[这篇博客](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/)中阅读到更多关于这方面的内容。
+
+```
+docker run --security-opt=no-new-privileges
+```
 
 参考 [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (它是个 PDF 版本，搞得非常难用，所以拷贝出来了) 的 [容器解決方案](http://container-solutions.com/is-docker-safe-for-production/):
 
