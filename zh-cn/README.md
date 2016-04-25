@@ -88,7 +88,8 @@ docker run hello-world
 ### 生命周期
 
 * [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
-* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器.
+* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) 允许重命名容器。
+* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器。
 * [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) 更新容器的资源限制。
 
