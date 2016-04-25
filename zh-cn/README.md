@@ -390,6 +390,18 @@ Docker 镜像 id 属于[敏感信息](https://medium.com/@quayio/your-docker-ima
 
 你应该远离那些使用编译版本 grsecurity / pax 的不稳定内核，比如 [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux)。如果在产品中用了 grsecurity ，那么你应该考虑使用有[商业支持](https://grsecurity.net/business_support.php)的[稳定版本](https://grsecurity.net/announce.php)，就像你对待 RedHat 那样。它要 $200 每月，对于你的运维预算来说不值一提。
 
+从 docker 1.11 开始，你可以轻松的限制在容器中可用的进程数，以防止 fork bombs。 这要求 linux 内核 >= 4.3 并且要在内核配置中打开 CGROUP_PIDS=y 。
+
+```
+docker run --pids-limit=64
+```
+
+同时，从 docker 1.11 开始，你也可以限制进程有再获取新权限的能力了。该功能是 linux 内核从 version 3.5 开始就拥有的。你可以从[这篇博客](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/)中阅读到更多关于这方面的内容。
+
+```
+docker run --security-opt=no-new-privileges
+```
+
 参考 [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (它是个 PDF 版本，搞得非常难用，所以拷贝出来了) 的 [容器解決方案](http://container-solutions.com/is-docker-safe-for-production/):
 
 关闭内部进程通讯:
