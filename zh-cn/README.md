@@ -4,22 +4,22 @@
 
 ## 目录
 
-* [为何使用 Docker](#why)
-* [系统环境](#prerequisites)
-* [安装](#installation)
-* [容器(Containers)](#containers)
-* [镜像(Images)](#images)
-* [网络(Networks)](#networks)
-* [仓管中心和仓库(Registry & Repository)](#registry--repository)
+* [为何使用 Docker](#为何使用-docker)
+* [系统环境](#系统环境)
+* [安装](#安装)
+* [容器(Containers)](#容器container)
+* [镜像(Images)](#镜像images)
+* [网络(Networks)](#网络networks)
+* [仓管中心和仓库(Registry & Repository)](#仓管中心和仓库registry--repository)
 * [Dockerfile](#dockerfile)
-* [层(Layers)](#layers)
-* [链接(Links)](#links)
-* [卷标(Volumes)](#volumes)
-* [暴露端口(Exposing Ports)](#exposing-ports)
-* [最佳实践](#best-practices)
-* [安全](#security)
-* [小贴士](#tips)
-* [贡献手册(Contributing)](#contributing)
+* [层(Layers)](#层layers)
+* [链接(Links)](#链接links)
+* [卷标(Volumes)](#卷标volumes)
+* [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
+* [最佳实践](#最佳实践)
+* [安全](#安全security)
+* [小贴士](#小贴士)
+* [贡献手册(Contributing)](#贡献手册contributing)
 
 ## 为何使用 Docker
 
@@ -199,7 +199,7 @@ $ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
 $ curl 203.0.113.2
 ```
 
-## Registry 和 Repository
+## 仓管中心和仓库(Registry & Repository)
 
 仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
 
