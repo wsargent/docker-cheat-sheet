@@ -603,6 +603,12 @@ For all containers listed by name:
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
+For all containers listed by image:
+
+```
+docker ps -a -f ancestor=ubuntu
+```
+
 ## Contributing
 
 Here's how to contribute to this cheat sheet.
