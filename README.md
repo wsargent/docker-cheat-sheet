@@ -208,6 +208,7 @@ A registry is a *host* -- a server that stores repositories and provides an HTTP
 Docker.com hosts its own [index](https://hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) to login to a registry.
+* [`docker logout`](https://docs.docker.com/reference/commandline/logout) to logout from a registry.
 * [`docker search`](https://docs.docker.com/reference/commandline/search) searches registry for image.
 * [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
 * [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
