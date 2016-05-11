@@ -101,7 +101,7 @@ If you want to remove also the volumes associated with the container, the deleti
 
 There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10.  To run docker with a custom log driver (i.e. to syslog), use `docker run --log-driver=syslog`
 
-## Starting and Stopping
+### Starting and Stopping
 
 * [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops a running container.
