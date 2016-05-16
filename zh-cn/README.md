@@ -605,6 +605,12 @@ docker stats $(docker ps -q)
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
+按指定镜像名称列出所有容器:
+
+```
+docker ps -a -f ancestor=ubuntu
+```
+
 ## 贡献手册(Contributing)
 
 这是关于如何为这份速查表做贡献的说明。
