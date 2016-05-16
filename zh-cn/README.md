@@ -101,7 +101,7 @@ docker run hello-world
 
 在 docker 1.10 中还有一个 [logging driver](https://docs.docker.com/engine/admin/logging/overview/)，每个容器可以独立使用。如果你想执行 docker 并带上自定义日志驱动，这样 `docker run --log-driver=syslog`
 
-## 启动和停止
+### 启动和停止
 
 * [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
@@ -208,6 +208,7 @@ $ curl 203.0.113.2
 Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
+* [`docker logout`](https://docs.docker.com/reference/commandline/logout) 登出仓管中心。
 * [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
 * [`docker pull`](https://docs.docker.com/reference/commandline/pull) 从仓管中心拉去镜像到本地。
 * [`docker push`](https://docs.docker.com/reference/commandline/push) 从本地推送镜像到仓管中心。
@@ -220,7 +221,15 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ## Dockerfile
 
-[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode)做了个语法高亮模块。
+[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。
+
+下面是一些常用的编写 Dockerfile 的编辑器和语法高亮模块︰
+* 如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode) 做了个语法高亮模块。
+* [Sublime Text 2](https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting)
+* [Atom](https://atom.io/packages/language-docker)
+* [Vim](https://github.com/ekalinin/Dockerfile.vim)
+* [Emacs](https://github.com/spotify/dockerfile-mode)
+* 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://github.com/spotify/dockerfile-mode)
 
 ### 指令
 
@@ -603,6 +612,12 @@ docker stats $(docker ps -q)
 
 ```
 docker stats $(docker ps --format '{{.Names}}')
+```
+
+按指定镜像名称列出所有容器:
+
+```
+docker ps -a -f ancestor=ubuntu
 ```
 
 ## 贡献手册(Contributing)
