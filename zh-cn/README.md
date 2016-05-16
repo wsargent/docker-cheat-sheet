@@ -208,6 +208,7 @@ $ curl 203.0.113.2
 Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
 * [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
+* [`docker logout`](https://docs.docker.com/reference/commandline/logout) 登出仓管中心。
 * [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
 * [`docker pull`](https://docs.docker.com/reference/commandline/pull) 从仓管中心拉去镜像到本地。
 * [`docker push`](https://docs.docker.com/reference/commandline/push) 从本地推送镜像到仓管中心。
