@@ -221,7 +221,15 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ## Dockerfile
 
-[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode)做了个语法高亮模块。
+[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。
+
+下面是一些常用的编写 Dockerfile 的编辑器和语法高亮模块︰
+* 如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode) 做了个语法高亮模块。
+* [Sublime Text 2](https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting)
+* [Atom](https://atom.io/packages/language-docker)
+* [Vim](https://github.com/ekalinin/Dockerfile.vim)
+* [Emacs](https://github.com/spotify/dockerfile-mode)
+* 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://github.com/spotify/dockerfile-mode)
 
 ### 指令
 
