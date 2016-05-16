@@ -101,7 +101,7 @@ docker run hello-world
 
 在 docker 1.10 中还有一个 [logging driver](https://docs.docker.com/engine/admin/logging/overview/)，每个容器可以独立使用。如果你想执行 docker 并带上自定义日志驱动，这样 `docker run --log-driver=syslog`
 
-## 启动和停止
+### 启动和停止
 
 * [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
 * [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
