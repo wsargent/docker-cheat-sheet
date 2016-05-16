@@ -229,7 +229,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
-* 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://github.com/spotify/dockerfile-mode)
+* 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://domeide.github.io/)
 
 ### 指令
 

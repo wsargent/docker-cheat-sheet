@@ -229,7 +229,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
-* For a most comprehensive list of editors and IDEs, check [Docker meets the IDE] (https://github.com/spotify/dockerfile-mode)
+* For a most comprehensive list of editors and IDEs, check [Docker meets the IDE] (https://domeide.github.io/)
 
 ### Instructions
 
