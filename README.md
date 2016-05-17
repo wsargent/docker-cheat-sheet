@@ -51,7 +51,7 @@ Quick and easy install script provided by Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
-If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.  
+If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.
 
 If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/linux/started/) now.
 
@@ -215,7 +215,7 @@ Docker.com hosts its own [index](https://hub.docker.com/) to a central registry 
 
 ### Run local registry
 
-You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.  
+You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.
 
 Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
 
@@ -249,7 +249,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
 * [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
-* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.  
+* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
 ### Tutorial
 
@@ -375,7 +375,7 @@ docker port CONTAINER $CONTAINERPORT
 This is where general Docker best practices and war stories go:
 
 * [The Rabbit Hole of Using Docker in Automated Tests](http://gregoryszorc.com/blog/2014/10/16/the-rabbit-hole-of-using-docker-in-automated-tests/)
-* [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.  
+* [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [A Docker Dev Environment in 24 Hours!](https://engineering.salesforceiq.com/2013/11/05/a-docker-dev-environment-in-24-hours-part-2-of-2.html)
 * [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
@@ -465,7 +465,7 @@ To enable user namespaces ("remap the userns") in Ubuntu 15.10, [follow the blog
 ### Security Roadmap
 
 The Docker roadmap talks about [seccomp support](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
-There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).  
+There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).
 
 ## Tips
 
@@ -478,25 +478,25 @@ Sources:
 ```
 alias dl='docker ps -l -q'
 docker run ubuntu echo hello world
-docker commit `dl` helloworld
+docker commit $(dl) helloworld
 ```
 
 ### Commit with command (needs Dockerfile)
 
 ```
-docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' `dl` postgres
+docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
 ### Get IP address
 
 ```
-docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
+docker inspect $(dl) | grep IPAddress | cut -d '"' -f 4
 ```
 
 or install [jq](https://stedolan.github.io/jq/):
 
 ```
-docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
+docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
 or using a [go template](https://docs.docker.com/reference/commandline/inspect)
@@ -514,7 +514,7 @@ docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(in
 ### Find containers by regular expression
 
 ```
-for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done`
+for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
 ```
 
 ### Get Environment Settings
@@ -538,7 +538,7 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ### Delete stopped containers
 
 ```
-docker rm -v `docker ps -a -q -f status=exited`
+docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
 ### Delete dangling images
@@ -571,12 +571,12 @@ docker images -viz | dot -Tpng -o docker.png
 
 ### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
 
-- Cleaning APT in a RUN layer  
-This should be done in the same layer as other apt commands.  
-Otherwise, the previous layers still persist the original information and your images will still be fat.  
+- Cleaning APT in a RUN layer
+This should be done in the same layer as other apt commands.
+Otherwise, the previous layers still persist the original information and your images will still be fat.
 ```
 RUN {apt commands} \
- && apt-get clean \  
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 - Flatten an image
