@@ -535,6 +535,12 @@ docker run --rm ubuntu env
 docker kill $(docker ps -q)
 ```
 
+### Delete logs for all containers
+
+```
+rm /var/lib/docker/containers/*/*.log
+```
+
 ### Delete old containers
 
 ```
