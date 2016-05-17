@@ -254,6 +254,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 ### Tutorial
 
 * [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+* [A thorough introduction guide to Docker containers](http://www.dedoimedo.com/computers/docker-guide.html)
 
 ### Examples
 
