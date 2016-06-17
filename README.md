@@ -348,7 +348,11 @@ You can tell Docker that the container listens on the specified network ports at
 EXPOSE <CONTAINERPORT>
 ```
 
-But note that EXPOSE does not expose the port itself, only `-p` will do that.
+But note that EXPOSE does not expose the port itself, only `-p` will do that. To expose the container's port on your localhosts port:
+
+```
+iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
+```
 
 If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html).  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
 
