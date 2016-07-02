@@ -15,6 +15,7 @@
 * [Layers](#layers)
 * [Links](#links)
 * [Volumes](#volumes)
+* [Load/Save Import/Export](#load-save-import-export)
 * [Exposing Ports](#exposing-ports)
 * [Best Practices](#best-practices)
 * [Security](#security)
@@ -331,6 +332,41 @@ docker run -v /Users/wsargent/myapp/src:/src
 You can also use remote NFS volumes if you're [feeling brave](https://web.archive.org/web/20150306065158/http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/).
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
+
+## Load/Save Import/Export
+
+Docker allows you to load/save images and import/export containers.
+
+### Load/Save image
+
+Load an image from file:
+```
+docker load < my_image.tar.gz
+```
+
+Save an existing image:
+```
+docker save my_image:my_tag > my_image.tar.gz
+```
+
+### Import/Export container
+
+Import a container as an image from file:
+```
+cat my_container.tar.gz | docker import - my_image:my_tag
+```
+
+Export an existing container:
+```
+docker export my_container > my_container.tar.gz
+```
+
+### Difference between loading a saved image and importing an exported container as an image ?
+
+Loading an image using the `load` command creates a new image including its history.  
+Importing a container as an image using the `import` command creates an new image excluding the history which results in a smaller image size compared to loading an image.
+
+
 
 ## Exposing ports
 
