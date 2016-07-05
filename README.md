@@ -167,6 +167,35 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
+### Load/Save image
+
+Load an image from file:
+```
+docker load < my_image.tar.gz
+```
+
+Save an existing image:
+```
+docker save my_image:my_tag > my_image.tar.gz
+```
+
+### Import/Export container
+
+Import a container as an image from file:
+```
+cat my_container.tar.gz | docker import - my_image:my_tag
+```
+
+Export an existing container:
+```
+docker export my_container > my_container.tar.gz
+```
+
+### Difference between loading a saved image and importing an exported container as an image ?
+
+Loading an image using the `load` command creates a new image including its history.  
+Importing a container as an image using the `import` command creates an new image excluding the history which results in a smaller image size compared to loading an image.
+
 ## Networks
 
 Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.  See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
