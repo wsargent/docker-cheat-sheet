@@ -13,6 +13,7 @@
 * [仓管中心和仓库(Registry & Repository)](#仓管中心和仓库registry--repository)
 * [Dockerfile](#dockerfile)
 * [层(Layers)](#层layers)
+* [加载/保存(Load/Save) 导入/导出(Import/Export)](#load-save-import-export)
 * [链接(Links)](#链接links)
 * [卷标(Volumes)](#卷标volumes)
 * [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
@@ -331,6 +332,38 @@ docker run -v /Users/wsargent/myapp/src:/src
 你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://web.archive.org/web/20150306065158/http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
 
 可还可以考虑运行一个纯数据容器，像[这里](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/)所说的那样，提供可移植数据。
+
+## 加载/保存(Load/Save) 导入/导出(Import/Export)
+
+Docker 允许你加载/保存镜像以及导入/导出容器。
+
+### 加载/保存镜像
+
+从文件中加载镜像:
+```
+docker load < my_image.tar.gz
+```
+保存既有镜像:
+```
+docker save my_image:my_tag > my_image.tar.gz
+```
+
+### 导入/导出容器
+
+从文件中将容器作为镜像导入:
+```
+cat my_container.tar.gz | docker import - my_image:my_tag
+```
+
+导出既有容器:
+```
+docker export my_container > my_container.tar.gz
+```
+
+### 加载被保存的镜像和导入作为镜像导出的容器之间的不同
+
+通过 `load` 命令来加载镜像，会创建一个新的镜像，并继承原镜像的所有历史。
+通过 `import` 将容器作为镜像导入，也会创建一个新的镜像，但并不包含原镜像的历史，因此生成的镜像会比使用加载方式生成的镜像要小。
 
 ## 暴露端口(Exposing ports)
 
