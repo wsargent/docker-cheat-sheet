@@ -348,7 +348,11 @@ docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 EXPOSE <CONTAINERPORT>
 ```
 
-但是注意 EXPOSE 并不会暴露端口本身，只有 `-p` 这样做。
+但是注意 EXPOSE 并不会暴露端口，你需要用参数 `-p` 。比如说你要在 localhost 上暴露容器的端口:
+
+```
+iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
+```
 
 如果你是在 Virtualbox 中运行 Docker，那么你需要转发端口(forward the port)，使用 [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html)。它可以用于在 Vagrantfile 上配置暴露端口段，这样你就可以动态的映射它们了:
 
