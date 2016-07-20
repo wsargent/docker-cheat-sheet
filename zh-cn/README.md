@@ -13,7 +13,7 @@
 * [仓管中心和仓库(Registry & Repository)](#仓管中心和仓库registry--repository)
 * [Dockerfile](#dockerfile)
 * [层(Layers)](#层layers)
-* [加载/保存(Load/Save) 导入/导出(Import/Export)](#load-save-import-export)
+* [加载/保存(Load/Save) 导入/导出(Import/Export)](#加载保存loadsave-导入导出importexport)
 * [链接(Links)](#链接links)
 * [卷标(Volumes)](#卷标volumes)
 * [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
