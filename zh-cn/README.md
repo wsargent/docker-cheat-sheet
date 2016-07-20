@@ -323,13 +323,13 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 查看[卷标进阶](http://crosbymichael.com/advanced-docker-volumes.html)来获取更多细节。Container42 [非常有用](http://container42.com/2014/11/03/docker-indepth-volumes/)。
 
-从 1.3 开始，你可以[映射宿主 MacOS 的文件夹作为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume)通过 boot2docker:
+你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://web.archive.org/web/20150306065158/http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
+你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume)。
 
 可还可以考虑运行一个纯数据容器，像[这里](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/)所说的那样，提供可移植数据。
 
