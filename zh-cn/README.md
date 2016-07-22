@@ -167,7 +167,35 @@ docker run hello-world
 
 虽然你可以用 `docker rmi` 命令来删除指定的镜像，但是这里有个称为 [docker-gc](https://github.com/spotify/docker-gc) 的工具，它可以以一种安全的方式，清理掉那些不再被任何容器使用的镜像。
 
-## 网络(Networks) 
+### 加载/保存镜像
+
+从文件中加载镜像:
+```
+docker load < my_image.tar.gz
+```
+保存既有镜像:
+```
+docker save my_image:my_tag > my_image.tar.gz
+```
+
+### 导入/导出容器
+
+从文件中将容器作为镜像导入:
+```
+cat my_container.tar.gz | docker import - my_image:my_tag
+```
+
+导出既有容器:
+```
+docker export my_container > my_container.tar.gz
+```
+
+### 加载被保存的镜像和导入作为镜像导出的容器之间的不同
+
+通过 `load` 命令来加载镜像，会创建一个新的镜像，并继承原镜像的所有历史。
+通过 `import` 将容器作为镜像导入，也会创建一个新的镜像，但并不包含原镜像的历史，因此生成的镜像会比使用加载方式生成的镜像要小。
+
+## 网络(Networks)
 
 Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking/dockernetworks/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
 
@@ -322,13 +350,13 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 查看[卷标进阶](http://crosbymichael.com/advanced-docker-volumes.html)来获取更多细节。Container42 [非常有用](http://container42.com/2014/11/03/docker-indepth-volumes/)。
 
-从 1.3 开始，你可以[映射宿主 MacOS 的文件夹作为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume)通过 boot2docker:
+你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://web.archive.org/web/20150306065158/http://www.tech-d.net/2014/03/29/docker-quicktip-4-remote-volumes/)。
+你也可以用远程 NFS 卷标，如果你觉得你[有足够勇气](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume)。
 
 可还可以考虑运行一个纯数据容器，像[这里](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/)所说的那样，提供可移植数据。
 
@@ -348,7 +376,11 @@ docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 EXPOSE <CONTAINERPORT>
 ```
 
-但是注意 EXPOSE 并不会暴露端口本身，只有 `-p` 这样做。
+但是注意 EXPOSE 并不会暴露端口，你需要用参数 `-p` 。比如说你要在 localhost 上暴露容器的端口:
+
+```
+iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
+```
 
 如果你是在 Virtualbox 中运行 Docker，那么你需要转发端口(forward the port)，使用 [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html)。它可以用于在 Vagrantfile 上配置暴露端口段，这样你就可以动态的映射它们了:
 
