@@ -27,7 +27,7 @@
 
  Docker Hub 上有 13,000+ 的应用，开发者可以从中选取一个进行快速扩展开发。Docker 跟踪管理变更和依赖关系，让系统管理员能更容易理解开发人员是如何让应用运转起来的。而开发者可以通过 Docker Hub 的共有/私有仓库，构建他们的自动化编译，与其他合作者共享成果。
 
-Docker 帮助开发者构建和发布高质量的应用，更快的。" -- [什么是 Docker](https://www.docker.com/what-docker/#copy1)
+Docker 帮助开发者更快地构建和发布高质量的应用。" -- [什么是 Docker](https://www.docker.com/what-docker/#copy1)
 
 ## 系统环境
 
@@ -217,13 +217,13 @@ Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking
 你可以为[容器指定 IP 地址](https://blog.jessfraz.com/post/ips-for-all-the-things/):
 
 ```
-# create a new bridge network with your subnet and gateway for your ip block
+# 使用你自己的子网和网关创建一个桥接网络
 docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
 
-# run a nginx container with a specific ip in that block
+# 基于以上创建的网络，运行一个nginx容器并指定ip
 $ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
 
-# curl the ip from any other place (assuming this is a public ip block duh)
+# 在其他地方使用curl访问这个ip（假设这是一个公网ip）
 $ curl 203.0.113.2
 ```
 
