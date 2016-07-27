@@ -194,7 +194,7 @@ docker export my_container > my_container.tar.gz
 ### Difference between loading a saved image and importing an exported container as an image ?
 
 Loading an image using the `load` command creates a new image including its history.  
-Importing a container as an image using the `import` command creates an new image excluding the history which results in a smaller image size compared to loading an image.
+Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
 
 ## Networks
 
