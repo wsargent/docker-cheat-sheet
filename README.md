@@ -57,6 +57,8 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 ### Mac OS X
 
+[Docker for Mac](https://docs.docker.com/docker-for-mac/docker-toolbox/) is a preferred way to install Docker.
+
 Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
 > **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
