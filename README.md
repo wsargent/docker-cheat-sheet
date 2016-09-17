@@ -83,7 +83,10 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 ## Containers
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
+- [Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).
+- Containers are writable and ephemeral.
+- Containers are created from images.
+- You can think of them as `chroot`s on steroids or instance of a image.
 
 ### Lifecycle
 
