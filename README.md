@@ -276,8 +276,8 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [CMD](https://docs.docker.com/reference/builder/#cmd) provide defaults for an executing container.
 * [EXPOSE](https://docs.docker.com/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
 * [ENV](https://docs.docker.com/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container.
+* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container. Can unpack an archive file. Invalidates caches. Avoid `ADD` and use `COPY` instead. **`ADD` is executed with `UID` and `GUI` `0`. `USER` instruction has no impact on it.**
+* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container. **`COPY` is executed with `UID` and `GUI` `0`. `USER` instruction has no impact on it.**
 * [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
 * [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
