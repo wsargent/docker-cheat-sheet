@@ -382,7 +382,7 @@ You can tell Docker that the container listens on the specified network ports at
 EXPOSE <CONTAINERPORT>
 ```
 
-But note that EXPOSE does not expose the port itself, only `-p` will do that. To expose the container's port on your localhosts port:
+But note that EXPOSE does expose the port only to other containers. To expose the container's port on your localhosts port use `-p`:
 
 ```
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
