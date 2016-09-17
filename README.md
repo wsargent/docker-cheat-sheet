@@ -138,7 +138,7 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 `docker stats --all` shows a running list of containers.
 
-### Import / Export
+### Import/Export
 
 * [`docker cp`](https://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
 * [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
@@ -170,11 +170,11 @@ To enter a running container, attach a new shell process to a running container 
 * [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
 
-### Cleaning up
+### Cleaning Up
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
-### Load/Save image
+### Load/Save Image
 
 Load an image from file:
 ```
@@ -186,7 +186,7 @@ Save an existing image:
 docker save my_image:my_tag > my_image.tar.gz
 ```
 
-### Import/Export container
+### Import/Export Container
 
 Import a container as an image from file:
 ```
@@ -198,7 +198,7 @@ Export an existing container:
 docker export my_container > my_container.tar.gz
 ```
 
-### Difference between loading a saved image and importing an exported container as an image ?
+### Difference Between Loading a Saved Image and Importing an Exported Container as an Image ?
 
 Loading an image using the `load` command creates a new image including its history.  
 Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
@@ -249,7 +249,7 @@ Docker.com hosts its own [index](https://hub.docker.com/) to a central registry 
 * [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
 * [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
 
-### Run local registry
+### Run Local Registry
 
 You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.
 
@@ -368,7 +368,7 @@ You can also use remote NFS volumes if you're [feeling brave](https://docs.docke
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
-## Exposing ports
+## Exposing Ports
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
@@ -519,7 +519,7 @@ Sources:
 
 * [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
 
-### Last Ids
+### Last IDs
 
 ```
 alias dl='docker ps -l -q'
@@ -527,13 +527,13 @@ docker run ubuntu echo hello world
 docker commit $(dl) helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### Commit With Command (needs Dockerfile)
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
-### Get IP address
+### Get IP Address
 
 ```
 docker inspect $(dl) | grep IPAddress | cut -d '"' -f 4
@@ -551,13 +551,13 @@ or using a [go template](https://docs.docker.com/reference/commandline/inspect)
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-### Get port mapping
+### Get Port Mapping
 
 ```
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
-### Find containers by regular expression
+### Find Containers by Regular Expression
 
 ```
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
@@ -569,37 +569,37 @@ for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; do
 docker run --rm ubuntu env
 ```
 
-### Kill running containers
+### Kill Running Containers
 
 ```
 docker kill $(docker ps -q)
 ```
 
-### Delete old containers
+### Delete Old Containers
 
 ```
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
-### Delete stopped containers
+### Delete Stopped Containers
 
 ```
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
-### Delete dangling images
+### Delete Dangling Images
 
 ```
 docker rmi $(docker images -q -f dangling=true)
 ```
 
-### Delete all images
+### Delete All Images
 
 ```
 docker rmi $(docker images -q)
 ```
 
-### Delete dangling volumes
+### Delete Dangling Volumes
 
 As of Docker 1.9:
 
@@ -609,13 +609,13 @@ docker volume rm $(docker volume ls -q -f dangling=true)
 
 In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will list all volumes.
 
-### Show image dependencies
+### Show Image Dependencies
 
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
+### Slimming Down Docker Containers  [Intercity Blog](http://bit.ly/1Wwo61N)
 
 - Cleaning APT in a RUN layer
 This should be done in the same layer as other apt commands.
@@ -638,7 +638,7 @@ ID=$(docker run -d image-name /bin/bash)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
-### Monitor system resource utilization for running containers
+### Monitor System Resource Utilization for Running Containers
 
 To check the CPU, memory, and network i/o usage of a single container, you can use:
 
