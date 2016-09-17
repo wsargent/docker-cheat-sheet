@@ -280,7 +280,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container. **`COPY` is executed with `UID` and `GUI` `0`. `USER` instruction has no impact on it.**
 * [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
-* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
+* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following `RUN` / `CMD` / `ENTRYPOINT` commands.
 * [WORKDIR](https://docs.docker.com/reference/builder/#workdir) sets the working directory.
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
 * [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
