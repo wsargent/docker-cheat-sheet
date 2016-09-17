@@ -269,7 +269,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ### Instructions
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
+* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file) Affects `COPY` and `ADD`.
 * [FROM](https://docs.docker.com/reference/builder/#from) Sets the Base Image for subsequent instructions.
 * [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) Set the Author field of the generated images..
 * [RUN](https://docs.docker.com/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
