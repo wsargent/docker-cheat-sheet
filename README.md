@@ -715,7 +715,7 @@ pip install grip
 git clone https://github.com/wsargent/docker-cheat-sheet/ # alternatively your forked repo
 cd docker-cheat-sheet
 vi README.md
-grip # Open http://localhost:6419/ by using a browser
+grip # Open documentation by using a browser
 ```
 
 
