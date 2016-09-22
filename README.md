@@ -671,20 +671,51 @@ docker ps -a -f ancestor=ubuntu
 
 ## Contributing
 
+Just fork this repo and send pull requests.
+
+### Workflow
+
+- How to fork a the project: https://help.github.com/articles/fork-a-repo/
+- How to create a pull request: https://help.github.com/articles/creating-a-pull-request/
+- How to resync a forked repo with upstream:
+
+  ```
+git remote add upstream https://github.com/wsargent/docker-cheat-sheet.git
+git pull upstream master
+git push
+  ```
+
+### Edit Using Github
+
 Here's how to contribute to this cheat sheet.
 
-### Open README.md
+#### Open README.md
 
 Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
 
 ![Click This](images/click.png)
 
-### Edit Page
+#### Edit Page
 
 ![Edit This](images/edit.png)
 
-### Make Changes and Commit
+#### Make Changes and Commit
 
 ![Change This](images/change.png)
 
 ![Commit](images/commit.png)
+
+
+### Edit and test locally
+
+
+```
+apt-get install git
+pip install grip
+git clone https://github.com/wsargent/docker-cheat-sheet/ # alternatively your forked repo
+cd docker-cheat-sheet
+vi README.md
+grip # Open http://localhost:6419/ by using a browser
+```
+
+
