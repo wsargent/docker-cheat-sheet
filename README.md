@@ -675,15 +675,18 @@ Just fork this repo and send pull requests.
 
 ### Workflow
 
-- How to fork a the project: https://help.github.com/articles/fork-a-repo/
-- How to create a pull request: https://help.github.com/articles/creating-a-pull-request/
-- How to resync a forked repo with upstream:
+- Fork the project: https://help.github.com/articles/fork-a-repo/
+- Clone the project
+- Resync the forked repo with upstream:
+  (only needed when the original project has changed)
 
   ```
 git remote add upstream https://github.com/wsargent/docker-cheat-sheet.git
 git pull upstream master
 git push
   ```
+- Edit the markup code
+- Create a pull request: https://help.github.com/articles/creating-a-pull-request/
 
 ### Edit Using Github
 
