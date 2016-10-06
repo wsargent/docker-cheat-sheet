@@ -2,9 +2,9 @@
 
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
-## A Tasteful Plug
+## A Tasteful Plug for Lightbend
 
-I work for [Lightbend](https://lightbend.com).  We make microservices happen, using [Lagom](http://www.lagomframework.com/) to put together resilient distributed systems, [Conductr](https://conductr.lightbend.com/) to orchestrate containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm) -- and [Monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on.  For more, check out the [devops site](https://www.lightbend.com/platform/production).
+I work for [Lightbend](https://lightbend.com) on [Play](https://playframework.com/).  We make microservices happen, using [Lagom](http://www.lagomframework.com/) to put together resilient distributed systems, [Conductr](https://conductr.lightbend.com/) to orchestrate containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm) -- (it's also a scheduler for DC/OS) and [Monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on at a detailed application level.  For more, check out the [devops site](https://www.lightbend.com/platform/production).
 
 ## Table of Contents
 
