@@ -2,6 +2,10 @@
 
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
+## A Tasteful Plug
+
+I work for [Lightbend](https://lightbend.com).  We make microservices happen, using [Lagom](http://www.lagomframework.com/) to put together resilient distributed systems, [Conductr](https://conductr.lightbend.com/) to orchestrate containers [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm), and [Monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on.  You should check out the [production site](https://www.lightbend.com/platform/production) to see more.
+
 ## Table of Contents
 
 * [Why](#why)
