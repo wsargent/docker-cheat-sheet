@@ -6,9 +6,9 @@
 
 I work for [Lightbend](https://lightbend.com) on the [Play](https://playframework.com/) team.  I think the company is awesome, and if you're looking at containers because you're moving to the cloud and thinking about distributed systems, you should keep reading.
 
-Lightbend make microservices happen, using [Lagom](http://www.lagomframework.com/) to put together resilient distributed systems, [Conductr](https://conductr.lightbend.com/) to orchestrate containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm) -- (it's also a scheduler for [DC/OS](https://dcos.io/) among other things) and [Monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on at a detailed application level, so you have application level information and know where your CPU and memory resources are being spent, and can scale up and down based on that information.
+Lightbend make microservices happen, using [Lagom](http://www.lagomframework.com/) to put together resilient distributed systems, [Conductr](https://conductr.lightbend.com/) to orchestrate containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm) -- (it's also a scheduler for [DC/OS](https://dcos.io/) among other things) and [Monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on at a detailed application level, so you have application level information and know where your CPU and memory resources are being spent, and can scale up and down based on that information.  For more, check out the [devops site](https://www.lightbend.com/platform/production).
 
-For more, check out the [devops site](https://www.lightbend.com/platform/production).
+This concludes the tasteful plug.
 
 ## Table of Contents
 
