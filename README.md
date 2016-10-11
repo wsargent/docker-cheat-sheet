@@ -126,7 +126,7 @@ If you want to expose container ports through the host, see the [exposing ports]
 
 Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
 
-### CPU Constraints
+#### CPU Constraints
 
 You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
 
@@ -144,7 +144,7 @@ docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
 
 Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See https://github.com/docker/docker/issues/20770 for more details.
 
-### Memory Constraints
+#### Memory Constraints
 
 You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
 
