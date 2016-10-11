@@ -126,6 +126,32 @@ If you want to expose container ports through the host, see the [exposing ports]
 
 Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
 
+### CPU Constraints
+
+You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
+
+For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/runtime-constraints-on-resources) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
+
+```
+docker run -ti --c 512 agileek/cpuset-test
+```
+
+You can also only use some CPU cores using `cpuset-cpus`.  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
+
+```
+docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
+```
+
+Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See https://github.com/docker/docker/issues/20770 for more details.
+
+### Memory Constraints
+
+You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
+
+```
+$ docker run -it -m 300M ubuntu:14.04 /bin/bash
+```
+
 ### Info
 
 * [`docker ps`](https://docs.docker.com/reference/commandline/ps) shows running containers.
@@ -481,12 +507,6 @@ Set volumes to be read only:
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
-```
-
-Set memory and CPU sharing:
-
-```
-docker -c 512 -mem 512m
 ```
 
 Define and run a user in your Dockerfile so you don't run as root inside the container:
