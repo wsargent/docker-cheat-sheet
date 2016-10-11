@@ -130,13 +130,13 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
 
-For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/runtime-constraints-on-resources) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
+For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
 
 ```
 docker run -ti --c 512 agileek/cpuset-test
 ```
 
-You can also only use some CPU cores using `cpuset-cpus`.  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
+You can also only use some CPU cores using ``cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
 
 ```
 docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
@@ -149,7 +149,17 @@ Note that Docker can still **see** all of the CPUs inside the container -- it ju
 You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
 
 ```
-$ docker run -it -m 300M ubuntu:14.04 /bin/bash
+docker run -it -m 300M ubuntu:14.04 /bin/bash
+```
+
+#### Capabilities
+
+Linux capabilities can be set by using `cap-add` and `cap-drop`.  See https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities for details.  This should be used for greater security.
+
+To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
+
+```
+docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
 ### Info
@@ -451,7 +461,6 @@ This is where general Docker best practices and war stories go:
 ## Security
 
 This is where security tips about Docker go.  The Docker [security](https://docs.docker.com/engine/articles/security/) page goes into more detail.
-
 
 First things first: Docker runs as root.  If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).  If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  
 
