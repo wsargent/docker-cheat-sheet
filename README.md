@@ -136,7 +136,7 @@ For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/refe
 docker run -ti --c 512 agileek/cpuset-test
 ```
 
-You can also only use some CPU cores using ``cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
+You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
 
 ```
 docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
