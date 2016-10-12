@@ -59,13 +59,13 @@ Quick and easy install script provided by Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
-If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/engine/installation/) instructions for your distribution.
+If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/engine/installation/linux/) instructions for your distribution.
 
 If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
 
 ### Mac OS X
 
-Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox). If that doesn't work, see the [installation instructions](https://docs.docker.com/engine/installation/mac/).
+Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
 > **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
 >
@@ -87,7 +87,7 @@ docker run hello-world
 
 That's it, you have a running Docker container.
 
-If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/mac/started/) now.
+If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
 
 ## Containers
 
