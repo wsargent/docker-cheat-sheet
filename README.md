@@ -95,10 +95,10 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 ### Lifecycle
 
-* [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) creates a container but does not start it.
 * [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) allows the container to be renamed.
-* [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
-* [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
+* [`docker run`](https://docs.docker.com/engine/reference/run/) creates and starts a container in one operation.
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm/) deletes a container.
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
