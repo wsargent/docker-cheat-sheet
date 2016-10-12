@@ -43,7 +43,7 @@ I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker pl
 
 ### Linux
 
-The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/installation/binaries/#check-kernel-dependencies) for Docker.
+The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) for Docker.
 
 ### MacOS
 
@@ -59,15 +59,15 @@ Quick and easy install script provided by Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
-If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/installation/) instructions for your distribution.
+If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/engine/installation/) instructions for your distribution.
 
-If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/linux/started/) now.
+If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/linux/started/) now.
 
 ### Mac OS X
 
-Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
+Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/engine/installation/mac/).
 
-> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
+> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/engine/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
 >
 > You are much better off using Docker Toolbox DMG file to upgrade, which will take care of all the binaries at once.
 
@@ -87,7 +87,7 @@ docker run hello-world
 
 That's it, you have a running Docker container.
 
-If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/mac/started/) now.
+If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/engine/mac/started/) now.
 
 ## Containers
 
@@ -95,10 +95,10 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 ### Lifecycle
 
-* [`docker create`](https://docs.docker.com/reference/commandline/create) creates a container but does not start it.
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) creates a container but does not start it.
 * [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) allows the container to be renamed.
-* [`docker run`](https://docs.docker.com/reference/commandline/run) creates and starts a container in one operation.
-* [`docker rm`](https://docs.docker.com/reference/commandline/rm) deletes a container.
+* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) creates and starts a container in one operation.
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deletes a container.
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
@@ -111,16 +111,16 @@ There's also a [logging driver](https://docs.docker.com/engine/admin/logging/ove
 
 ### Starting and Stopping
 
-* [`docker start`](https://docs.docker.com/reference/commandline/start) starts a container so it is running.
-* [`docker stop`](https://docs.docker.com/reference/commandline/stop) stops a running container.
-* [`docker restart`](https://docs.docker.com/reference/commandline/restart) stops and starts a container.
+* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) starts a container so it is running.
+* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) stops a running container.
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) stops and starts a container.
 * [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pauses a running container, "freezing" it in place.
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
-* [`docker wait`](https://docs.docker.com/reference/commandline/wait) blocks until running container stops.
-* [`docker kill`](https://docs.docker.com/reference/commandline/kill) sends a SIGKILL to a running container.
-* [`docker attach`](https://docs.docker.com/reference/commandline/attach) will connect to a running container.
+* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) blocks until running container stops.
+* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) sends a SIGKILL to a running container.
+* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) will connect to a running container.
 
-If you want to integrate a container with a [host process manager](https://docs.docker.com/articles/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
+If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/articles/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
 If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
 
@@ -164,14 +164,14 @@ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 
 ### Info
 
-* [`docker ps`](https://docs.docker.com/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10)
-* [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) looks at all the info on a container (including IP address).
-* [`docker events`](https://docs.docker.com/reference/commandline/events) gets events from container.
-* [`docker port`](https://docs.docker.com/reference/commandline/port) shows public facing port of container.
-* [`docker top`](https://docs.docker.com/reference/commandline/top) shows running processes in container.
-* [`docker stats`](https://docs.docker.com/reference/commandline/stats) shows containers' resource usage statistics.
-* [`docker diff`](https://docs.docker.com/reference/commandline/diff) shows changed files in the container's FS.
+* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) shows running containers.
+* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10)
+* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) looks at all the info on a container (including IP address).
+* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) gets events from container.
+* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) shows public facing port of container.
+* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) shows running processes in container.
+* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) shows containers' resource usage statistics.
+* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) shows changed files in the container's FS.
 
 `docker ps -a` shows running and stopped containers.
 
@@ -179,12 +179,12 @@ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 
 ### Import / Export
 
-* [`docker cp`](https://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
-* [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
+* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copies files or folders between a container and the local filesystem..
+* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
 
 ### Executing Commands
 
-* [`docker exec`](https://docs.docker.com/reference/commandline/exec) to execute a command in container.
+* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) to execute a command in container.
 
 To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
 
@@ -194,18 +194,18 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 ### Lifecycle
 
-* [`docker images`](https://docs.docker.com/reference/commandline/images) shows all images.
-* [`docker import`](https://docs.docker.com/reference/commandline/import) creates an image from a tarball.
-* [`docker build`](https://docs.docker.com/reference/commandline/build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
-* [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) removes an image.
-* [`docker load`](https://docs.docker.com/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
-* [`docker save`](https://docs.docker.com/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) shows all images.
+* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) creates an image from a tarball.
+* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) creates image from Dockerfile.
+* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
+* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) removes an image.
+* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
+* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
 
 ### Info
 
-* [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
-* [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
+* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
+* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
 
 ### Cleaning up
 
@@ -276,15 +276,15 @@ $ curl 203.0.113.2
 
 A repository is a *hosted* collection of tagged images that together create the file system for a container.
 
-A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/userguide/dockerrepos/).
+A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/engine/userguide/dockerrepos/).
 
 Docker.com hosts its own [index](https://hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
 
-* [`docker login`](https://docs.docker.com/reference/commandline/login) to login to a registry.
-* [`docker logout`](https://docs.docker.com/reference/commandline/logout) to logout from a registry.
-* [`docker search`](https://docs.docker.com/reference/commandline/search) searches registry for image.
-* [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
-* [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
+* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) to login to a registry.
+* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) to logout from a registry.
+* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) searches registry for image.
+* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) pulls an image from registry to local machine.
+* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) pushes an image to the registry from local machine.
 
 ### Run local registry
 
@@ -294,7 +294,7 @@ Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  
+[The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  
 
 Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:
 * If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.
@@ -306,21 +306,21 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ### Instructions
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
-* [FROM](https://docs.docker.com/reference/builder/#from) Sets the Base Image for subsequent instructions.
-* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) Set the Author field of the generated images..
-* [RUN](https://docs.docker.com/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
-* [CMD](https://docs.docker.com/reference/builder/#cmd) provide defaults for an executing container.
-* [EXPOSE](https://docs.docker.com/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
-* [ENV](https://docs.docker.com/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container.
-* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
-* [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
-* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
-* [WORKDIR](https://docs.docker.com/reference/builder/#workdir) sets the working directory.
+* [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
+* [FROM](https://docs.docker.com/engine/reference/builder/#from) Sets the Base Image for subsequent instructions.
+* [MAINTAINER](https://docs.docker.com/engine/reference/builder/#maintainer) Set the Author field of the generated images..
+* [RUN](https://docs.docker.com/engine/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
+* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) provide defaults for an executing container.
+* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
+* [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
+* [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.
+* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configures a container that will run as an executable.
+* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
+* [USER](https://docs.docker.com/engine/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
+* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) sets the working directory.
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
-* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
+* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
 * [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
@@ -330,8 +330,8 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ### Examples
 
-* [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
+* [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/articles/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
 * [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
 * [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
@@ -344,7 +344,7 @@ Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your fil
 
 ## Links
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
+Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/engine/userguide/dockerlinks/#updating-the-etchosts-file).
 
 NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
 
@@ -371,11 +371,11 @@ And you can connect to it that way.
 
 To delete links, use `docker rm --link `.
 
-If you want to link across docker hosts then you should look at [Swarm](https://docs.docker.com/swarm/). This [link on stackoverflow](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
+If you want to link across docker hosts then you should look at [Swarm](https://docs.docker.com/engine/swarm/). This [link on stackoverflow](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
+Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
 
 ### Lifecycle
 
@@ -395,7 +395,7 @@ Because volumes are isolated filesystems, they are often used to store state fro
 
 See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.  Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
-You can [map MacOS host directories as docker volumes](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
+You can [map MacOS host directories as docker volumes](https://docs.docker.com/engine/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
@@ -407,7 +407,7 @@ You may also consider running data-only containers as described [here](http://co
 
 ## Exposing ports
 
-Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
+Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/engine/reference/run/#expose-incoming-ports).
 
 This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
 
@@ -415,7 +415,7 @@ This is done by mapping the container port to the host port (only using localhos
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/reference/builder/#expose):
+You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
@@ -575,7 +575,7 @@ or install [jq](https://stedolan.github.io/jq/):
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/reference/commandline/inspect)
+or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect)
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
