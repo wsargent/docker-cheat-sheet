@@ -65,6 +65,8 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 ### Mac OS X
 
+[Docker for Mac](https://docs.docker.com/docker-for-mac/docker-toolbox/) is a preferred way to install Docker.
+
 Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/installation/mac/).
 
 > **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
@@ -91,7 +93,10 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 ## Containers
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
+- [Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).
+- Containers are writable and ephemeral.
+- Containers are created from images.
+- You can think of them as `chroot`s on steroids or instance of a image.
 
 ### Lifecycle
 
@@ -177,7 +182,7 @@ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 
 `docker stats --all` shows a running list of containers.
 
-### Import / Export
+### Import/Export
 
 * [`docker cp`](https://docs.docker.com/reference/commandline/cp) copies files or folders between a container and the local filesystem..
 * [`docker export`](https://docs.docker.com/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
@@ -190,7 +195,9 @@ To enter a running container, attach a new shell process to a running container 
 
 ## Images
 
-Images are just [templates for docker containers](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
+- Images are [templates for docker containers](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
+- Images are persistent and read only.
+- Images are used to create containers.
 
 ### Lifecycle
 
@@ -207,11 +214,11 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 * [`docker history`](https://docs.docker.com/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/reference/commandline/tag) tags an image to a name (local or registry).
 
-### Cleaning up
+### Cleaning Up
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
-### Load/Save image
+### Load/Save Image
 
 Load an image from file:
 ```
@@ -223,7 +230,7 @@ Save an existing image:
 docker save my_image:my_tag > my_image.tar.gz
 ```
 
-### Import/Export container
+### Import/Export Container
 
 Import a container as an image from file:
 ```
@@ -235,7 +242,7 @@ Export an existing container:
 docker export my_container > my_container.tar.gz
 ```
 
-### Difference between loading a saved image and importing an exported container as an image ?
+### Difference Between Loading a Saved Image and Importing an Exported Container as an Image ?
 
 Loading an image using the `load` command creates a new image including its history.  
 Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
@@ -286,7 +293,7 @@ Docker.com hosts its own [index](https://hub.docker.com/) to a central registry 
 * [`docker pull`](https://docs.docker.com/reference/commandline/pull) pulls an image from registry to local machine.
 * [`docker push`](https://docs.docker.com/reference/commandline/push) pushes an image to the registry from local machine.
 
-### Run local registry
+### Run Local Registry
 
 You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.
 
@@ -306,18 +313,18 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ### Instructions
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
+* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file) Affects `COPY` and `ADD`.
 * [FROM](https://docs.docker.com/reference/builder/#from) Sets the Base Image for subsequent instructions.
 * [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) Set the Author field of the generated images..
 * [RUN](https://docs.docker.com/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
 * [CMD](https://docs.docker.com/reference/builder/#cmd) provide defaults for an executing container.
 * [EXPOSE](https://docs.docker.com/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
 * [ENV](https://docs.docker.com/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container.
+* [ADD](https://docs.docker.com/reference/builder/#add) copies new files, directories or remote file to container. Can unpack an archive file. Invalidates caches. Avoid `ADD` and use `COPY` instead. **`ADD` is executed with `UID` and `GUI` `0`. `USER` instruction has no impact on it.**
+* [COPY](https://docs.docker.com/reference/builder/#copy) copies new files or directories to container. **`COPY` is executed with `UID` and `GUI` `0`. `USER` instruction has no impact on it.**
 * [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
-* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
+* [USER](https://docs.docker.com/reference/builder/#user) sets the user name for following `RUN` / `CMD` / `ENTRYPOINT` commands.
 * [WORKDIR](https://docs.docker.com/reference/builder/#workdir) sets the working directory.
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
 * [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
@@ -405,7 +412,7 @@ You can also use remote NFS volumes if you're [feeling brave](https://docs.docke
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
-## Exposing ports
+## Exposing Ports
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/reference/run/#expose-incoming-ports).
 
@@ -421,7 +428,7 @@ You can tell Docker that the container listens on the specified network ports at
 EXPOSE <CONTAINERPORT>
 ```
 
-But note that EXPOSE does not expose the port itself, only `-p` will do that. To expose the container's port on your localhosts port:
+But note that EXPOSE does expose the port only to other containers. To expose the container's port on your localhosts port use `-p`:
 
 ```
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
@@ -457,6 +464,8 @@ This is where general Docker best practices and war stories go:
 * [A Docker Dev Environment in 24 Hours!](https://engineering.salesforceiq.com/2013/11/05/a-docker-dev-environment-in-24-hours-part-2-of-2.html)
 * [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Dockerlint](https://github.com/RedCoolBeans/dockerlint)
 
 ## Security
 
@@ -549,7 +558,7 @@ Sources:
 
 * [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
 
-### Last Ids
+### Last IDs
 
 ```
 alias dl='docker ps -l -q'
@@ -557,13 +566,13 @@ docker run ubuntu echo hello world
 docker commit $(dl) helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### Commit With Command (needs Dockerfile)
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
-### Get IP address
+### Get IP Address
 
 ```
 docker inspect $(dl) | grep IPAddress | cut -d '"' -f 4
@@ -581,13 +590,13 @@ or using a [go template](https://docs.docker.com/reference/commandline/inspect)
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-### Get port mapping
+### Get Port Mapping
 
 ```
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
-### Find containers by regular expression
+### Find Containers by Regular Expression
 
 ```
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
@@ -599,37 +608,37 @@ for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; do
 docker run --rm ubuntu env
 ```
 
-### Kill running containers
+### Kill Running Containers
 
 ```
 docker kill $(docker ps -q)
 ```
 
-### Delete old containers
+### Delete Old Containers
 
 ```
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
-### Delete stopped containers
+### Delete Stopped Containers
 
 ```
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
-### Delete dangling images
+### Delete Dangling Images
 
 ```
 docker rmi $(docker images -q -f dangling=true)
 ```
 
-### Delete all images
+### Delete All Images
 
 ```
 docker rmi $(docker images -q)
 ```
 
-### Delete dangling volumes
+### Delete Dangling Volumes
 
 As of Docker 1.9:
 
@@ -639,13 +648,13 @@ docker volume rm $(docker volume ls -q -f dangling=true)
 
 In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will list all volumes.
 
-### Show image dependencies
+### Show Image Dependencies
 
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
+### Slimming Down Docker Containers  [Intercity Blog](http://bit.ly/1Wwo61N)
 
 - Cleaning APT in a RUN layer
 This should be done in the same layer as other apt commands.
@@ -668,7 +677,7 @@ ID=$(docker run -d image-name /bin/bash)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
-### Monitor system resource utilization for running containers
+### Monitor System Resource Utilization for Running Containers
 
 To check the CPU, memory, and network i/o usage of a single container, you can use:
 
