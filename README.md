@@ -39,7 +39,7 @@ Docker helps developers build and ship higher-quality applications, faster." -- 
 
 ## Prerequisites
 
-I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands.  YMMV.
+I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands. YMMV.
 
 ### Linux
 
@@ -65,7 +65,7 @@ If you are a complete Docker newbie, you should follow the [series of tutorials]
 
 ### Mac OS X
 
-Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).  If that doesn't work, see the [installation instructions](https://docs.docker.com/engine/installation/mac/).
+Download and install [Docker Toolbox](https://www.docker.com/products/docker-toolbox). If that doesn't work, see the [installation instructions](https://docs.docker.com/engine/installation/mac/).
 
 > **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
 >
@@ -91,7 +91,7 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 ## Containers
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/).  Containers are to Virtual Machines as threads are to processes.  Or you can think of them as chroots on steroids.
+[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Containers are to Virtual Machines as threads are to processes. Or you can think of them as chroots on steroids.
 
 ### Lifecycle
 
@@ -103,11 +103,11 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`.  Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`. Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the -v switch like in `docker rm -v`.
+If you want to remove also the volumes associated with the container, the deletion of the container must include the `-v` switch like in `docker rm -v`.
 
-There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10.  To run docker with a custom log driver (i.e. to syslog), use `docker run --log-driver=syslog`
+There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10. To run docker with a custom log driver (i.e., to syslog), use `docker run --log-driver=syslog`.
 
 ### Starting and Stopping
 
@@ -165,7 +165,7 @@ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ### Info
 
 * [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10)
+* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10).
 * [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) looks at all the info on a container (including IP address).
 * [`docker events`](https://docs.docker.com/engine/reference/commandline/events) gets events from container.
 * [`docker port`](https://docs.docker.com/engine/reference/commandline/port) shows public facing port of container.
@@ -179,7 +179,7 @@ docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 
 ### Import / Export
 
-* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copies files or folders between a container and the local filesystem..
+* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copies files or folders between a container and the local filesystem.
 * [`docker export`](https://docs.docker.com/engine/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
 
 ### Executing Commands
@@ -242,7 +242,7 @@ Importing a container as an image using the `import` command creates a new image
 
 ## Networks
 
-Docker has a [networks](https://docs.docker.com/userguide/networking/dockernetworks/) feature.  Not much is known about it, so this is a good place to expand the cheat sheet.  There is a note saying that it's a good way to configure docker containers to talk to each other without using ports.  See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
+Docker has a [networks](https://docs.docker.com/engine/userguide/networking/dockernetworks/) feature. Not much is known about it, so this is a good place to expand the cheat sheet. There is a note saying that it's a good way to configure docker containers to talk to each other without using ports. See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
 
 ### Lifecycle
 
@@ -294,7 +294,7 @@ Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it.  Vastly preferable to `docker commit`.  
+[The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it. Vastly preferable to `docker commit`.  
 
 Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:
 * If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.
@@ -302,6 +302,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
+* [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
 * For a most comprehensive list of editors and IDEs, check [Docker meets the IDE] (https://domeide.github.io/)
 
 ### Instructions
@@ -338,13 +339,13 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ## Layers
 
-The versioned filesystem in Docker is based on layers.  They're like [git commits or changesets for filesystems](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
+The versioned filesystem in Docker is based on layers. They're like [git commits or changesets for filesystems](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
-Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container!  See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
+Note that if you're using [aufs](https://en.wikipedia.org/wiki/Aufs) as your filesystem, Docker does not always remove data volumes containers layers when you delete a container! See [PR 8484](https://github.com/docker/docker/pull/8484) for more details.
 
 ## Links
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/userguide/dockerlinks/).  [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples.  You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
+Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also (in 0.11) resolve [links by hostname](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file).
 
 NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
 
@@ -369,13 +370,13 @@ $ALIAS_PORT_1337_TCP_ADDR
 
 And you can connect to it that way.
 
-To delete links, use `docker rm --link `.
+To delete links, use `docker rm --link`.
 
 If you want to link across docker hosts then you should look at [Swarm](https://docs.docker.com/engine/swarm/). This [link on stackoverflow](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts) provides some good information on different patterns for linking containers across docker hosts.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/).  They don't have to be connected to a particular container.  You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
+Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide/dockervolumes/). They don't have to be connected to a particular container. You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
 
 ### Lifecycle
 
@@ -387,13 +388,13 @@ Docker volumes are [free-floating filesystems](https://docs.docker.com/userguide
 * [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 * [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
-Volumes are useful in situations where you can't use links (which are TCP/IP only).  For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
+Volumes are useful in situations where you can't use links (which are TCP/IP only). For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
 
 You can mount them in several docker containers at once, using `docker run --volumes-from`.
 
-Because volumes are isolated filesystems, they are often used to store state from computations between transient containers.  That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
+Because volumes are isolated filesystems, they are often used to store state from computations between transient containers. That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details.  Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
+See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
 You can [map MacOS host directories as docker volumes](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
@@ -401,7 +402,7 @@ You can [map MacOS host directories as docker volumes](https://docs.docker.com/u
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-You can also use remote NFS volumes if you're [feeling brave](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume).
+You can use remote NFS volumes if you're [feeling brave](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume).
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
@@ -421,13 +422,13 @@ You can tell Docker that the container listens on the specified network ports at
 EXPOSE <CONTAINERPORT>
 ```
 
-But note that EXPOSE does not expose the port itself, only `-p` will do that. To expose the container's port on your localhosts port:
+Note that EXPOSE does not expose the port itself -- only `-p` will do that. To expose the container's port on your localhost's port:
 
 ```
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
 ```
 
-If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html).  It can be useful to define something in Vagrantfile to expose a range of ports so that you can dynamically map them:
+If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html). Define a range of ports in your Vagrantfile like this so you can dynamically map them:
 
 ```
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -460,25 +461,25 @@ This is where general Docker best practices and war stories go:
 
 ## Security
 
-This is where security tips about Docker go.  The Docker [security](https://docs.docker.com/articles/security/) page goes into more detail.
+This is where security tips about Docker go. The Docker [security](https://docs.docker.com/engine/security/security/) page goes into more detail.
 
-First things first: Docker runs as root.  If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host).  If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  
+First things first: Docker runs as root. If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host). If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  
 
-Docker should not be your only defense.  You should secure and harden it.
+Docker should not be your only defense. You should secure and harden it.
 
-For an understanding of what containers leave exposed, you should read is [Understanding and Hardening Linux Containers](https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-10pdf) by [Aaron Grattafiori](https://twitter.com/dyn___).  This is a complete and comprehensive guide to the issues involved with containers, with a plethora of links and footnotes leading on to yet more useful content.  The security tips following are useful if you've already hardened containers in the past, but are not a substitute for understanding.
+For an understanding of what containers leave exposed, you should read is [Understanding and Hardening Linux Containers](https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-10pdf) by [Aaron Grattafiori](https://twitter.com/dyn___). This is a complete and comprehensive guide to the issues involved with containers, with a plethora of links and footnotes leading on to yet more useful content. The security tips following are useful if you've already hardened containers in the past, but are not a substitute for understanding.
 
 ### Security Tips
 
-For greatest security, you want to run Docker inside a virtual machine.  This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/).  Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/).  See the [Docker 1.10 security features](https://blog.docker.com/2016/02/docker-engine-1-10-security/) for more details.
+For greatest security, you want to run Docker inside a virtual machine. This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/). Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/). See the [Docker 1.10 security features](https://blog.docker.com/2016/02/docker-engine-1-10-security/) for more details.
 
-Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world.  Treat them like passwords.
+Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world. Treat them like passwords.
 
 See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc) by [Thomas Sjögren](https://github.com/konstruktoid): some good stuff about container hardening in there.
 
 Check out the [docker bench security script](https://github.com/docker/docker-bench-security), download the [white papers](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) and subscribe to the [mailing lists](https://www.docker.com/docker-security) (unfortunately Docker does not have a unique mailing list, only dev / user).
 
-You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux).  If you are using grsecurity in production, you should spring for [commercial support](https://grsecurity.net/business_support.php) for the [stable patches](https://grsecurity.net/announce.php), same as you would do for RedHat.  It's $200 a month, which is nothing to your devops budget.
+You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux). If you are using grsecurity in production, you should spring for [commercial support](https://grsecurity.net/business_support.php) for the [stable patches](https://grsecurity.net/announce.php), same as you would do for RedHat. It's $200 a month, which is nothing to your devops budget.
 
 Since docker 1.11 you can easily limit the number of active processes running inside a container to prevent fork bombs. This requires a linux kernel >= 4.3 with CGROUP_PIDS=y to be in the kernel configuration.
 
@@ -486,7 +487,7 @@ Since docker 1.11 you can easily limit the number of active processes running in
 docker run --pids-limit=64
 ```
 
-Also available since docker 1.11 is the ability to prevent processes to gain new privileges. This feature is in the linux kernel since version 3.5. You can read more about it in [this](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/) blog post.
+Also available since docker 1.11 is the ability to prevent processes from gaining new privileges. This feature have been in the linux kernel since version 3.5. You can read more about it in [this](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/) blog post.
 
 ```
 docker run --security-opt=no-new-privileges
@@ -575,7 +576,7 @@ or install [jq](https://stedolan.github.io/jq/):
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect)
+or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect):
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
@@ -645,16 +646,19 @@ In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will l
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers  [Intercity Blog](http://bit.ly/1Wwo61N)
+### Slimming down Docker containers (see [Intercity Blog](http://bit.ly/1Wwo61N))
 
 - Cleaning APT in a RUN layer
+
 This should be done in the same layer as other apt commands.
 Otherwise, the previous layers still persist the original information and your images will still be fat.
+
 ```
 RUN {apt commands} \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
+
 - Flatten an image
 ```
 ID=$(docker run -d image-name /bin/bash)
@@ -670,7 +674,7 @@ gzip -dc image.tgz | docker import - flat-image-name
 
 ### Monitor system resource utilization for running containers
 
-To check the CPU, memory, and network i/o usage of a single container, you can use:
+To check the CPU, memory, and network I/O usage of a single container, you can use:
 
 ```
 docker stats <container>
