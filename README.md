@@ -698,6 +698,21 @@ For all containers listed by image:
 docker ps -a -f ancestor=ubuntu
 ```
 
+Give access to a single device:
+
+```
+docker run -t -i --device=/dev/ttyUSB0 debian bash
+```
+
+Give access to all devices:
+
+```
+docker run -t -i --privileged debian bash
+```
+more info about privileged containers [here](
+https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
+
+
 ## Contributing
 
 Here's how to contribute to this cheat sheet.
