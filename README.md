@@ -162,6 +162,22 @@ To mount a FUSE based filesystem, you need to combine both --cap-add and --devic
 docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
+Give access to a single device:
+
+```
+docker run -it --device=/dev/ttyUSB0 debian bash
+```
+
+Give access to all devices:
+
+```
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
+```
+
+more info about privileged containers [here](
+https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
+
+
 ### Info
 
 * [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) shows running containers.
@@ -697,6 +713,7 @@ For all containers listed by image:
 ```
 docker ps -a -f ancestor=ubuntu
 ```
+
 
 ## Contributing
 
