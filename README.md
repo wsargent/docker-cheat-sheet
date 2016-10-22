@@ -304,7 +304,7 @@ Docker.com hosts its own [index](https://hub.docker.com/) to a central registry 
 
 ### Run local registry
 
-You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/distribution/blob/master/docs/deploying.md) instructions.
+You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) instructions.
 
 Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
 
