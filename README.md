@@ -12,7 +12,7 @@ This concludes the tasteful plug.
 
 ## Table of Contents
 
-* [Why](#why)
+* [Why Docker](#why-docker)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
 * [Containers](#containers)
@@ -29,7 +29,7 @@ This concludes the tasteful plug.
 * [Tips](#tips)
 * [Contributing](#contributing)
 
-## Why
+## Why Docker
 
 "With Docker, developers can build any app in any language using any toolchain. “Dockerized” apps are completely portable and can run anywhere - colleagues’ OS X and Windows laptops, QA servers running Ubuntu in the cloud, and production data center VMs running Red Hat.
 
