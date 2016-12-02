@@ -126,6 +126,32 @@ docker run hello-world
 
 故障 docker 实例的重启策略在[这里](http://container42.com/2014/09/30/docker-restart-policies/)。
 
+### CPU 限制
+
+你可以限制 CPU，包括使用所有 CPU 的百分比，或者使用特定内核数。
+
+比如，你可以设置 [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/runtime-constraints-on-resources) 。这个设置看起来有点奇怪 -- 1024 的意思是 100% CPU，因此如果你希望容器使用全体 CPU 内核的 50%，应将其设置为 512。更多信息，请查阅 https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu :
+
+```
+docker run -ti --c 512 agileek/cpuset-test
+```
+
+你可以只对某些 CPU 内核使用 `cpuset-cpus`。请参阅 https://agileek.github.io/docker/2014/08/06/docker-cpuset/ 获取更多细节以及一些不错的视频:
+
+```
+docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
+```
+
+注意，Docker 在容器内仍然可以**看到**所有的 CPU -- 虽然它只是用了其中一部分。请查阅 https://github.com/docker/docker/issues/20770 获取更多细节。
+
+### 内存限制
+
+你同样可以在 Docker 设置[内存限制](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) :
+
+```
+$ docker run -it -m 300M ubuntu:14.04 /bin/bash
+```
+
 ### 信息
 
 * [`docker ps`](https://docs.docker.com/reference/commandline/ps) 查看运行中的所有容器。
@@ -475,12 +501,6 @@ docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
-```
-
-设置内存和 CPU 共享:
-
-```
-docker -c 512 -mem 512m
 ```
 
 在 Dockerfile 中定义并运行一个用户，避免在容器中以 root 身份操作:
