@@ -2,6 +2,14 @@
 
 **想要一起来完善这份速查表吗？请看[贡献手册](#contributing)部分！**
 
+## 插播 Lightbend 广告
+
+我为 [Play](https://playframework.com/) 团队的 [Lightbend](https://lightbend.com) 工作。我觉得这个公司很棒，如果你现在恰巧在考虑把产品迁移到云端，并考虑使用分布式系统，并在寻找合适的容器的话，你值得看一下这段广告。
+
+Lightbend 用于实现微服务(microservices)。开发者可用 [Lagom](http://www.lagomframework.com/) 来建立弹性(拥有"混沌猴抗(chaos monkey resistant :trollface: )"的)微服务。在生产中，有 [Conductr](https://conductr.lightbend.com/) 到 [orchestrate](http://www.cakesolutions.net/teamblogs/typesafe-conductr-the-missing-glue-between-dev-and-ops) 的容器可用 -- [包括 Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm)。并且带有[监控](https://developer.lightbend.com/docs/monitoring/latest/home.html)，能告诉你详细到应用层的各种信息，CPU 和内存各种资源的动向一目了然，并且可以基于这些信息来调整资源。有关详情，请查阅[devops站](https://www.lightbend.com/platform/production)
+
+以上是 Lightbend 的广告
+
 ## 目录
 
 * [为何使用 Docker](#为何使用-docker)
