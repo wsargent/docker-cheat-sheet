@@ -61,13 +61,13 @@ curl -sSL https://get.docker.com/ | sh
 
 如果你不想执行一个不明不白的 shell 脚本，那么请看[安装教程](https://docs.docker.com/engine/installation/)，选择你在用的发行版本。  
 
-如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/linux/started/)。
+如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/linux/started/)。
 
 ### Mac OS X
 
 下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/engine/installation/mac/)。
 
-> **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/engine/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
+> **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
 >
 > 所以你最好是通过 Docker Toolbox DMG 文件来升级，它会一次性的帮你处理好所有的升级。
 
@@ -87,7 +87,7 @@ docker run hello-world
 
 好了，你现在有了一个运行中的 Docker container 了。
 
-如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/mac/started/)。
+如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/mac/started/)。
 
 ## 容器(Container)
 
@@ -120,7 +120,7 @@ docker run hello-world
 * [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
 * [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) 链接到运行中容器。
 
-如果你想整合容器到[宿主进程管理(host process manager)](https://docs.docker.com/engine/articles/host_integration/)，那么以 `-r=false` 启动守护进程(daemon)然后使用 `docker start -a`。
+如果你想整合容器到[宿主进程管理(host process manager)](https://docs.docker.com/articles/host_integration/)，那么以 `-r=false` 启动守护进程(daemon)然后使用 `docker start -a`。
 
 如果你想通过宿主暴露容器的端口(ports)，请看[暴露端口](#exposing-ports)一节。
 
@@ -241,7 +241,7 @@ docker export my_container > my_container.tar.gz
 
 ## 网络(Networks)
 
-Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking/dockernetworks/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
+Docker 有[网络(networks)](https://docs.docker.com/userguide/networking/dockernetworks/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
 
 ### 生命周期
 
@@ -275,7 +275,7 @@ $ curl 203.0.113.2
 
 仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
 
-仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/engine/userguide/dockerrepos/)。
+仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/userguide/dockerrepos/)。
 
 Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
@@ -330,7 +330,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 ### 例子
 
 * [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/articles/dockerfile_best-practices/)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) 还有更多的 [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html)
 * [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
 * [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
@@ -343,7 +343,7 @@ Docker 的版本化文件系统是基于层的。就像[git的提交或文件变
 
 ## 链接(Links)
 
-链接(Links)[通过 TCP/IP 端口](https://docs.docker.com/engine/userguide/dockerlinks/)实现了 Docker 容器之间的通讯。[链接到 Redis](https://docs.docker.com/engine/examples/running_redis_service/) 和 [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) 是两个可用的例子。你还可以(0.11 开始)[通过 hostname 关联链接](https://docs.docker.com/engine/userguide/dockerlinks/#updating-the-etchosts-file)。
+链接(Links)[通过 TCP/IP 端口](https://docs.docker.com/userguide/dockerlinks/)实现了 Docker 容器之间的通讯。[链接到 Redis](https://docs.docker.com/examples/running_redis_service/) 和 [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) 是两个可用的例子。你还可以(0.11 开始)[通过 hostname 关联链接](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file)。
 
 注意: 如果你希望容器之间**只**通过链接进行通讯，在启动 docker 守护进程的时候请添加参数 `-icc=false` 来禁用内部进程通讯。
 
@@ -374,7 +374,7 @@ $ALIAS_PORT_1337_TCP_ADDR
 
 ## 卷标(Volumes)
 
-Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.docker.com/engine/userguide/dockervolumes/)。它们不应该链接到特定的容器上。好的做法是如果可能，应当把卷标挂载到[纯数据容器(data-only containers)](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)上。
+Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.docker.com/userguide/dockervolumes/)。它们不应该链接到特定的容器上。好的做法是如果可能，应当把卷标挂载到[纯数据容器(data-only containers)](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)上。
 
 ### 生命周期
 
@@ -394,7 +394,7 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 查看[卷标进阶](http://crosbymichael.com/advanced-docker-volumes.html)来获取更多细节。Container42 [非常有用](http://container42.com/2014/11/03/docker-indepth-volumes/)。
 
-你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/engine/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
+你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
@@ -459,7 +459,7 @@ docker port CONTAINER $CONTAINERPORT
 
 ## 安全(Security)
 
-这节准备讨论一些关于 Docker 安全性的问题。[安全](https://docs.docker.com/engine/articles/security/)这章讲述了更多细节。
+这节准备讨论一些关于 Docker 安全性的问题。[安全](https://docs.docker.com/articles/security/)这章讲述了更多细节。
 
 首先第一件事: Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有[ root 权限](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你暴露了 docker unix socket 给容器，意味着你赋予了容器[宿主的 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。Docker 不应该是你唯一的防御措施。
 
