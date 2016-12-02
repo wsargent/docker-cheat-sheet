@@ -59,13 +59,13 @@ Docker 提供了快速安装脚本：
 curl -sSL https://get.docker.com/ | sh
 ```
 
-如果你不想执行一个不明不白的 shell 脚本，那么请看[安装教程](https://docs.docker.com/engine/installation/)，选择你在用的发行版本。  
+如果你不想执行一个不明不白的 shell 脚本，那么请看[安装教程](https://docs.docker.com/engine/installation/linux/)，选择你在用的发行版本。  
 
 如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/getstarted/)。
 
 ### Mac OS X
 
-下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/engine/installation/mac/)。
+下载和安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。[Docker For Mac](https://docs.docker.com/docker-for-mac/) 很赞，但是它的安装和 VirtualBox 不太一样。详情请查阅[比较](https://docs.docker.com/docker-for-mac/docker-toolbox/)。
 
 > **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
 >
@@ -87,7 +87,7 @@ docker run hello-world
 
 好了，你现在有了一个运行中的 Docker container 了。
 
-如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/mac/started/)。
+如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/getstarted/)。
 
 ## 容器(Container)
 
