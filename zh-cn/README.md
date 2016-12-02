@@ -130,13 +130,13 @@ docker run hello-world
 
 你可以限制 CPU，包括使用所有 CPU 的百分比，或者使用特定内核数。
 
-比如，你可以设置 [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/runtime-constraints-on-resources) 。这个设置看起来有点奇怪 -- 1024 的意思是 100% CPU，因此如果你希望容器使用全体 CPU 内核的 50%，应将其设置为 512。更多信息，请查阅 https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu :
+比如，你可以设置 [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) 。这个设置看起来有点奇怪 -- 1024 的意思是 100% CPU，因此如果你希望容器使用全体 CPU 内核的 50%，应将其设置为 512。更多信息，请查阅 https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu :
 
 ```
 docker run -ti --c 512 agileek/cpuset-test
 ```
 
-你可以只对某些 CPU 内核使用 `cpuset-cpus`。请参阅 https://agileek.github.io/docker/2014/08/06/docker-cpuset/ 获取更多细节以及一些不错的视频:
+你可以只对某些 CPU 内核使用 [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint)]。请参阅 https://agileek.github.io/docker/2014/08/06/docker-cpuset/ 获取更多细节以及一些不错的视频:
 
 ```
 docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
@@ -149,7 +149,17 @@ docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
 你同样可以在 Docker 设置[内存限制](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) :
 
 ```
-$ docker run -it -m 300M ubuntu:14.04 /bin/bash
+docker run -it -m 300M ubuntu:14.04 /bin/bash
+```
+
+#### 能力(Capabilities)
+
+Linux 的 capability 可以通过使用 `cap-add` 和 `cap-drop` 设置。请参阅 https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities 获取更多细节。这有助于提高安全性。
+
+如需要挂载基于 FUSE 文件系统，你需要同时结合 --cap-add 和 --device 使用:
+
+```
+docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
 ### 信息
