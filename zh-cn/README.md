@@ -301,6 +301,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
+* [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
 * 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://domeide.github.io/)
 
 ### 指令
@@ -645,12 +646,13 @@ docker images -viz | dot -Tpng -o docker.png
 
 这应当和其他 apt 命令在同一层中完成。
 否则，前面的层将会保持原有信息，而你的镜像则依旧臃肿。
- 
+
 ```
 RUN {apt commands} \
   && apt-get clean \  
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
+
 - 压缩镜像
 ```
 ID=$(docker run -d image-name /bin/bash)
