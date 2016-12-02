@@ -126,7 +126,7 @@ docker run hello-world
 
 故障 docker 实例的重启策略在[这里](http://container42.com/2014/09/30/docker-restart-policies/)。
 
-### CPU 限制
+#### CPU 限制
 
 你可以限制 CPU，包括使用所有 CPU 的百分比，或者使用特定内核数。
 
@@ -144,7 +144,7 @@ docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
 
 注意，Docker 在容器内仍然可以**看到**所有的 CPU -- 虽然它只是用了其中一部分。请查阅 https://github.com/docker/docker/issues/20770 获取更多细节。
 
-### 内存限制
+#### 内存限制
 
 你同样可以在 Docker 设置[内存限制](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) :
 
