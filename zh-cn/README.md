@@ -162,6 +162,20 @@ Linux 的 capability 可以通过使用 `cap-add` 和 `cap-drop` 设置。请参
 docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
+授予对单个设备访问权限:
+
+```
+docker run -it --device=/dev/ttyUSB0 debian bash
+```
+
+授予所有设备访问权限:
+
+```
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
+```
+
+有关容器特权的更多详情请参考[这里](https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
+
 ### 信息
 
 * [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) 查看运行中的所有容器。
