@@ -301,7 +301,7 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ### 本地仓管中心
 
-你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/distribution/blob/master/docs/deploying.md) 介绍。  
+你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) 介绍。  
 
 也可以参考 [邮件列表](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution)。
 
