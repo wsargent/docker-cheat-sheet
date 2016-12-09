@@ -236,7 +236,7 @@ docker load < my_image.tar.gz
 
 Save an existing image:
 ```
-docker save my_image:my_tag > my_image.tar.gz
+docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
 
 ### Import/Export container
@@ -248,7 +248,7 @@ cat my_container.tar.gz | docker import - my_image:my_tag
 
 Export an existing container:
 ```
-docker export my_container > my_container.tar.gz
+docker export my_container | gzip > my_container.tar.gz
 ```
 
 ### Difference between loading a saved image and importing an exported container as an image ?
