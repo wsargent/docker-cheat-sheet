@@ -233,7 +233,7 @@ docker load < my_image.tar.gz
 ```
 保存既有镜像:
 ```
-docker save my_image:my_tag > my_image.tar.gz
+docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
 
 ### 导入/导出容器
@@ -245,7 +245,7 @@ cat my_container.tar.gz | docker import - my_image:my_tag
 
 导出既有容器:
 ```
-docker export my_container > my_container.tar.gz
+docker export my_container | gzip > my_container.tar.gz
 ```
 
 ### 加载被保存的镜像和导入作为镜像导出的容器之间的不同
