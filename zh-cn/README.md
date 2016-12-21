@@ -2,6 +2,14 @@
 
 **想要一起来完善这份速查表吗？请看[贡献手册](#contributing)部分！**
 
+## 插播 Lightbend 广告
+
+我为 [Play](https://playframework.com/) 团队的 [Lightbend](https://lightbend.com) 工作。我觉得这个公司很棒，如果你现在恰巧在考虑把产品迁移到云端，并考虑使用分布式系统，并在寻找合适的容器的话，你值得看一下这段广告。
+
+Lightbend 用于实现微服务(microservices)。开发者可用 [Lagom](http://www.lagomframework.com/) 来建立弹性(拥有"混沌猴抗(chaos monkey resistant :trollface: )"的)微服务。在生产中，有 [Conductr](https://conductr.lightbend.com/) 到 [orchestrate](http://www.cakesolutions.net/teamblogs/typesafe-conductr-the-missing-glue-between-dev-and-ops) 的容器可用 -- [包括 Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm)。并且带有[监控](https://developer.lightbend.com/docs/monitoring/latest/home.html)，能告诉你详细到应用层的各种信息，CPU 和内存各种资源的动向一目了然，并且可以基于这些信息来调整资源。有关详情，请查阅[devops站](https://www.lightbend.com/platform/production)
+
+以上是 Lightbend 的广告
+
 ## 目录
 
 * [为何使用 Docker](#为何使用-docker)
@@ -35,7 +43,7 @@ Docker 帮助开发者更快地构建和发布高质量的应用。" -- [什么�
 
 ### Linux
 
-3.10.x 内核是能运行 Docker 的[最低要求](https://docs.docker.com/installation/binaries/#check-kernel-dependencies)。
+3.10.x 内核是能运行 Docker 的[最低要求](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies)。
 
 ### MacOS
 
@@ -51,13 +59,13 @@ Docker 提供了快速安装脚本：
 curl -sSL https://get.docker.com/ | sh
 ```
 
-如果你不想执行一个不明不白的 shell 脚本，那么请看[安装教程](https://docs.docker.com/installation/)，选择你在用的发行版本。  
+如果你不想执行一个不明不白的 shell 脚本，那么请看[安装教程](https://docs.docker.com/engine/installation/linux/)，选择你在用的发行版本。  
 
-如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/linux/started/)。
+如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/getstarted/)。
 
 ### Mac OS X
 
-下载和安装 [Docker Toolbox](https://www.docker.com/products/docker-toolbox)。如果它不工作，那么看看[安装教程](https://docs.docker.com/installation/mac/)。
+下载和安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)。[Docker For Mac](https://docs.docker.com/docker-for-mac/) 很赞，但是它的安装和 VirtualBox 不太一样。详情请查阅[比较](https://docs.docker.com/docker-for-mac/docker-toolbox/)。
 
 > **注意** 如果你已经有安装了 docker toolbox，那么你可能会考虑通过 [Docker Machine](https://docs.docker.com/machine/install-machine/) 安装包(不管是从 URL 或是 `docker-machine upgrade default`)升级，它确实会完成 docker-machine 的升级。但是它不会帮你升级 docker 版本 -- `docker-machine` 变成了 `1.10.3` 而 `docker` 还是原来的 `1.8.3` 或者你之前的什么版本。
 >
@@ -79,7 +87,7 @@ docker run hello-world
 
 好了，你现在有了一个运行中的 Docker container 了。
 
-如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/mac/started/)。
+如果你是一个 Docker 超新手，那么我建议你先去看看[系列教程](https://docs.docker.com/engine/getstarted/)。
 
 ## 容器(Container)
 
@@ -87,10 +95,10 @@ docker run hello-world
 
 ### 生命周期
 
-* [`docker create`](https://docs.docker.com/reference/commandline/create) 创建一个容器但是不启动。
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) 创建一个容器但是不启动。
 * [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) 允许重命名容器。
-* [`docker run`](https://docs.docker.com/reference/commandline/run) 在同一个操作中创建并启动一个容器。
-* [`docker rm`](https://docs.docker.com/reference/commandline/rm) 删除容器。
+* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) 在同一个操作中创建并启动一个容器。
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) 删除容器。
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) 更新容器的资源限制。
 
 如果你想要一个临时容器，`docker run --rm` 会在容器停止之后删除它。
@@ -103,31 +111,81 @@ docker run hello-world
 
 ### 启动和停止
 
-* [`docker start`](https://docs.docker.com/reference/commandline/start) 启动容器。
-* [`docker stop`](https://docs.docker.com/reference/commandline/stop) 停止运行中的容器。
-* [`docker restart`](https://docs.docker.com/reference/commandline/restart) 停止之后再启动容器。
+* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) 启动容器。
+* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) 停止运行中的容器。
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) 停止之后再启动容器。
 * [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) 暂停运行中的容器，将其 "冻结" 在当前状态。
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) 结束容器暂停状态。
-* [`docker wait`](https://docs.docker.com/reference/commandline/wait) 阻塞，到运行中的容器停止为止。
-* [`docker kill`](https://docs.docker.com/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
-* [`docker attach`](https://docs.docker.com/reference/commandline/attach) 链接到运行中容器。
+* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) 阻塞，到运行中的容器停止为止。
+* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) 向运行中容器发送 SIGKILL 指令。
+* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) 链接到运行中容器。
 
-如果你想整合容器到[宿主进程管理(host process manager)](https://docs.docker.com/articles/host_integration/)，那么以 `-r=false` 启动守护进程(daemon)然后使用 `docker start -a`。
+如果你想整合容器到[宿主进程管理(host process manager)](https://docs.docker.com/engine/admin/host_integration/)，那么以 `-r=false` 启动守护进程(daemon)然后使用 `docker start -a`。
 
 如果你想通过宿主暴露容器的端口(ports)，请看[暴露端口](#exposing-ports)一节。
 
 故障 docker 实例的重启策略在[这里](http://container42.com/2014/09/30/docker-restart-policies/)。
 
+#### CPU 限制
+
+你可以限制 CPU，包括使用所有 CPU 的百分比，或者使用特定内核数。
+
+比如，你可以设置 [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) 。这个设置看起来有点奇怪 -- 1024 的意思是 100% CPU，因此如果你希望容器使用全体 CPU 内核的 50%，应将其设置为 512。更多信息，请查阅 https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu :
+
+```
+docker run -ti --c 512 agileek/cpuset-test
+```
+
+你可以只对某些 CPU 内核使用 [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint)]。请参阅 https://agileek.github.io/docker/2014/08/06/docker-cpuset/ 获取更多细节以及一些不错的视频:
+
+```
+docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
+```
+
+注意，Docker 在容器内仍然可以**看到**所有的 CPU -- 虽然它只是用了其中一部分。请查阅 https://github.com/docker/docker/issues/20770 获取更多细节。
+
+#### 内存限制
+
+你同样可以在 Docker 设置[内存限制](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) :
+
+```
+docker run -it -m 300M ubuntu:14.04 /bin/bash
+```
+
+#### 能力(Capabilities)
+
+Linux 的 capability 可以通过使用 `cap-add` 和 `cap-drop` 设置。请参阅 https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities 获取更多细节。这有助于提高安全性。
+
+如需要挂载基于 FUSE 文件系统，你需要同时结合 --cap-add 和 --device 使用:
+
+```
+docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
+```
+
+授予对单个设备访问权限:
+
+```
+docker run -it --device=/dev/ttyUSB0 debian bash
+```
+
+授予所有设备访问权限:
+
+```
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
+```
+
+有关容器特权的更多详情请参考[这里](https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
+
 ### 信息
 
-* [`docker ps`](https://docs.docker.com/reference/commandline/ps) 查看运行中的所有容器。
-* [`docker logs`](https://docs.docker.com/reference/commandline/logs) 从容器中获取日志。(你也可以使用自定义日志驱动，不过在 1.10 中，它只支持 `json-file` 和 `journald`)
-* [`docker inspect`](https://docs.docker.com/reference/commandline/inspect) 查看某个容器的所有信息(包括 IP 地址)。
-* [`docker events`](https://docs.docker.com/reference/commandline/events) 从容器中获取事件(events)。
-* [`docker port`](https://docs.docker.com/reference/commandline/port) 查看容器的公开端口。
-* [`docker top`](https://docs.docker.com/reference/commandline/top) 查看容器中活动进程。
-* [`docker stats`](https://docs.docker.com/reference/commandline/stats) 查看容器的资源使用情况统计信息。
-* [`docker diff`](https://docs.docker.com/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
+* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) 查看运行中的所有容器。
+* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) 从容器中获取日志。(你也可以使用自定义日志驱动，不过在 1.10 中，它只支持 `json-file` 和 `journald`)
+* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) 查看某个容器的所有信息(包括 IP 地址)。
+* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) 从容器中获取事件(events)。
+* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) 查看容器的公开端口。
+* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) 查看容器中活动进程。
+* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) 查看容器的资源使用情况统计信息。
+* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) 查看容器的 FS 中有变化文件信息。
 
 `docker ps -a` 查看所有容器，包括正在运行的和已停止的。
 
@@ -135,12 +193,12 @@ docker run hello-world
 
 ### 导入 / 导出
 
-* [`docker cp`](https://docs.docker.com/reference/commandline/cp) 在容器和本地文件系统之间复制文件或文件夹。
-* [`docker export`](https://docs.docker.com/reference/commandline/export) 将容器的文件系统切换为压缩包(tarball archive stream)输出到 STDOUT。
+* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) 在容器和本地文件系统之间复制文件或文件夹。
+* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) 将容器的文件系统切换为压缩包(tarball archive stream)输出到 STDOUT。
 
 ### 执行命令
 
-* [`docker exec`](https://docs.docker.com/reference/commandline/exec) 在容器中执行命令。
+* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) 在容器中执行命令。
 
 比如，进入正在运行的容器，在名为 foo 的容器中打开一个新的 shell 进程: `docker exec -it foo /bin/bash`.
 
@@ -150,18 +208,18 @@ docker run hello-world
 
 ### 生命周期
 
-* [`docker images`](https://docs.docker.com/reference/commandline/images) 查看所有镜像。
-* [`docker import`](https://docs.docker.com/reference/commandline/import) 从压缩文件中创建镜像。
-* [`docker build`](https://docs.docker.com/reference/commandline/build) 从 Dockerfile 创建镜像。
-* [`docker commit`](https://docs.docker.com/reference/commandline/commit) 为容器创建镜像，如果容器正在运行则会临时暂停。
-* [`docker rmi`](https://docs.docker.com/reference/commandline/rmi) 删除镜像。
-* [`docker load`](https://docs.docker.com/reference/commandline/load) 通过 STDIN 从压缩包加载镜像，包括镜像和标签(images and tags) (0.7 起).
-* [`docker save`](https://docs.docker.com/reference/commandline/save) 通过 STDOUT 保存镜像到压缩包，包括所有的父层，标签和版本(parent layers, tags & versions) (0.7 起).
+* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) 查看所有镜像。
+* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) 从压缩文件中创建镜像。
+* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) 从 Dockerfile 创建镜像。
+* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) 为容器创建镜像，如果容器正在运行则会临时暂停。
+* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) 删除镜像。
+* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) 通过 STDIN 从压缩包加载镜像，包括镜像和标签(images and tags) (0.7 起).
+* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) 通过 STDOUT 保存镜像到压缩包，包括所有的父层，标签和版本(parent layers, tags & versions) (0.7 起).
 
 ### 信息
 
-* [`docker history`](https://docs.docker.com/reference/commandline/history) 查看镜像历史记录。
-* [`docker tag`](https://docs.docker.com/reference/commandline/tag) 给镜像命名打标(tags) (本地或者仓库)。
+* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) 查看镜像历史记录。
+* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) 给镜像命名打标(tags) (本地或者仓库)。
 
 ### 清理
 
@@ -175,7 +233,7 @@ docker load < my_image.tar.gz
 ```
 保存既有镜像:
 ```
-docker save my_image:my_tag > my_image.tar.gz
+docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
 
 ### 导入/导出容器
@@ -187,7 +245,7 @@ cat my_container.tar.gz | docker import - my_image:my_tag
 
 导出既有容器:
 ```
-docker export my_container > my_container.tar.gz
+docker export my_container | gzip > my_container.tar.gz
 ```
 
 ### 加载被保存的镜像和导入作为镜像导出的容器之间的不同
@@ -197,7 +255,7 @@ docker export my_container > my_container.tar.gz
 
 ## 网络(Networks)
 
-Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking/dockernetworks/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
+Docker 有[网络(networks)](https://docs.docker.com/engine/userguide/networking/)功能。我并不是很了解它，所以这是一个扩展本文的好地方。这里有篇笔记指出，这是一种可以不使用端口来达成 docker 容器间通信的好方法。详情查阅[通过网络来工作](https://docs.docker.com/engine/userguide/networking/work-with-networks/)。
 
 ### 生命周期
 
@@ -231,25 +289,25 @@ $ curl 203.0.113.2
 
 仓库(repository)是*被托管(hosted)*的已命名镜像(tagged images)集合，这组镜像用于构建容器文件系统。
 
-仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/userguide/dockerrepos/)。
+仓管中心(registry)是一个*托管服务(host)* -- 一个服务，用于存储仓库和提供 HTTP API，以便[管理上传和下载仓库](https://docs.docker.com/engine/tutorials/dockerrepos/)。
 
 Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓管中心，那里有数量众多的仓库。不过话虽如此，这个仓管中心[并没有很好的验证镜像](https://titanous.com/posts/docker-insecurity)，所以如果你很担心安全问题的话，请尽量避免使用它。
 
-* [`docker login`](https://docs.docker.com/reference/commandline/login) 登入仓管中心。
-* [`docker logout`](https://docs.docker.com/reference/commandline/logout) 登出仓管中心。
-* [`docker search`](https://docs.docker.com/reference/commandline/search) 从仓管中心检索镜像。
-* [`docker pull`](https://docs.docker.com/reference/commandline/pull) 从仓管中心拉去镜像到本地。
-* [`docker push`](https://docs.docker.com/reference/commandline/push) 从本地推送镜像到仓管中心。
+* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) 登入仓管中心。
+* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) 登出仓管中心。
+* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) 从仓管中心检索镜像。
+* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) 从仓管中心拉去镜像到本地。
+* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) 从本地推送镜像到仓管中心。
 
 ### 本地仓管中心
 
-你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/distribution/blob/master/docs/deploying.md) 介绍。  
+你可以创立一个本地的仓管中心，通过使用 [docker distribution](https://github.com/docker/distribution) 工程，细节请查看 [本地发布(local deploy)](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) 介绍。  
 
 也可以参考 [邮件列表](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution)。
 
 ## Dockerfile
 
-[配置文件](https://docs.docker.com/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。
+[配置文件](https://docs.docker.com/engine/reference/builder/)。当你执行 `docker build` 的时候会根据该配置文件设置 Docker 容器。远优于使用 `docker commit`。
 
 下面是一些常用的编写 Dockerfile 的编辑器和语法高亮模块︰
 * 如果你使用 [jEdit](http://jedit.org)，我为 [Dockerfile](https://github.com/wsargent/jedit-docker-mode) 做了个语法高亮模块。
@@ -257,25 +315,26 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
+* [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
 * 如果要找更全面的关于编辑器或者 IDE 的内容，请看 [当 Docker 遇上 IDE](https://domeide.github.io/)
 
 ### 指令
 
-* [.dockerignore](https://docs.docker.com/reference/builder/#dockerignore-file)
-* [FROM](https://docs.docker.com/reference/builder/#from) 为其他指令设置基础镜像(Base Image)。
-* [MAINTAINER](https://docs.docker.com/reference/builder/#maintainer) 为生成的镜像设置作者字段。
-* [RUN](https://docs.docker.com/reference/builder/#run) 在当前镜像的基础上生成一个新层并执行命令。
-* [CMD](https://docs.docker.com/reference/builder/#cmd) 设置容器默认执行命令。
-* [EXPOSE](https://docs.docker.com/reference/builder/#expose) 告知 Docker 容器在运行时所要监听的网络端口。注意：并没有实际上将端口设置为可访问。
-* [ENV](https://docs.docker.com/reference/builder/#env) 设置环境变量。
-* [ADD](https://docs.docker.com/reference/builder/#add) 将文件，文件夹或者远程文件复制到容器中。缓存无效。尽量用 `COPY` 代替 `ADD`。
-* [COPY](https://docs.docker.com/reference/builder/#copy) 将文件或文件夹复制到容器中。
-* [ENTRYPOINT](https://docs.docker.com/reference/builder/#entrypoint) 将一个容器设置为可执行。
-* [VOLUME](https://docs.docker.com/reference/builder/#volume) 为外部挂载卷标或其他容器设置挂载点(mount point)。
-* [USER](https://docs.docker.com/reference/builder/#user) 设置执行 RUN / CMD / ENTRYPOINT 命令的用户名。
-* [WORKDIR](https://docs.docker.com/reference/builder/#workdir) 设置工作目录。
+* [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
+* [FROM](https://docs.docker.com/engine/reference/builder/#from) 为其他指令设置基础镜像(Base Image)。
+* [MAINTAINER](https://docs.docker.com/engine/reference/builder/#maintainer) 为生成的镜像设置作者字段。
+* [RUN](https://docs.docker.com/engine/reference/builder/#run) 在当前镜像的基础上生成一个新层并执行命令。
+* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) 设置容器默认执行命令。
+* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) 告知 Docker 容器在运行时所要监听的网络端口。注意：并没有实际上将端口设置为可访问。
+* [ENV](https://docs.docker.com/engine/reference/builder/#env) 设置环境变量。
+* [ADD](https://docs.docker.com/engine/reference/builder/#add) 将文件，文件夹或者远程文件复制到容器中。缓存无效。尽量用 `COPY` 代替 `ADD`。
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) 将文件或文件夹复制到容器中。
+* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) 将一个容器设置为可执行。
+* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) 为外部挂载卷标或其他容器设置挂载点(mount point)。
+* [USER](https://docs.docker.com/engine/reference/builder/#user) 设置执行 RUN / CMD / ENTRYPOINT 命令的用户名。
+* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) 设置工作目录。
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) 定义编译时(build-time)变量。
-* [ONBUILD](https://docs.docker.com/reference/builder/#onbuild) 添加触发指令，当该镜像被作为其他镜像的基础镜像时该指令会被触发。
+* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) 添加触发指令，当该镜像被作为其他镜像的基础镜像时该指令会被触发。
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) 设置通过系统向容器发出退出指令。
 * [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) 将键值对元数据(key/value metadata)应用到你的镜像，容器，或者守护进程。 
 
@@ -285,8 +344,8 @@ Docker.com 把它自己的[索引](https://hub.docker.com/)托管到了它的仓
 
 ### 例子
 
-* [Examples](https://docs.docker.com/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/articles/dockerfile_best-practices/)
+* [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
+* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) 还有更多的 [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html)
 * [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
 * [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
@@ -299,7 +358,7 @@ Docker 的版本化文件系统是基于层的。就像[git的提交或文件变
 
 ## 链接(Links)
 
-链接(Links)[通过 TCP/IP 端口](https://docs.docker.com/userguide/dockerlinks/)实现了 Docker 容器之间的通讯。[链接到 Redis](https://docs.docker.com/examples/running_redis_service/) 和 [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) 是两个可用的例子。你还可以(0.11 开始)[通过 hostname 关联链接](https://docs.docker.com/userguide/dockerlinks/#updating-the-etchosts-file)。
+链接(Links)[通过 TCP/IP 端口](https://docs.docker.com/userguide/dockerlinks/)实现了 Docker 容器之间的通讯。[链接到 Redis](https://docs.docker.com/examples/running_redis_service/) 和 [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) 是两个可用的例子。你还可以[通过 hostname 关联链接](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file)。
 
 注意: 如果你希望容器之间**只**通过链接进行通讯，在启动 docker 守护进程的时候请添加参数 `-icc=false` 来禁用内部进程通讯。
 
@@ -324,13 +383,13 @@ $ALIAS_PORT_1337_TCP_ADDR
 
 之后你就可以通过这种方式来链接它了。
 
-要删除链接，通过命令 `docker rm --link `。
+要删除链接，通过命令 `docker rm --link`。
 
-如果你想跨 docker 主机链接，你可以查看 [Swarm](https://docs.docker.com/swarm/) 部分。. 在 [stackoverflow 上的这个链接](https://stackoverflow.com/questions/21283517/how-to-link-docker-services-across-hosts)也提供了一些关于如何跨 docker 主机进行链接的好方式。
+通常，docker 服务之间的链接，是"服务发现"的一个子集，如果你打算在生产中大规模使用 Docker，这将是一个很大的问题。请参阅[The Docker Ecosystem: Service Discovery and Distributed Configuration Stores](https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores)获得更多细节。
 
 ## 卷标(Volumes)
 
-Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.docker.com/userguide/dockervolumes/)。它们不应该链接到特定的容器上。好的做法是如果可能，应当把卷标挂载到[纯数据容器(data-only containers)](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)上。
+Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.docker.com/engine/tutorials/dockervolumes/)。它们不应该链接到特定的容器上。好的做法是如果可能，应当把卷标挂载到[纯数据容器(data-only containers)](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e)上。
 
 ### 生命周期
 
@@ -350,7 +409,7 @@ Docker 的卷标(volumes)是一个[free-floating 文件系统](https://docs.dock
 
 查看[卷标进阶](http://crosbymichael.com/advanced-docker-volumes.html)来获取更多细节。Container42 [非常有用](http://container42.com/2014/11/03/docker-indepth-volumes/)。
 
-你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume):
+你可以[将宿主 MacOS 的文件夹映射为 docker 卷标](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
@@ -362,7 +421,7 @@ docker run -v /Users/wsargent/myapp/src:/src
 
 ## 暴露端口(Exposing ports)
 
-通过宿主容器暴露输入端口是相当[繁琐，但有效](https://docs.docker.com/reference/run/#expose-incoming-ports)的。
+通过宿主容器暴露输入端口是相当[繁琐，但有效](https://docs.docker.com/engine/reference/run/#expose-incoming-ports)的。
 
 这种方式可以将容器端口映射到宿主端口上(只使用本地主机(localhost)接口)，通过使用 `-p`:
 
@@ -370,7 +429,7 @@ docker run -v /Users/wsargent/myapp/src:/src
 docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
 ```
 
-你可以告诉 Docker 容器在运行时监听指定的网络端口，通过使用 [EXPOSE](https://docs.docker.com/reference/builder/#expose):
+你可以告诉 Docker 容器在运行时监听指定的网络端口，通过使用 [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
@@ -415,7 +474,7 @@ docker port CONTAINER $CONTAINERPORT
 
 ## 安全(Security)
 
-这节准备讨论一些关于 Docker 安全性的问题。[安全](https://docs.docker.com/engine/articles/security/)这章讲述了更多细节。
+这节准备讨论一些关于 Docker 安全性的问题。[安全](https://docs.docker.com/articles/security/)这章讲述了更多细节。
 
 首先第一件事: Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有[ root 权限](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你暴露了 docker unix socket 给容器，意味着你赋予了容器[宿主的 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。Docker 不应该是你唯一的防御措施。
 
@@ -467,12 +526,6 @@ docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
-```
-
-设置内存和 CPU 共享:
-
-```
-docker -c 512 -mem 512m
 ```
 
 在 Dockerfile 中定义并运行一个用户，避免在容器中以 root 身份操作:
@@ -531,7 +584,7 @@ docker inspect `dl` | grep IPAddress | cut -d '"' -f 4
 docker inspect `dl` | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-或者用[go 模板](https://docs.docker.com/reference/commandline/inspect)
+或者用[go 模板](https://docs.docker.com/engine/reference/commandline/inspect)
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
@@ -607,12 +660,13 @@ docker images -viz | dot -Tpng -o docker.png
 
 这应当和其他 apt 命令在同一层中完成。
 否则，前面的层将会保持原有信息，而你的镜像则依旧臃肿。
- 
+
 ```
 RUN {apt commands} \
   && apt-get clean \  
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
+
 - 压缩镜像
 ```
 ID=$(docker run -d image-name /bin/bash)
