@@ -565,6 +565,30 @@ There is an AppArmor policy generator called [bane](https://github.com/jfrazelle
 Sources:
 
 * [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
+* [CodeFresh Everyday Hacks Docker](https://codefresh.io/blog/everyday-hacks-docker/)
+
+### Prune
+
+The new [Data Management Commands](https://github.com/docker/docker/pull/26108) have landed as of Docker 1.13:
+
+* `docker system prune`
+* `docker volume prune`
+* `docker network prune`
+* `docker container prune`
+* `docker image prune`
+
+# df 
+
+`docker system df` presents a summary of the space currently used by different docker objects.
+
+### Heredoc Docker Container
+
+```
+docker build -t htop - << EOF
+FROM alpine
+RUN apk --no-cache add htop
+EOF
+```
 
 ### Last Ids
 
