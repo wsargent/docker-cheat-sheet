@@ -577,7 +577,7 @@ The new [Data Management Commands](https://github.com/docker/docker/pull/26108) 
 * `docker container prune`
 * `docker image prune`
 
-# df 
+### df 
 
 `docker system df` presents a summary of the space currently used by different docker objects.
 
