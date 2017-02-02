@@ -101,6 +101,8 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 * [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deletes a container.
 * [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
 
+Normally if you run a container without options it will start and stop immediately, if you want keep it running you can use the command, `docker run -td container_id` this will use the option -t that will allocate a pseudo-TTY session and -d that will detach automatically the container (run container in background and print container ID).
+
 If you want a transient container, `docker run --rm` will remove the container after it stops.
 
 If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`. Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
@@ -108,6 +110,8 @@ If you want to map a directory on the host to a docker container, `docker run -v
 If you want to remove also the volumes associated with the container, the deletion of the container must include the `-v` switch like in `docker rm -v`.
 
 There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10. To run docker with a custom log driver (i.e., to syslog), use `docker run --log-driver=syslog`.
+
+Another useful option is `docker run --name yourname docker_image` because when you specify the --name inside the run command this will allow you to start and stop a container by calling it with the name the you specified when you created it.
 
 ### Starting and Stopping
 
