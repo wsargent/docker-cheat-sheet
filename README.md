@@ -762,3 +762,12 @@ Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/REA
 ![Change This](images/change.png)
 
 ![Commit](images/commit.png)
+
+## Docker-compose
+
+Install docker compose with pip
+```
+sudo pip install -U docker-compose
+```
+Install bash completion
+curl -L https://raw.githubusercontent.com/docker/compose/1.2.0/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
