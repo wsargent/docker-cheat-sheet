@@ -255,7 +255,7 @@ Export an existing container:
 docker export my_container | gzip > my_container.tar.gz
 ```
 
-### Difference between loading a saved image and importing an exported container as an image ?
+### Difference between loading a saved image and importing an exported container as an image
 
 Loading an image using the `load` command creates a new image including its history.  
 Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
@@ -690,7 +690,7 @@ In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will l
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers (see [Intercity Blog](http://bit.ly/1Wwo61N))
+### Slimming down Docker containers
 
 - Cleaning APT in a RUN layer
 
