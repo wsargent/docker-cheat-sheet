@@ -1,4 +1,4 @@
-# Docker Cheat Sheet
+# ~~Docker~~Moby Cheat Sheet
 
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
