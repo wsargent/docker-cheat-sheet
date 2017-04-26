@@ -1,4 +1,4 @@
-# ~~Docker~~Moby Cheat Sheet
+# Docker Cheat Sheet
 
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
@@ -323,7 +323,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
 * [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
-* For a most comprehensive list of editors and IDEs, check [Docker meets the IDE] (https://domeide.github.io/)
+* Also see [Docker meets the IDE](https://domeide.github.io/)
 
 ### Instructions
 
