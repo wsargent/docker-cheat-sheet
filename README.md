@@ -744,6 +744,19 @@ For all containers listed by image:
 docker ps -a -f ancestor=ubuntu
 ```
 
+Remove all untagged images
+```
+docker rmi $(docker images | grep “^” | awk “{print $3}”)
+```
+
+Remove container by a regular expression
+```
+docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
+```
+Remove all exited containers
+```
+docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
+```
 
 ## Contributing
 
