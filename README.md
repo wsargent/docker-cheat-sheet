@@ -628,6 +628,17 @@ or using a [go template](https://docs.docker.com/engine/reference/commandline/in
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
+or when building an image from Dockerfile, when you want to pass in a build argument:
+
+```
+DOCKER_HOST_IP=`ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1`
+echo DOCKER_HOST_IP = $DOCKER_HOST_IP
+docker build \
+  --build-arg ARTIFACTORY_ADDRESS=$DOCKER_HOST_IP 
+  -t sometag \
+  some-directory/
+ ```
+
 ### Get port mapping
 
 ```
