@@ -231,6 +231,18 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
 
+Show exited images and remove them:
+```
+docker ps --filter status=exited -q 2>/dev/null
+docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+```
+
+Show dangling images and remove them:
+```
+docker images --filter dangling=true -q 2>/dev/null
+docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+```
+
 ### Load/Save image
 
 Load an image from file:
@@ -771,20 +783,54 @@ docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 
 ## Contributing
 
+Just fork this repo and send pull requests.
+
+### Workflow
+
+- Fork the project: https://help.github.com/articles/fork-a-repo/
+- Clone the project
+- Resync the forked repo with upstream:
+  (only needed when the original project has changed)
+
+  ```
+git remote add upstream https://github.com/wsargent/docker-cheat-sheet.git
+git pull upstream master
+git push
+  ```
+- Edit the markup code
+- Create a pull request: https://help.github.com/articles/creating-a-pull-request/
+
+### Edit Using Github
+
 Here's how to contribute to this cheat sheet.
 
-### Open README.md
+#### Open README.md
 
 Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
 
 ![Click This](images/click.png)
 
-### Edit Page
+#### Edit Page
 
 ![Edit This](images/edit.png)
 
-### Make Changes and Commit
+#### Make Changes and Commit
 
 ![Change This](images/change.png)
 
 ![Commit](images/commit.png)
+
+
+### Edit and test locally
+
+
+```
+apt-get install git
+pip install grip
+git clone https://github.com/wsargent/docker-cheat-sheet/ # alternatively your forked repo
+cd docker-cheat-sheet
+vi README.md
+grip # Open documentation by using a browser
+```
+
+
