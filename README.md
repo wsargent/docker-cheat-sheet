@@ -323,6 +323,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
 * [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
+* [VS Code](https://github.com/Microsoft/vscode-docker)
 * Also see [Docker meets the IDE](https://domeide.github.io/)
 
 ### Instructions
