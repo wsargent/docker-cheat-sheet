@@ -2,14 +2,6 @@
 
 **Want to improve this cheat sheet?  See the [Contributing](#contributing) section!**
 
-## A Tasteful Plug for Lightbend
-
-I work for [Lightbend](https://lightbend.com) on the [Play](https://playframework.com/) team.  I think the company is awesome, and if you're looking at containers because you're moving to the cloud and thinking about distributed systems, you should keep reading.
-
-Lightbend make microservices happen.  Developers use [Lagom](http://www.lagomframework.com/) to put together resilient ("chaos monkey resistant") microservices.  In production, there's [Conductr](https://conductr.lightbend.com/) to [orchestrate](http://www.cakesolutions.net/teamblogs/typesafe-conductr-the-missing-glue-between-dev-and-ops) containers -- [including Docker](https://www.lightbend.com/blog/reactive-for-devops-part-3-using-docker-with-conductr-on-the-jvm).  Finally, there's [monitoring](https://developer.lightbend.com/docs/monitoring/latest/home.html) to tell you what's going on at a detailed application level, so you know where your CPU and memory resources are being spent, and can scale up and down based on that information.  For more, check out the [devops site](https://www.lightbend.com/platform/production).
-
-This concludes the tasteful plug.
-
 ## Table of Contents
 
 * [Why Docker](#why-docker)
