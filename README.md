@@ -419,6 +419,8 @@ You can use remote NFS volumes if you're [feeling brave](https://docs.docker.com
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
+[Be aware that you can mount files as volumes.](#volumes-can-be-files)
+
 ## Exposing ports
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/engine/reference/run/#expose-incoming-ports).
@@ -758,6 +760,21 @@ docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
 Remove all exited containers
 ```
 docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
+```
+
+### Volumes can be files
+
+Be aware that you can mount files as volumes. For example you can inject a configuration file like this:
+
+``` bash
+# copy file from container
+docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
+
+# edit file
+vim httpd.conf
+
+# start container with modified configuration
+docker run --rm -ti -v "$PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro" -p "80:80" httpd
 ```
 
 ## Contributing
