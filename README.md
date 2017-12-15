@@ -605,7 +605,7 @@ docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ### Get IP address
 
 ```
-docker inspect $(dl) | grep IPAddress | cut -d '"' -f 4
+docker inspect $(dl) | grep -wm1 IPAddress | cut -d '"' -f 4
 ```
 
 or install [jq](https://stedolan.github.io/jq/):
