@@ -19,6 +19,7 @@
 * [Best Practices](#best-practices)
 * [Security](#security)
 * [Tips](#tips)
+* [Troubleshooting](#Troubleshooting)
 * [Contributing](#contributing)
 
 ## Why Docker
@@ -780,6 +781,13 @@ vim httpd.conf
 
 # start container with modified configuration
 docker run --rm -ti -v "$PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro" -p "80:80" httpd
+```
+
+### Troubleshooting
+Make sure Docker Swift is running, and then enter the following into Terminal:
+
+``` bash
+  $ docker run --cap-add sys_ptrace -it swift bash
 ```
 
 ## Contributing
