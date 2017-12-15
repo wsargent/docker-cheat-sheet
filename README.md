@@ -184,10 +184,8 @@ https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capab
 * [`docker top`](https://docs.docker.com/engine/reference/commandline/top) shows running processes in container.
 * [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) shows containers' resource usage statistics.
 * [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) shows changed files in the container's FS.
-
-`docker ps -a` shows running and stopped containers.
-
-`docker stats --all` shows a running list of containers.
+* `docker ps -a` shows running and stopped containers.
+* `docker stats --all` shows a running list of containers.
 
 ### Import / Export
 
