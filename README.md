@@ -655,6 +655,12 @@ docker run --rm ubuntu env
 docker kill $(docker ps -q)
 ```
 
+### Delete all containers (force!! running or stopped containers)
+
+```
+docker rm -f $(docker ps -qa)
+```
+
 ### Delete old containers
 
 ```
