@@ -761,7 +761,7 @@ docker ps -a -f ancestor=ubuntu
 
 Remove all untagged images
 ```
-docker rmi $(docker images | grep “^” | awk “{print $3}”)
+docker rmi $(docker images | grep “^” | awk '{split($0,a," "); print a[3]}')
 ```
 
 Remove container by a regular expression
