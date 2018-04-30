@@ -221,7 +221,7 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 ### Cleaning up
 
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will clean up images that are no longer used by any containers in a safe manner.
+While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers.
 
 ### Load/Save image
 
