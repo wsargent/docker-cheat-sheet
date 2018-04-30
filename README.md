@@ -55,23 +55,12 @@ If you're not willing to run a random shell script, please see the [installation
 
 If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
 
-### Mac OS X
+### macOS
+Download and install [Docker Community Edition](https://www.docker.com/community-edition). if you have Homebrew-Cask, just type `brew cask install docker`. Or Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
-Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
+> **NOTE** Docker Toolbox is legacy. you should to use Docker Community Edition, See (Docker Toolbox)[https://docs.docker.com/toolbox/overview/]
 
-> **NOTE** If you have an existing docker toolbox, you might think you can upgrade [Docker Machine](https://docs.docker.com/machine/install-machine/) binaries directly (either from URL or `docker-machine upgrade default`) and it will take care of itself.  This is not going to help -- `docker-machine` will be `1.10.3` while `docker` is still `1.8.3` or whatever your previous version is.
->
-> You are much better off using Docker Toolbox DMG file to upgrade, which will take care of all the binaries at once.
-
-Once you've installed Docker Toolbox, install a VM with Docker Machine using the VirtualBox provider:
-
-```
-docker-machine create --driver=virtualbox default
-docker-machine ls
-eval "$(docker-machine env default)"
-```
-
-Then start up a container:
+Once you've installed Docker Community Edition, click the docker icon in Launchpad. Then start up a container:
 
 ```
 docker run hello-world
