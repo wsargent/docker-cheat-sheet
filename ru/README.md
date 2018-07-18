@@ -4,10 +4,10 @@
 
 ## Содержание
 
-* [Почему Docker](#why-docker)
+* [Почему Docker](#Почему-Docker)
 * [Предпосылки](#Предпосылки)
-* [Установка](#installation)
-* [Контейнеры](#containers)
+* [Установка](#Установка)
+* [Контейнеры](#Контейнеры)
 * [Образы](#images)
 * [Сеть](#networks)
 * [Реестр и репозиторий](#registry--repository)
@@ -31,79 +31,84 @@ Docker помогает разработчикам создавать и отп�
 
 ## Предпосылки
 
-I use [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) with the [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) for autocompletion of docker commands. YMMV.
+Я использую [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) вместе с [Docker plugin](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) для автозаполнения команд docker. Возможно у вас другой подход.
 
 ### Linux
 
-The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) for Docker.
+Ядро 3.10.x [минимальное требование] (https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) для Docker.
 
 ### MacOS
 
- 10.8 “Mountain Lion” or newer is required.
+ 10.8 “Mountain Lion” или более новый.
 
-## Installation
+## Установка
 
 ### Linux
 
-Quick and easy install script provided by Docker:
+Быстрый и простой скрипт установки, предоставляемый Docker:
 
 ```
 curl -sSL https://get.docker.com/ | sh
 ```
 
-If you're not willing to run a random shell script, please see the [installation](https://docs.docker.com/engine/installation/linux/) instructions for your distribution.
+Если вы не хотите запускать случайный сценарий оболочки, см. [Инструкции](https://docs.docker.com/engine/installation/linux/) по установке на ваш дистрибутив.
 
-If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
+Если вы являетесь полноправным новичком Docker, вы должны следовать [сериям учебников] (https://docs.docker.com/engine/getstarted/) сейчас.
 
 ### macOS
-Download and install [Docker Community Edition](https://www.docker.com/community-edition). if you have Homebrew-Cask, just type `brew cask install docker`. Or Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
+Скачать и установить [Docker Community Edition](https://www.docker.com/community-edition). если у вас есть Homebrew-Cask, просто введите `brew cask install docker`.
+Или загрузите и установите [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker для Mac](https://docs.docker.com/docker-for-mac/) это хорошо, но это не совсем так, как установка VirtualBox.  [
+См. Сравнение](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
-> **NOTE** Docker Toolbox is legacy. you should to use Docker Community Edition, See (Docker Toolbox)[https://docs.docker.com/toolbox/overview/]
+> ** ПРИМЕЧАНИЕ ** Docker Toolbox является устаревшим. вы должны использовать Docker Community Edition, см. (Docker Toolbox)[https://docs.docker.com/toolbox/overview/]
 
-Once you've installed Docker Community Edition, click the docker icon in Launchpad. Then start up a container:
+После установки Docker Community Edition щелкните значок докера. Затем запустите контейнер:
 
 ```
 docker run hello-world
 ```
 
-That's it, you have a running Docker container.
+Вот и все, у вас есть работающий контейнер Docker.
 
-If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
 
-## Containers
+Если вы являетесь полноправным новичком докеров, вы должны, вероятно, исследовать [серию учебников] (https://docs.docker.com/engine/getstarted/) сейчас.
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Containers are to Virtual Machines as threads are to processes. Or you can think of them as chroots on steroids.
+## Контейнеры
 
-### Lifecycle
+[Ваш основной изолированный процесс Докера](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Контейнеры - это виртуальные машины, поскольку потоки относятся к процессам. Или вы можете думать о них как о chroot на стероидах.
 
-* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) creates a container but does not start it.
-* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) allows the container to be renamed.
-* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) creates and starts a container in one operation.
-* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deletes a container.
-* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
+### Жизненный цикл
 
-Normally if you run a container without options it will start and stop immediately, if you want keep it running you can use the command, `docker run -td container_id` this will use the option `-t` that will allocate a pseudo-TTY session and `-d` that will detach automatically the container (run container in background and print container ID).
 
-If you want a transient container, `docker run --rm` will remove the container after it stops.
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) создает контейнер, но не запускает его.
+* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) позволяет переименовать контейнер.
+* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) создает и запускает контейнер за одну операцию.
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) удаляет контейнер.
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) обновляет ограничения ресурсов контейнера.
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`. Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+Обычно, если вы запускаете контейнер без параметров, он запускается и останавливается немедленно, если вы хотите его запустить, вы можете использовать команду, `docker run -td container_id` это будет использовать опцию `-t` который будет выделять псевдо-TTY сессию и `-d` который автоматически отсоединяет контейнер (запускает контейнер в фоновом режиме и показыват ID контейнера).
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the `-v` switch like in `docker rm -v`.
+Если вам нужен переходный контейнер, `docker run --rm` удалит контейнер после его остановки.
 
-There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10. To run docker with a custom log driver (i.e., to syslog), use `docker run --log-driver=syslog`.
+Если вы хотите сопоставить каталог на хосте с контейнером докера, `docker run -v $HOSTDIR:$DOCKERDIR`. Также смотрите [Тома](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
-Another useful option is `docker run --name yourname docker_image` because when you specify the `--name` inside the run command this will allow you to start and stop a container by calling it with the name the you specified when you created it.
+Если вы хотите удалить также тома, связанные с контейнером, удаление контейнера должно включать `-v` измените примерно так `docker rm -v`.
 
-### Starting and Stopping
+Существует также [логирование](https://docs.docker.com/engine/admin/logging/overview/) доступны для отдельных контейнеров в докерах 1.10. Чтобы запустить докер с помощью специального лог журнала (например, в syslog), используйте `docker run --log-driver=syslog`.
 
-* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) starts a container so it is running.
-* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) stops a running container.
-* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) stops and starts a container.
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pauses a running container, "freezing" it in place.
-* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
-* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) blocks until running container stops.
-* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) sends a SIGKILL to a running container.
-* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) will connect to a running container.
+Другим полезным вариантом является `docker run --name yourname docker_image` потому что, когда вы укажете `--name` внутри команды run это позволит вам запускать и останавливать контейнер, вызывая его с именем, которое вы указали при его создании.
+
+### Запуск и остановка
+
+* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) запускает контейнер, чтобы он работал.
+* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) останавливает запущенный контейнер.
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) останавливается и запускает контейнер.
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/)
+приостанавливает работу контейнера, "замораживает" его на месте.
+* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) снимает "заморозку" контейнера.
+* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) блокирует до остановки контейнера.
+* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) посылает SIGKILL к запущеннному контейнеру.
+* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) будет подключаться к работающему контейнеру.
 
 If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/admin/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
