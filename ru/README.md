@@ -5,7 +5,7 @@
 ## Содержание
 
 * [Почему Docker](#why-docker)
-* [Предпосылки](#prerequisites)
+* [Предпосылки](#Предпосылки)
 * [Установка](#installation)
 * [Контейнеры](#containers)
 * [Образы](#images)
