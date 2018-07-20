@@ -110,117 +110,121 @@ docker run hello-world
 * [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) посылает SIGKILL к запущеннному контейнеру.
 * [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) будет подключаться к работающему контейнеру.
 
-If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/admin/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
-If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
+Если вы хотите интегрировать контейнер с [диспетчером хостов](https://docs.docker.com/engine/admin/host_integration/), запустите демона с помощью `-r = false`, а затем используйте` docker start -a `.
 
-Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
+Если вы хотите открыть порты контейнера через хост, см. Раздел [раскрытие портов](#открытие-портов).
 
-#### CPU Constraints
+Перезагрузка политик в разбитых экземплярах докеров [рассматривается здесь] (http://container42.com/2014/09/30/docker-restart-policies/).
 
-You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
+#### Ограничения процессора
 
-For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
+Вы можете ограничить процессор, используя либо процент от всех процессоров, либо используя определенные ядра.
+
+Например, вы можете указать параметр [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint). Параметр немного странный - 1024 означает 100% CPU, поэтому, если вы хотите, чтобы контейнер занимал 50% всех ядер процессора, вы должны указать 512. См. https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu для получения дополнительной информации:
+
 
 ```
 docker run -ti --c 512 agileek/cpuset-test
 ```
+Вы также можете использовать только некоторые ядра процессора, используя [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint). См. https://agileek.github.io/docker/2014/08/06/docker-cpuset/ для получения дополнительной информации:
 
-You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
 
 ```
 docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
 ```
+Обратите внимание, что Docker все еще может **видеть** все процессоры внутри контейнера -- он просто не использует все из них. Подробнее см. https://github.com/docker/docker/issues/20770.
 
-Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See https://github.com/docker/docker/issues/20770 for more details.
 
-#### Memory Constraints
+#### Ограничения памяти
 
-You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
+Вы также можете установить [ограничения памяти](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) на Docker:
 
 ```
 docker run -it -m 300M ubuntu:14.04 /bin/bash
 ```
 
-#### Capabilities
+#### Возможности
 
-Linux capabilities can be set by using `cap-add` and `cap-drop`.  See https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities for details.  This should be used for greater security.
+Возможности Linux можно установить, используя `cap-add` и `cap-drop`.  См. https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities для подробностей.  Это должно использоваться для большей безопасности.
 
-To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
+Чтобы подключить файловую систему на основе FUSE, вам необходимо объединить оба --cap-add и --device:
 
 ```
 docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
-Give access to a single device:
+Обеспечить доступ к одному устройству:
 
 ```
 docker run -it --device=/dev/ttyUSB0 debian bash
 ```
 
-Give access to all devices:
+Обеспечить доступ ко всем устройствам:
 
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
 ```
 
-more info about privileged containers [here](
+подробнее о привилегированных контейнерах [здесь](
 https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
 
 
 ### Info
 
-* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10).
-* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) looks at all the info on a container (including IP address).
-* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) gets events from container.
-* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) shows public facing port of container.
-* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) shows running processes in container.
-* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) shows containers' resource usage statistics.
-* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) shows changed files in the container's FS.
+* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) показывает запущенные контейнеры.
+* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) получает журналы из контейнера. (Вы можете использовать собственный драйвер журнала, но журналы доступны только для `json-file` и  `journald` в  1.10).
+* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) просматривает всю информацию о контейнере (включая IP-адрес).
+* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) получает события из контейнера.
+* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) показывает открытый порт контейнера.
+* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) показывает запущенные процессы в контейнере.
+* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) показывает статистику использования ресурсов контейнеров.
+* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) показывает измененные файлы в FS контейнера.
 
-`docker ps -a` shows running and stopped containers.
+`docker ps -a` показывает запущенные и остановленные контейнеры.
 
-`docker stats --all` shows a running list of containers.
+`docker stats --all` показывает текущий список контейнеров.
 
-### Import / Export
+### Импорт / Экспорт
 
-* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copies files or folders between a container and the local filesystem.
-* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
+* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) копирует файлы или папки между контейнером и локальной файловой системой.
+* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) экспортировать файловую систему контейнера в качестве tar-архива.
 
-### Executing Commands
+### Выполнение команд
 
-* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) to execute a command in container.
+* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) для выполнения команды в контейнере.
 
-To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
 
-## Images
+Чтобы войти в запущенный контейнер, присоедините новый процесс оболочки к запущенному контейнеру с именем foo, используйте:`docker exec -it foo /bin/bash`.
 
-Images are just [templates for docker containers](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
+## Образы
 
-### Lifecycle
+Образы - это просто [шаблоны для docker контейнеров](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
 
-* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) shows all images.
-* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) creates an image from a tarball.
-* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
-* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) removes an image.
-* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
-* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+### Жизненный цикл
+
+* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) показывает все образы.
+* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) создает образ из архива.
+* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) создает образ из Dockerfile.
+* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) создает образ из контейнера, временно приостанавливая его, если он запущен.
+* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) удаляет образ.
+* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) загружает образ из архива tar в качестве STDIN, включая образы и теги (начиная с 0.7).
+* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) сохраняет образ в поток архива tar в STDOUT со всеми родительскими слоями, тегами и версиями (начиная с 0,7).
 
 ### Info
 
-* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
-* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
+* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) показывает историю образа.
+* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) теги образа к имени (локальному или реестру).
 
-## Checking Docker Version
+## Проверка версии Docker
 
-It is very important that you always know the current version of Docker you are currently running on at any point in time.This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know what version of docker we have running currently
+Очень важно, чтобы вы всегда знали текущую версию Docker, в которой вы сейчас работаете, в любой момент времени. Это очень полезно, потому что вы узнаете, какие функции совместимы с тем, что вы используете. Это также важно, потому что вы знаете, какие контейнеры запускать из хранилища докеров, когда вы пытаетесь получить контейнеры шаблонов. Это говорит о том, как узнать, какая версия докера у нас работает в настоящее время:
 
-* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running
+
+* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   проверьте, какая версия докера у вас запущена.
 * [docker version [OPTIONS]]
 
-Get the server version
+Получить версию сервера
 $ docker version --format '{{.Server.Version}}'
 
 1.8.0
@@ -432,7 +436,9 @@ You may also consider running data-only containers as described [here](http://co
 
 [Be aware that you can mount files as volumes.](#volumes-can-be-files)
 
-## Exposing ports
+
+## Открытие портов
+
 
 Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/engine/reference/run/#expose-incoming-ports).
 
