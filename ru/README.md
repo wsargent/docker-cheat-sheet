@@ -234,43 +234,41 @@ $ docker version --format '{{json .}}'
 {"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
 
 ### Cleaning up
+Хотя вы можете использовать команду `docker rmi` для удаления определенных образов, есть инструмент под названием [docker-gc](https://github.com/spotify/docker-gc), который будет безопасно очищать образы, которые больше не используются любыми контейнерами.
 
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers.
+### Загрузка/Сохранение образов
 
-### Load/Save image
-
-Load an image from file:
+Загрузите образ из файла:
 ```
 docker load < my_image.tar.gz
 ```
 
-Save an existing image:
+Сохранить существующий образ:
 ```
 docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
+### Импорт/Экспорт контейнера
 
-### Import/Export container
-
-Import a container as an image from file:
+Импортировать контейнер как образ из файла:
 ```
 cat my_container.tar.gz | docker import - my_image:my_tag
 ```
 
-Export an existing container:
+Экспортировать существующий контейнер:
 ```
 docker export my_container | gzip > my_container.tar.gz
 ```
 
-### Difference between loading a saved image and importing an exported container as an image
 
-Loading an image using the `load` command creates a new image including its history.  
-Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
+### Разница между загрузкой сохраненного образа и импортом экспортированного контейнера в качестве образа
 
-## Networks
+Загрузка изображения с помощью команды `load` создает новый образ, включая его историю.
+Импорт контейнера в качестве образа с помощью команды `import` создает новый образ, исключая историю, которая приводит к меньшему размеру образов по сравнению с загрузкой образа.
 
-Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) feature. Not much is known about it, so this is a good place to expand the cheat sheet. There is a note saying that it's a good way to configure docker containers to talk to each other without using ports. See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
+## Сети
+Docker имеет функцию [network](https://docs.docker.com/engine/userguide/networking/). Об этом мало что известно, поэтому это хорошее место для расширения чит-листа. Существует примечание, в котором говорится, что это хороший способ настроить контейнеры докеров, чтобы разговаривать друг с другом без использования портов. Подробнее см. [Работа с сетями](https://docs.docker.com/engine/userguide/networking/work-with-networks/).
 
-### Lifecycle
+### Жизненный цикл
 
 * [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/)
 * [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/)
@@ -285,81 +283,82 @@ Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) fe
 * [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
 * [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
 
-You can specify a [specific IP address for a container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
+Вы можете указать [конкретный IP-адрес для контейнера](https://blog.jessfraz.com/post/ips-for-all-the-things/):
 
 ```
-# create a new bridge network with your subnet and gateway for your ip block
+# создать новую сеть bridge с вашей подсетью и шлюзом для вашего ip-блока
 docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
 
-# run a nginx container with a specific ip in that block
+# запустите контейнер nginx с определенным ip в этом блоке
 $ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
 
-# curl the ip from any other place (assuming this is a public ip block duh)
+# curl ip из любого другого места (при условии, что это общедоступный ip-блок)
 $ curl 203.0.113.2
 ```
 
-## Registry & Repository
+## Реестр и репозиторий
 
-A repository is a *hosted* collection of tagged images that together create the file system for a container.
+Репозиторий - это * размещенная * коллекция помеченных образов, которые вместе создают файловую систему для контейнера.
 
-A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/engine/tutorials/dockerrepos/).
+Реестр - это * хост * - сервер, который хранит репозитории и предоставляет HTTP API для [управления загрузкой и загрузкой репозиториев](https://docs.docker.com/engine/tutorials/dockerrepos/).
 
-Docker.com hosts its own [index](https://hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
+Docker.com размещает свой собственный [index](https://hub.docker.com/) в центральном реестре, который содержит большое количество репозиториев. Сказав это, центральный реестр докеров (не делает хорошую работу по проверке образов)(https://titanous.com/posts/docker-insecurity), и его следует избегать, если вас беспокоит безопасность.
 
-* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) to login to a registry.
-* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) to logout from a registry.
-* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) searches registry for image.
-* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) pulls an image from registry to local machine.
-* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) pushes an image to the registry from local machine.
+* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) для входа в реестр.
+* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) для выхода из реестра.
+* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) ищет реестр для образа.
+* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) вытаскивает образ из реестра на локальный компьютер.
+* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) толкает образ в реестр с локальной машины.
 
-### Run local registry
+### Запуск локального реестра
 
-You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) instructions.
+Вы можете запустить локальный реестр с помощью проекта [docker distribution](https://github.com/docker/distribution) и посмотреть на [локальное развертывание](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) инструкци.
 
-Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
+Также см. [Список рассылки](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it. Vastly preferable to `docker commit`.  
+[Файл конфигурации](https://docs.docker.com/engine/reference/builder/). Устанавливает контейнер Docker, когда вы запускаете на нем `docker build`. Крайне предпочтительнее `docker commit`.
 
-Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:
-* If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.
+Вот некоторые распространенные текстовые редакторы и их модули подсветки синтаксиса, которые вы могли бы использовать для создания Dockerfiles:
+* Если вы используете [jEdit](http://jedit.org), я установил модуль подсветки синтаксиса для [Dockerfile](https://github.com/wsargent/jedit-docker-mode) вы можете использовать.
 * [Sublime Text 2](https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting)
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
 * [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
 * [VS Code](https://github.com/Microsoft/vscode-docker)
-* Also see [Docker meets the IDE](https://domeide.github.io/)
+* Также см. [Docker meets the IDE](https://domeide.github.io/)
 
-### Instructions
+### Инструкции
 
 * [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
-* [FROM](https://docs.docker.com/engine/reference/builder/#from) Sets the Base Image for subsequent instructions.
-* [MAINTAINER (deprecated - use LABEL instead)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated) Set the Author field of the generated images.
-* [RUN](https://docs.docker.com/engine/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
-* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) provide defaults for an executing container.
-* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
-* [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.  Note that this only copies as root, so you have to chown manually regardless of your USER / WORKDIR setting.  See https://github.com/moby/moby/issues/30110
-* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configures a container that will run as an executable.
-* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
-* [USER](https://docs.docker.com/engine/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
-* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) sets the working directory.
-* [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
-* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
-* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
-* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
+* [FROM](https://docs.docker.com/engine/reference/builder/#from) Устанавливает базовое изображение для последующих инструкций.
+* [MAINTAINER (устаревший - вместо этого используйте LABEL)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated) Задайте поле Author созданных образов.
+* [RUN](https://docs.docker.com/engine/reference/builder/#run) выполнять любые команды в новом слое поверх текущего образа и фиксировать результаты.
+* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) предоставлять значения по умолчанию для исполняемого контейнера.
+* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) сообщает Docker, что контейнер прослушивает указанные сетевые порты во время выполнения. ПРИМЕЧАНИЕ: на самом деле не делает доступными порты.
+* [ENV](https://docs.docker.com/engine/reference/builder/#env) устанавливает переменную среды.
+* [ADD](https://docs.docker.com/engine/reference/builder/#add) копирует в контейнер новые файлы, каталоги или удаленный файл. Недействительный кеш. Избегайте `ADD` и вместо этого используйте` COPY`.
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) копирует в контейнер новые файлы или каталоги. Обратите внимание, что это копируется только с правами root, поэтому вы должны вручную управлять вне зависимости от настроек USER / WORKDIR. См. https://github.com/moby/moby/issues/30110
+* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) настраивает контейнер, который будет запускаться как исполняемый файл.
+* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) создает точку монтирования для внешних томов или других контейнеров.
+* [USER](https://docs.docker.com/engine/reference/builder/#user) задает имя пользователя для следующих команд RUN / CMD / ENTRYPOINT.
+* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) устанавливает рабочий каталог.
+* [ARG](https://docs.docker.com/engine/reference/builder/#arg) определяет переменную времени сборки.
+* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) добавляет инструкцию триггера, когда изображение используется в качестве основы для другой сборки.
+* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) устанавливает сигнал системного вызова, который будет отправлен в контейнер для выхода.
+* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) устанавливает сигнал системного вызова, который будет отправлен в контейнер для выхода.
 
 ### Tutorial
 
-* [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+* [Учебник Flux7's Dockerfile
+](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
 
-### Examples
+### Примеры
 
-* [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Примеры](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
+* [Рекомендации по написанию Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
 * [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
 * [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
