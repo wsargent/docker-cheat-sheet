@@ -369,43 +369,40 @@ Docker.com размещает свой собственный [index](https://hu
 Файловая система с версией в Docker основана на слоях. Они похожи  на [git комиты или измекнения для файловой системы](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
 ## Связи
+Ссылки, как контейнеры Docker общаются друг с другом [через порты TCP/IP](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Связь с Redis](https://docs.docker.com/engine/examples/running_redis_service/) и [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) показать приведенные примеры. Вы также можете разрешить [ссылки по имени хоста](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
+Это в некоторой степени устарело [сетями определяемыми пользователем](https://docs.docker.com/engine/userguide/networking/#user-defined-networks).
 
-This has been deprected to some extent by [user-defined networks](https://docs.docker.com/engine/userguide/networking/#user-defined-networks).
+ПРИМЕЧАНИЕ. Если вы хотите, чтобы контейнеры ТОЛЬКО связывались друг с другом по ссылкам, запустите демон docker с помощью `-icc = false`, чтобы отключить межпроцессное общение.
 
-NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
-
-If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port:
+Если у вас есть контейнер с именем CONTAINER (указанный `docker run -name CONTAINER`) и в Dockerfile, он имеет открытый порт:
 
 ```
 EXPOSE 1337
 ```
-
-Then if we create another container called LINKED like so:
+Тогда, если мы создадим еще один контейнер LINKED, например:
 
 ```
 docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
-
-Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
+Затем открытые порты и псевдонимы CONTAINER будут отображаться в LINKED со следующими переменными среды:
 
 ```
 $ALIAS_PORT_1337_TCP_PORT
 $ALIAS_PORT_1337_TCP_ADDR
 ```
 
-And you can connect to it that way.
+И вы можете подключиться к нему таким образом.
 
-To delete links, use `docker rm --link`.
+Чтобы удалить ссылки, используйте `docker rm --link`.
 
-Generally, linking between docker services is a subset of "service discovery", a big problem if you're planning to use Docker at scale in production.  Please read [The Docker Ecosystem: Service Discovery and Distributed Configuration Stores](https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores) for more info.
+Как правило, связи между контейнерами Docker является подмножеством «обнаружения сервисов», что является большой проблемой, если вы планируете использовать Docker в производстве. Пожалуйста, прочитайте [The Docker Ecosystem: Service Discovery and Distributed Configuration Stores](https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores) или большей информации.
 
-## Volumes
+## Тома
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/tutorials/dockervolumes/). They don't have to be connected to a particular container. You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
+Тома Docker  - [свободно плавающие файловые системы](https://docs.docker.com/engine/tutorials/dockervolumes/).Они не обязательно должны быть подключены к конкретному контейнеру. Вы должны использовать тома, примонированные из [контейнеров только для данных](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) для переносимости. 
 
-### Lifecycle
+### Жизненный цикл
 
 * [`docker volume create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * [`docker volume rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
@@ -415,11 +412,12 @@ Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/tu
 * [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 * [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
-Volumes are useful in situations where you can't use links (which are TCP/IP only). For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
+Тома полезны в ситуациях, когда вы не можете использовать ссылки (которые только TCP / IP). Например, если вам нужно, чтобы два экземпляра docker обменивались данными, оставив результат в файловой системе.
 
-You can mount them in several docker containers at once, using `docker run --volumes-from`.
+Вы можете смонтировать их в нескольких контейнерах докеров сразу, используя `docker run --volumes-from`.
 
-Because volumes are isolated filesystems, they are often used to store state from computations between transient containers. That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
+Поскольку тома являются изолированными файловыми системами, они часто используются для хранения состояния из вычислений между переходными контейнерами. То есть, у вас может быть контейнер без учета состояния и переходный процесс, запускаемый из скрипта, сдуть его, а затем добавить второй экземпляр переходного контейнера, откуда он остановился.
+
 
 See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
