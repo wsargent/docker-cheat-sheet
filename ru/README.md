@@ -360,15 +360,15 @@ Docker.com размещает свой собственный [index](https://hu
 * [Примеры](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
 * [Рекомендации по написанию Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 * [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
-* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
-* [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
-* [How to write excellent Dockerfiles](https://rock-it.pl/how-to-write-excellent-dockerfiles/)
+* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Создание лучших образов docker](http://jonathan.bergknoff.com/journal/building-better-docker-images)
+* [Управление конфигурацией контейнера с метаданными](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
+* [ Как написать отличный Dockerfiles](https://rock-it.pl/how-to-write-excellent-dockerfiles/)
 
-## Layers
+## Слои 
 
-The versioned filesystem in Docker is based on layers. They're like [git commits or changesets for filesystems](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
+Файловая система с версией в Docker основана на слоях. Они похожи  на [git комиты или измекнения для файловой системы](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
-## Links
+## Связи
 
 Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
 
@@ -525,31 +525,31 @@ docker run --security-opt=no-new-privileges
 
 From the [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (it's in PDF which makes it hard to use, so copying below) by [Container Solutions](http://container-solutions.com/is-docker-safe-for-production/):
 
-Turn off interprocess communication with:
+Отключите межпроцессное взаимодействие с:
 
 ```
 docker -d --icc=false --iptables
 ```
 
-Set the container to be read-only:
+Установите контейнер только для чтения:
 
 ```
 docker run --read-only
 ```
 
-Verify images with a hashsum:
+Проверьте образы с помощью хэш-функции:
 
 ```
 docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 ```
 
-Set volumes to be read only:
+Установить тома только для чтения:
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
 ```
 
-Define and run a user in your Dockerfile so you don't run as root inside the container:
+Определите и запустите пользователя в вашем файле Docker, чтобы вы не запускались как root внутри контейнера:
 
 ```
 RUN groupadd -r user && useradd -r -g user user
@@ -571,19 +571,19 @@ To enable user namespaces ("remap the userns") in Ubuntu 15.10, [follow the blog
 
 ### Security Roadmap
 
-The Docker roadmap talks about [seccomp support](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
-There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).
+В дорожной карте docker говорится о [поддержке seccomp]https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
+Существует генератор политики AppArmor, называемый [bane](https://github.com/jfrazelle/bane), и они работают над [профилями безопасности](https://github.com/docker/docker/issues/17142).
 
-## Tips
+## Советы
 
-Sources:
+Источники:
 
-* [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
+* [15 Советы docker за 5 минут](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
 * [CodeFresh Everyday Hacks Docker](https://codefresh.io/blog/everyday-hacks-docker/)
 
 ### Prune
 
-The new [Data Management Commands](https://github.com/docker/docker/pull/26108) have landed as of Docker 1.13:
+Новые [Команды управления данными](https://github.com/docker/docker/pull/26108) Появились с Docker 1.13:
 
 * `docker system prune`
 * `docker volume prune`
@@ -595,7 +595,7 @@ The new [Data Management Commands](https://github.com/docker/docker/pull/26108) 
 
 `docker system df` presents a summary of the space currently used by different docker objects.
 
-### Heredoc Docker Container
+### Контейнер для докеров Heredoc
 
 ```
 docker build -t htop - << EOF
@@ -604,7 +604,7 @@ RUN apk --no-cache add htop
 EOF
 ```
 
-### Last Ids
+### Последние идентификаторы
 
 ```
 alias dl='docker ps -l -q'
@@ -612,31 +612,31 @@ docker run ubuntu echo hello world
 docker commit $(dl) helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### Commit с командой (требуется Dockerfile)
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
-### Get IP address
+### Получить IP-адрес
 
 ```
 docker inspect $(dl) | grep -wm1 IPAddress | cut -d '"' -f 4
 ```
 
-or install [jq](https://stedolan.github.io/jq/):
+или установите [jq](https://stedolan.github.io/jq/):
 
 ```
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect):
+или используя [go шаблон](https://docs.docker.com/engine/reference/commandline/inspect):
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-or when building an image from Dockerfile, when you want to pass in a build argument:
+или при создании обрзов из файла Docker, когда вы хотите передать аргумент построения:
 
 ```
 DOCKER_HOST_IP=`ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1`
@@ -647,88 +647,89 @@ docker build \
   some-directory/
  ```
 
-### Get port mapping
+### Получить сопоставление портов
 
 ```
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
-### Find containers by regular expression
+### Поиск контейнеров путем регулярного выражения
 
 ```
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
 ```
 
-### Get Environment Settings
+### Получить настройки среды
 
 ```
 docker run --rm ubuntu env
 ```
 
-### Kill running containers
+### Убить запущенные контейнеры
 
 ```
 docker kill $(docker ps -q)
 ```
 
-### Delete all containers (force!! running or stopped containers)
+### Удалите все контейнеры (принудительные или запущенные контейнеры)
 
 ```
 docker rm -f $(docker ps -qa)
 ```
 
-### Delete old containers
+### Удалить старые контейнеры
 
 ```
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
-### Delete stopped containers
+### Удалить остановленные контейнеры
 
 ```
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
-### Delete containers after stopping
+### Удаление контейнеров после остановки
 
 ```
 docker stop $(docker ps -aq) && docker rm -v $(docker ps -aq)
 ```
 
-### Delete dangling images
+### Удалить оборванные образы
 
 ```
 docker rmi $(docker images -q -f dangling=true)
 ```
 
-### Delete all images
+### Удалить все образы
 
 ```
 docker rmi $(docker images -q)
 ```
 
-### Delete dangling volumes
+### Удалить оборванные тома
 
-As of Docker 1.9:
+Начиная с Docker 1.9:
 
 ```
 docker volume rm $(docker volume ls -q -f dangling=true)
 ```
 
 In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will list all volumes.
+В 1.9.0, фильтр `dangling=false`  _не_ работает - он игнорируется и будет перечислять все тома.
 
-### Show image dependencies
+### Показать зависимости образов
 
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers
+### Похудение Docker контейнеров 
 
-- Cleaning APT in a RUN layer
+- Очистка APT на уровне RUN
 
-This should be done in the same layer as other apt commands.
-Otherwise, the previous layers still persist the original information and your images will still be fat.
+Это должно быть сделано в том же слое, что и другие команды apt.
+В противном случае предыдущие слои по-прежнему сохраняют исходную информацию, и ваши образы будут по-прежнему жирными.
 
 ```
 RUN {apt commands} \
@@ -736,89 +737,89 @@ RUN {apt commands} \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 
-- Flatten an image
+- Сгладить образ
 ```
 ID=$(docker run -d image-name /bin/bash)
 docker export $ID | docker import – flat-image-name
 ```
 
-- For backup
+- Для резервного копирования
 ```
 ID=$(docker run -d image-name /bin/bash)
 (docker export $ID | gzip -c > image.tgz)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
-### Monitor system resource utilization for running containers
+### Мониторинг использования ресурсов системы для запуска контейнеров
 
-To check the CPU, memory, and network I/O usage of a single container, you can use:
+Чтобы проверить использование ЦП, памяти и сетевого ввода-вывода в одном контейнере, вы можете использовать:
 
 ```
 docker stats <container>
 ```
 
-For all containers listed by id:
+Для всех контейнеров, перечисленных в id:
 
 ```
 docker stats $(docker ps -q)
 ```
 
-For all containers listed by name:
+Для всех контейнеров, перечисленных по имени:
 
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
-For all containers listed by image:
+Для всех контейнеров, перечисленных по образам:
 
 ```
 docker ps -a -f ancestor=ubuntu
 ```
 
-Remove all untagged images
+Удалить все непомеченные образы
 ```
 docker rmi $(docker images | grep “^” | awk '{split($0,a," "); print a[3]}')
 ```
 
-Remove container by a regular expression
+Удалить контейнер с помощью регулярного выражения
 ```
 docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
 ```
-Remove all exited containers
+Удалить все завершенные контейнеры
 ```
 docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 ```
 
-### Volumes can be files
+### Томы могут быть файлами
 
-Be aware that you can mount files as volumes. For example you can inject a configuration file like this:
+Имейте в виду, что вы можете монтировать файлы в виде томов. Например, вы можете ввести файл конфигурации следующим образом:
 
 ``` bash
-# copy file from container
+# копировать файл из контейнера
 docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
 
-# edit file
+# редактировать файл
 vim httpd.conf
 
-# start container with modified configuration
+# запускать контейнер с измененной конфигурацией
 docker run --rm -ti -v "$PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro" -p "80:80" httpd
 ```
 
-## Contributing
+## Содействие
 
-Here's how to contribute to this cheat sheet.
+Вот как внести свой вклад в этот чит-лист.
 
-### Open README.md
+### Открыть README.md
 
 Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
 
 ![Click This](../images/click.png)
 
-### Edit Page
+### Отредактировать страницу
 
 ![Edit This](../images/edit.png)
 
-### Make Changes and Commit
+### Внести изменения и зафиксировать
 
 ![Change This](../images/change.png)
 
