@@ -8,8 +8,8 @@
 * [Предпосылки](#Предпосылки)
 * [Установка](#Установка)
 * [Контейнеры](#Контейнеры)
-* [Образы](#images)
-* [Сеть](#networks)
+* [Образы](#Образы)
+* [Сеть](#Сеть)
 * [Реестр и репозиторий](#registry--repository)
 * [Dockerfile](#dockerfile)
 * [Слои](#layers)
@@ -35,7 +35,7 @@ Docker помогает разработчикам создавать и отп�
 
 ### Linux
 
-Ядро 3.10.x [минимальное требование] (https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) для Docker.
+Ядро 3.10.x [минимальное требование](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) для Docker.
 
 ### MacOS
 
@@ -53,7 +53,7 @@ curl -sSL https://get.docker.com/ | sh
 
 Если вы не хотите запускать случайный сценарий оболочки, см. [Инструкции](https://docs.docker.com/engine/installation/linux/) по установке на ваш дистрибутив.
 
-Если вы являетесь полноправным новичком Docker, вы должны следовать [сериям учебников] (https://docs.docker.com/engine/getstarted/) сейчас.
+Если вы являетесь полноправным новичком Docker, вы должны следовать [сериям учебников](https://docs.docker.com/engine/getstarted/) сейчас.
 
 ### macOS
 Скачать и установить [Docker Community Edition](https://www.docker.com/community-edition). если у вас есть Homebrew-Cask, просто введите `brew cask install docker`.
@@ -115,7 +115,7 @@ docker run hello-world
 
 Если вы хотите открыть порты контейнера через хост, см. Раздел [раскрытие портов](#открытие-портов).
 
-Перезагрузка политик в разбитых экземплярах докеров [рассматривается здесь] (http://container42.com/2014/09/30/docker-restart-policies/).
+Перезагрузка политик в разбитых экземплярах докеров [рассматривается здесь](http://container42.com/2014/09/30/docker-restart-policies/).
 
 #### Ограничения процессора
 
@@ -419,7 +419,7 @@ $ALIAS_PORT_1337_TCP_ADDR
 Поскольку тома являются изолированными файловыми системами, они часто используются для хранения состояния из вычислений между переходными контейнерами. То есть, у вас может быть контейнер без учета состояния и переходный процесс, запускаемый из скрипта, сдуть его, а затем добавить второй экземпляр переходного контейнера, откуда он остановился.
 
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
+См. [Расширенные тома](http://crosbymichael.com/advanced-docker-volumes.html) для больших подробностей. Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
 
 You can [map MacOS host directories as docker volumes](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
@@ -431,7 +431,7 @@ You can use remote NFS volumes if you're [feeling brave](https://docs.docker.com
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
-[Be aware that you can mount files as volumes.](#volumes-can-be-files)
+[Вы можете [сопоставлять каталоги хостов MacOS в виде докеровских томов]](#volumes-can-be-files)
 
 
 ## Открытие портов
@@ -477,7 +477,7 @@ If you forget what you mapped the port to on the host container, use `docker por
 docker port CONTAINER $CONTAINERPORT
 ```
 
-## Best Practices
+## Лучша практика
 
 This is where general Docker best practices and war stories go:
 
@@ -487,7 +487,7 @@ This is where general Docker best practices and war stories go:
 * [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
-## Security
+## Безопасность
 
 This is where security tips about Docker go. The Docker [security](https://docs.docker.com/engine/security/security/) page goes into more detail.
 
@@ -497,7 +497,7 @@ Docker should not be your only defense. You should secure and harden it.
 
 For an understanding of what containers leave exposed, you should read [Understanding and Hardening Linux Containers](https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-1-1.pdf) by [Aaron Grattafiori](https://twitter.com/dyn___). This is a complete and comprehensive guide to the issues involved with containers, with a plethora of links and footnotes leading on to yet more useful content. The security tips following are useful if you've already hardened containers in the past, but are not a substitute for understanding.
 
-### Security Tips
+### Советы по безопасности
 
 For greatest security, you want to run Docker inside a virtual machine. This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/). Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/). See the [Docker 1.10 security features](https://blog.docker.com/2016/02/docker-engine-1-10-security/) for more details.
 
