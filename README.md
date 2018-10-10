@@ -118,7 +118,7 @@ You can limit CPU, either using a percentage of all CPUs, or by using specific c
 For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
 
 ```
-docker run -ti --c 512 agileek/cpuset-test
+docker run -ti -c 512 agileek/cpuset-test
 ```
 
 You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
