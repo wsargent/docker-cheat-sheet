@@ -105,6 +105,7 @@ Another useful option is `docker run --name yourname docker_image` because when 
 * [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) sends a SIGKILL to a running container.
 * [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) will connect to a running container.
 
+If you want to detach from a running container, use `Ctrl + p, Ctrl + q`.
 If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/admin/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
 If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
