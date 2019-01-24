@@ -54,17 +54,13 @@ Docker 对于 Linux 内核版本的 [最低要求](https://docs.docker.com/engin
 获取 Docker 服务版本：
 
 ```
-$ docker version --format '{{.Server.Version}}'
-
-1.8.0
+docker version --format '{{.Server.Version}}'
 ```
 
 你也可以输出原始的 JSON 数据：
 
 ```
-$ docker version --format '{{json .}}'
-
-{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
+docker version --format '{{json .}}'
 ```
 
 ## 安装
