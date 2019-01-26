@@ -39,7 +39,7 @@ The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/engine/in
 
 ### MacOS
 
- 10.8 “Mountain Lion” or newer is required.
+10.8 “Mountain Lion” or newer is required.
 
 ## Installation
 
@@ -56,9 +56,10 @@ If you're not willing to run a random shell script, please see the [installation
 If you are a complete Docker newbie, you should follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
 
 ### macOS
+
 Download and install [Docker Community Edition](https://www.docker.com/community-edition). if you have Homebrew-Cask, just type `brew cask install docker`. Or Download and install [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker For Mac](https://docs.docker.com/docker-for-mac/) is nice, but it's not quite as finished as the VirtualBox install.  [See the comparison](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
-> **NOTE** Docker Toolbox is legacy. you should to use Docker Community Edition, See (Docker Toolbox)[https://docs.docker.com/toolbox/overview/]
+> **NOTE** Docker Toolbox is legacy. You should to use Docker Community Edition, See [Docker Toolbox](https://docs.docker.com/toolbox/overview/).
 
 Once you've installed Docker Community Edition, click the docker icon in Launchpad. Then start up a container:
 
@@ -69,6 +70,28 @@ docker run hello-world
 That's it, you have a running Docker container.
 
 If you are a complete Docker newbie, you should probably follow the [series of tutorials](https://docs.docker.com/engine/getstarted/) now.
+
+### Check Version
+
+It is very important that you always know the current version of Docker you are currently running on at any point in time. This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know which version of docker we have running currently.
+
+* [`docker version`](https://docs.docker.com/engine/reference/commandline/version/) shows which version of docker you have running.
+
+Get the server version:
+
+```
+$ docker version --format '{{.Server.Version}}'
+
+1.8.0
+```
+
+You can also dump raw JSON data:
+
+```
+$ docker version --format '{{json .}}'
+
+{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
+```
 
 ## Containers
 
@@ -105,6 +128,7 @@ Another useful option is `docker run --name yourname docker_image` because when 
 * [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) sends a SIGKILL to a running container.
 * [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) will connect to a running container.
 
+If you want to detach from a running container, use `Ctrl + p, Ctrl + q`.
 If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/admin/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
 
 If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
@@ -115,19 +139,19 @@ Restart policies on crashed docker instances are [covered here](http://container
 
 You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
 
-For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu for more:
+For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See <https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu> for more:
 
 ```
 docker run -ti -c 512 agileek/cpuset-test
 ```
 
-You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See https://agileek.github.io/docker/2014/08/06/docker-cpuset/ for details and some nice videos:
+You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See <https://agileek.github.io/docker/2014/08/06/docker-cpuset/> for details and some nice videos:
 
 ```
 docker run -ti --cpuset-cpus=0,4,6 agileek/cpuset-test
 ```
 
-Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See https://github.com/docker/docker/issues/20770 for more details.
+Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See <https://github.com/docker/docker/issues/20770> for more details.
 
 #### Memory Constraints
 
@@ -139,7 +163,7 @@ docker run -it -m 300M ubuntu:14.04 /bin/bash
 
 #### Capabilities
 
-Linux capabilities can be set by using `cap-add` and `cap-drop`.  See https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities for details.  This should be used for greater security.
+Linux capabilities can be set by using `cap-add` and `cap-drop`.  See <https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities> for details.  This should be used for greater security.
 
 To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
 
@@ -159,9 +183,8 @@ Give access to all devices:
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
 ```
 
-more info about privileged containers [here](
-https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities)
-
+More info about privileged containers [here](
+https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities).
 
 ### Info
 
@@ -176,7 +199,7 @@ https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capab
 
 `docker ps -a` shows running and stopped containers.
 
-`docker stats --all` shows a running list of containers.
+`docker stats --all` shows a list of all containers, default shows just running.
 
 ### Import / Export
 
@@ -233,7 +256,7 @@ will provide the output in JSON format:
 
 ### Cleaning up
 
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers.
+While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers. As of docker 1.13, `docker image prune` is also available for removing unused images. See [Prune](#prune).
 
 ### Load/Save image
 
@@ -340,7 +363,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
 * [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
 * [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.  Note that this only copies as root, so you have to chown manually regardless of your USER / WORKDIR setting.  See https://github.com/moby/moby/issues/30110
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.  Note that this only copies as root, so you have to chown manually regardless of your USER / WORKDIR setting, as same as `ADD`.  See <https://github.com/moby/moby/issues/30110>
 * [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configures a container that will run as an executable.
 * [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
 * [USER](https://docs.docker.com/engine/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
@@ -348,7 +371,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 * [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
 * [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
 * [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
-* [LABEL](https://docs.docker.com/engine/userguide/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
+* [LABEL](https://docs.docker.com/config/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
 
 ### Tutorial
 
@@ -369,9 +392,9 @@ The versioned filesystem in Docker is based on layers. They're like [git commits
 
 ## Links
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Linking into Redis](https://docs.docker.com/engine/examples/running_redis_service/) and [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
+Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
 
-This has been deprected to some extent by [user-defined networks](https://docs.docker.com/engine/userguide/networking/#user-defined-networks).
+This has been deprecated to some extent by [user-defined networks](https://docs.docker.com/network/).
 
 NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
 
@@ -402,7 +425,7 @@ Generally, linking between docker services is a subset of "service discovery", a
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/tutorials/dockervolumes/). They don't have to be connected to a particular container. You should use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability.  
+Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/tutorials/dockervolumes/). They don't have to be connected to a particular container. You can use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability. As of Docker 1.9.0, Docker has named volumes which replace data-only containers. Consider using named volumes to implement it rather than data containers.
 
 ### Lifecycle
 
@@ -420,7 +443,7 @@ You can mount them in several docker containers at once, using `docker run --vol
 
 Because volumes are isolated filesystems, they are often used to store state from computations between transient containers. That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. Container42 is [also helpful](http://container42.com/2014/11/03/docker-indepth-volumes/).
+See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. [Container42](http://container42.com/2014/11/03/docker-indepth-volumes/) is also helpful.
 
 You can [map MacOS host directories as docker volumes](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
@@ -432,7 +455,7 @@ You can use remote NFS volumes if you're [feeling brave](https://docs.docker.com
 
 You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
 
-[Be aware that you can mount files as volumes.](#volumes-can-be-files)
+Be aware that you can [mount files as volumes](#volumes-can-be-files).
 
 ## Exposing ports
 
@@ -490,7 +513,7 @@ This is where general Docker best practices and war stories go:
 
 This is where security tips about Docker go. The Docker [security](https://docs.docker.com/engine/security/security/) page goes into more detail.
 
-First things first: Docker runs as root. If you are in the `docker` group, you effectively [have root access](http://reventlov.com/advisories/using-the-docker-command-to-root-the-host). If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  
+First things first: Docker runs as root. If you are in the `docker` group, you effectively [have root access](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host). If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html).  
 
 Docker should not be your only defense. You should secure and harden it.
 
@@ -504,7 +527,7 @@ Docker image ids are [sensitive information](https://medium.com/@quayio/your-doc
 
 See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc) by [Thomas Sjögren](https://github.com/konstruktoid): some good stuff about container hardening in there.
 
-Check out the [docker bench security script](https://github.com/docker/docker-bench-security), download the [white papers](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/) and subscribe to the [mailing lists](https://www.docker.com/docker-security) (unfortunately Docker does not have a unique mailing list, only dev / user).
+Check out the [docker bench security script](https://github.com/docker/docker-bench-security), download the [white papers](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/).
 
 You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux). If you are using grsecurity in production, you should spring for [commercial support](https://grsecurity.net/business_support.php) for the [stable patches](https://grsecurity.net/announce.php), same as you would do for RedHat. It's $200 a month, which is nothing to your devops budget.
 
@@ -588,7 +611,7 @@ The new [Data Management Commands](https://github.com/docker/docker/pull/26108) 
 * `docker container prune`
 * `docker image prune`
 
-### df 
+### df
 
 `docker system df` presents a summary of the space currently used by different docker objects.
 
@@ -621,7 +644,7 @@ docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 docker inspect $(dl) | grep -wm1 IPAddress | cut -d '"' -f 4
 ```
 
-or install [jq](https://stedolan.github.io/jq/):
+or with [jq](https://stedolan.github.io/jq/) installed:
 
 ```
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
@@ -642,7 +665,7 @@ docker build \
   --build-arg ARTIFACTORY_ADDRESS=$DOCKER_HOST_IP 
   -t sometag \
   some-directory/
- ```
+```
 
 ### Get port mapping
 
@@ -729,8 +752,8 @@ Otherwise, the previous layers still persist the original information and your i
 
 ```
 RUN {apt commands} \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 
 - Flatten an image
@@ -749,39 +772,36 @@ gzip -dc image.tgz | docker import - flat-image-name
 ### Monitor system resource utilization for running containers
 
 To check the CPU, memory, and network I/O usage of a single container, you can use:
-
 ```
 docker stats <container>
 ```
 
 For all containers listed by id:
-
 ```
 docker stats $(docker ps -q)
 ```
 
 For all containers listed by name:
-
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
 For all containers listed by image:
-
 ```
 docker ps -a -f ancestor=ubuntu
 ```
 
-Remove all untagged images
+Remove all untagged images:
 ```
 docker rmi $(docker images | grep “^” | awk '{split($0,a," "); print a[3]}')
 ```
 
-Remove container by a regular expression
+Remove container by a regular expression:
 ```
 docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
 ```
-Remove all exited containers
+
+Remove all exited containers:
 ```
 docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 ```
