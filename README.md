@@ -212,17 +212,24 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 It is very important that you always know the current version of Docker you are currently running on at any point in time.This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know what version of docker we have running currently
 
-* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running 
-* [docker version [OPTIONS]]
+* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running
 
-Get the server version
-$ docker version --format '{{.Server.Version}}'
+```bash
+# Get the server version
+docker version --format '{{.Server.Version}}'
+```
 
-1.8.0
-Dump raw JSON data
-$ docker version --format '{{json .}}'
+In Docker 1.8.0 and higher, you can also dump the raw JSON data:
 
+```bash
+docker version --format '{{json .}}'
+```
+
+will provide the output in JSON format:
+
+```json
 {"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
+```
 
 ### Cleaning up
 
