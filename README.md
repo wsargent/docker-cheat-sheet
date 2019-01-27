@@ -77,19 +77,20 @@ It is very important that you always know the current version of Docker you are 
 
 * [`docker version`](https://docs.docker.com/engine/reference/commandline/version/) shows which version of docker you have running.
 
-Get the server version:
-
-```
-$ docker version --format '{{.Server.Version}}'
-
-1.8.0
+```bash
+# Get the server version
+docker version --format '{{.Server.Version}}'
 ```
 
-You can also dump raw JSON data:
+In Docker 1.8.0 and higher, you can also dump the raw JSON data:
 
+```bash
+docker version --format '{{json .}}'
 ```
-$ docker version --format '{{json .}}'
 
+will provide the output in JSON format:
+
+```json
 {"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
 ```
 
@@ -230,62 +231,6 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 * [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
-
-## Checking Docker Version 
-
-It is very important that you always know the current version of Docker you are currently running on at any point in time.This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know what version of docker we have running currently
-
-* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running
-
-```bash
-# Get the server version
-docker version --format '{{.Server.Version}}'
-```
-
-In Docker 1.8.0 and higher, you can also dump the raw JSON data:
-
-```bash
-docker version --format '{{json .}}'
-```
-
-will provide the output in JSON format:
-
-```json
-{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
-```
-
-### Cleaning up
-
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers. As of docker 1.13, `docker image prune` is also available for removing unused images. See [Prune](#prune).
-
-### Load/Save image
-
-Load an image from file:
-```
-docker load < my_image.tar.gz
-```
-
-Save an existing image:
-```
-docker save my_image:my_tag | gzip > my_image.tar.gz
-```
-
-### Import/Export container
-
-Import a container as an image from file:
-```
-cat my_container.tar.gz | docker import - my_image:my_tag
-```
-
-Export an existing container:
-```
-docker export my_container | gzip > my_container.tar.gz
-```
-
-### Difference between loading a saved image and importing an exported container as an image
-
-Loading an image using the `load` command creates a new image including its history.  
-Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
 
 ## Networks
 
