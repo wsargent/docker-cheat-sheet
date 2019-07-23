@@ -17,6 +17,7 @@
 * [Volumes](#volumes)
 * [Exposing Ports](#exposing-ports)
 * [Best Practices](#best-practices)
+* [Docker-Compose](#docker-compose)
 * [Security](#security)
 * [Tips](#tips)
 * [Contributing](#contributing)
@@ -508,6 +509,24 @@ This is where general Docker best practices and war stories go:
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+
+## Docker-Compose
+
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. To learn more about all the features of Compose, see the [list of features](https://docs.docker.com/compose/overview/#features).
+
+By using the following command you can start up your application:
+
+```
+docker-compose -f <docker-compose-file> up
+```
+
+You can also run docker-compose in detached mode using -d flag, then you can stop it whenever needed by the following command:
+
+```
+docker-compose stop
+```
+
+You can bring everything down, removing the containers entirely, with the down command. Pass `--volumes` to also remove the data volume.
 
 ## Security
 
