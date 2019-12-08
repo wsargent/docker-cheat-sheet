@@ -232,29 +232,6 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 * [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
 
-## Checking Docker Version 
-
-It is very important that you always know the current version of Docker you are currently running on at any point in time.This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know what version of docker we have running currently
-
-* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running
-
-```bash
-# Get the server version
-docker version --format '{{.Server.Version}}'
-```
-
-In Docker 1.8.0 and higher, you can also dump the raw JSON data:
-
-```bash
-docker version --format '{{json .}}'
-```
-
-will provide the output in JSON format:
-
-```json
-{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
-```
-
 ### Cleaning up
 
 While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers. As of docker 1.13, `docker image prune` is also available for removing unused images. See [Prune](#prune).
