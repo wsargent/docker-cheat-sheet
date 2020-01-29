@@ -353,7 +353,7 @@ Here are some common text editors and their syntax highlighting modules you coul
 
 ### Tutorial
 
-* [Flux7's Dockerfile Tutorial](http://flux7.com/blogs/docker/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+* [Flux7's Dockerfile Tutorial](https://www.flux7.com/tutorial/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
 
 ### Examples
 
