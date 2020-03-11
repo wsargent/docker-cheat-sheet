@@ -9,8 +9,8 @@
 ## 目录
 
 * [为何使用 Docker](#为何使用-docker)
-* [系统环境](#系统环境)
-* [安装](#安装)
+* [系统环境(Prerequisites)](#系统环境)
+* [安装(Installation)](#安装)
 * [容器(Containers)](#容器container)
 * [镜像(Images)](#镜像images)
 * [网络(Networks)](#网络networks)
@@ -20,9 +20,9 @@
 * [链接(Links)](#链接links)
 * [卷标(Volumes)](#卷标volumes)
 * [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
-* [最佳实践](#最佳实践)
-* [安全](#安全security)
-* [小贴士](#小贴士)
+* [最佳实践(Best Practices)](#最佳实践)
+* [安全(security)](#安全security)
+* [小贴士(Tips)](#小贴士)
 * [贡献手册(Contributing)](#贡献手册contributing)
 
 ## 为何使用 Docker
@@ -54,13 +54,17 @@ Docker 对于 Linux 内核版本的 [最低要求](https://docs.docker.com/engin
 获取 Docker 服务版本：
 
 ```
-docker version --format '{{.Server.Version}}'
+$ docker version --format '{{.Server.Version}}'
+
+1.8.0
 ```
 
 你也可以输出原始的 JSON 数据：
 
 ```
-docker version --format '{{json .}}'
+$ docker version --format '{{json .}}'
+
+{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
 ```
 
 ## 安装
