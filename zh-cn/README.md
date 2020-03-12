@@ -490,7 +490,7 @@ docker port CONTAINER $CONTAINERPORT
 
 这节准备讨论一些关于 Docker 安全性的问题。Docker 官方文档 [安全](https://docs.docker.com/articles/security/) 页面讲述了更多细节。
 
-首先第一件事：Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有 [root 权限](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你将 Docker 的 Unix Socket 暴露给容器，意味着你赋予了容器 [宿主机 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。
+首先第一件事：Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有 [root 权限](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你将 Docker 的 Unix Socket 暴露给容器，意味着你赋予了容器 [宿主机 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container/)。
 
 Docker 不应当作为唯一的防御措施。你应当使其更加安全可靠。
 
