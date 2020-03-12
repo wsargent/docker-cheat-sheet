@@ -9,8 +9,8 @@
 ## 目录
 
 * [为何使用 Docker](#为何使用-docker)
-* [系统环境](#系统环境)
-* [安装](#安装)
+* [系统环境(Prerequisites)](#系统环境)
+* [安装(Installation)](#安装)
 * [容器(Containers)](#容器container)
 * [镜像(Images)](#镜像images)
 * [网络(Networks)](#网络networks)
@@ -20,9 +20,9 @@
 * [链接(Links)](#链接links)
 * [卷标(Volumes)](#卷标volumes)
 * [暴露端口(Exposing Ports)](#暴露端口exposing-ports)
-* [最佳实践](#最佳实践)
-* [安全](#安全security)
-* [小贴士](#小贴士)
+* [最佳实践(Best Practices)](#最佳实践)
+* [安全(security)](#安全security)
+* [小贴士(Tips)](#小贴士)
 * [贡献手册(Contributing)](#贡献手册contributing)
 
 ## 为何使用 Docker
@@ -54,13 +54,17 @@ Docker 对于 Linux 内核版本的 [最低要求](https://docs.docker.com/engin
 获取 Docker 服务版本：
 
 ```
-docker version --format '{{.Server.Version}}'
+$ docker version --format '{{.Server.Version}}'
+
+1.8.0
 ```
 
 你也可以输出原始的 JSON 数据：
 
 ```
-docker version --format '{{json .}}'
+$ docker version --format '{{json .}}'
+
+{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
 ```
 
 ## 安装
@@ -486,7 +490,7 @@ docker port CONTAINER $CONTAINERPORT
 
 这节准备讨论一些关于 Docker 安全性的问题。Docker 官方文档 [安全](https://docs.docker.com/articles/security/) 页面讲述了更多细节。
 
-首先第一件事：Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有 [root 权限](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你将 Docker 的 Unix Socket 暴露给容器，意味着你赋予了容器 [宿主机 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container.html)。
+首先第一件事：Docker 是有 root 权限的。如果你在 `docker` 组，那么你就有 [root 权限](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host)。如果你将 Docker 的 Unix Socket 暴露给容器，意味着你赋予了容器 [宿主机 root 权限](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container/)。
 
 Docker 不应当作为唯一的防御措施。你应当使其更加安全可靠。
 
