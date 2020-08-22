@@ -267,22 +267,22 @@ Importing a container as an image using the `import` command creates a new image
 
 ## Networks
 
-Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) feature. Not much is known about it, so this is a good place to expand the cheat sheet. There is a note saying that it's a good way to configure docker containers to talk to each other without using ports. See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
+Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) feature. Docker automatically creates 3 network interfaces when you install it (bridge, host none). A new container is launched into the bridge network by default. To enable communication between multiple containers, you can create a new network and launch containers in it. This enbales containers to communicate to each other while being isolated from containers that are not connected to the network. Furthermore, it allows to map container names to their IP addresses. See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
 
 ### Lifecycle
 
-* [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/)
-* [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/)
+* [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/) NAME Create a new network (default type: bridge).
+* [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/) NAME Remove one or more networks by name or identifier. No containers can be connected to the network when deleting it.
 
 ### Info
 
-* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/)
-* [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/)
+* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/) List networks
+* [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/) NAME Display detailed information on one or more networks.
 
 ### Connection
 
-* [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/)
-* [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/)
+* [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/) NETWORK CONTAINER Connect a container to a network
+* [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/) NETWORK CONTAINER Disconnect a container from a network
 
 You can specify a [specific IP address for a container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
 
