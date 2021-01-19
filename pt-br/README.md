@@ -82,47 +82,50 @@ Se você não sabe nada sobre Docker, provavelmente você deveria seguir essa [s
 
 ### Windows 10
 
-Instructions to install Docker Desktop for Windows can be found [here](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
+Você encontra instruções para instalar o Docker Desktop para Windows [neste link](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
 
-Once insalled, open powershell as administrator
+Uma vez instalado, abra o *powershell* como administrador
 
 ```powershell
-#Display the version of docker installed:
+#Exibe a versão do docker instalado
 docker version
 
-##Pull, create, and run 'hello-world' all in one command:
+#Todos comandos pull, create, e run 'hello-world' em apenas um:
 docker run hello-world
 
 ```
 
-To continue with this cheat sheet, right click the Docker icon in the system tray, and go to settings. In order to mount volumes, the C:/ drive will need to be enabled in the settings to that information can be passed into the containers (later described in this article). 
+Para continuar as instruções neste *cheat sheet*, clique com botão direito do mouse no ícone do Docker -- no menu iniciar ou onde quer que seja -- e vá em configurações. Para montar volumes, você precisa habilitar o disco C:/ para que as informaçõe sejam transmitidas para os *containers* (que ainda será explicado neste artigo).
 
-To switch between Windows containers and Linux containers, right click the icon in the system tray and click the button to switch container operating system Doing this will stop the current containers that are running, and make them unaccessible until the container OS is switched back.
+Para trocar entre *containers* Windows e Linux, clique com o botão direito no icone do Docker e, na sequência, clique no botão para trocar sistema operacional dos *containers*. Após fazer isso, todos os *containers* ques estiveram rodando serão desligados e ficaram inacessíveis até que o SO do *container* ser trocado novamente.
 
 
-Additionally, if you have WSL or WSL2 installed on your desktop, you might want to install the Linux Kernel for Windows. Instructions can be found [here](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). This requires the Windows Subsystem for Linux feature. This will allow for containers to be accessed by WSL operating systems, as well as the efficiency gain from running WSL operating systems in docker. It is also preferred to use [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started) for this.
+Além disso, se você possui WSL ou WSL2 instalado no seu desktop, você pode instalar o Kernel do Linux para Windows. Instruções para executar tal tarefa podem ser encontradas [aqui] [here](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). Atente-se ao fato de que para isso, é necessário o recurso do Subsistema Windows para Linux. Isso permitirá que os *containers* sejam acessados pelos sistemas operacionais WSL, bem como o ganho de eficiêcia da execução dos sistemas operacionais WSL no Docker. Por fim, tamém é preferível o uso do [terminal Windows](https://docs.microsoft.com/en-us/windows/terminal/get-started) para tal tarefa.
 
 ### Windows Server 2016 / 2019
 
-Follow Microsoft's instructions that can be found [here](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server#install-docker)
+Siga as instruções da Microsoft disponíveis [aqui](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server#install-docker)
 
-If using the latest edge version of 2019, be prepared to only work in powershell, as it is only a servercore image (no desktop interface). When starting this machine, it will login and go straight to a powershell window. It is reccomended to install text editors and other tools using [Chocolatey](https://chocolatey.org/install).
 
-After installing, these commands will work:
+Se estiver usando a última versão de 2019, esteja preparado para trabalhar com o *powershell*, uma vez que esta versão não possui interface desktop. Quando inciar a máquina, ela vai logar e ir direto para um janela *powershell*. É recomendado instalar um editor de texto dentre outras ferramentas utilizando [Chocolatey](https://chocolatey.org/install).
+
+Após a instalação, esses comandos devem funcionar:
+
 ```powershell
-#Display the version of docker installed:
+#Exibe a versão do docker instalado
 docker version
 
-##Pull, create, and run 'hello-world' all in one command:
+#Todos comandos pull, create, e run 'hello-world' em apenas um:
 docker run hello-world
 
 ```
 
-Windows Server 2016 is not able to run linux images. 
+O Windows Server 2016 não é capar de rodar images Linux.
 
-Windows Server Build 2004 is capable of running both linux and windows containers simultaneously through Hyper-V isolation. When running containers, use the ```--isolation=hyperv``` command, which will isolate the container using a seperate kernel instance. 
+O Windows Server Build 2004 é capar de rodar *containers* Linux e Windows simultâneamente através do isolamento *Hyper-V*. Quando rodar os *containers*, utilize o comando ```--isolation=hyperv``` que vai isolar o *container* utilizando uma instância de kernel separada.
 
-### Check Version
+ 
+### Checando a versão
 
 It is very important that you always know the current version of Docker you are currently running on at any point in time. This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know which version of docker we have running currently.
 
