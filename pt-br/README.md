@@ -127,11 +127,12 @@ O Windows Server Build 2004 é capar de rodar *containers* Linux e Windows simul
  
 ### Checando a versão
 
-It is very important that you always know the current version of Docker you are currently running on at any point in time. This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know which version of docker we have running currently.
+É muito importante que você sempre saiba a versão do Docker que você está utilizando. Isso é muito útil porque você vai saber quais *features* são compatíveis com aquilo que você está rodado. Além disso, isso também é importante pois você saberá quais *containers* você deve rodar a partir da *Docker store* quando você estiver tentando usar *containers templates*. Sendo assim, vamos dar um olhar em como saber a versão do Docker que você está rodando no momento.
 
-* [`docker version`](https://docs.docker.com/engine/reference/commandline/version/) shows which version of docker you have running.
 
-Get the server version:
+* [`docker version`](https://docs.docker.com/engine/reference/commandline/version/): mostra a versão do Docker que você está rodando
+
+Obtendo a versão do servidor:
 
 ```
 $ docker version --format '{{.Server.Version}}'
@@ -139,7 +140,7 @@ $ docker version --format '{{.Server.Version}}'
 1.8.0
 ```
 
-You can also dump raw JSON data:
+Você também pode fazer um *dump* dos dados em JSON:
 
 ```
 $ docker version --format '{{json .}}'
