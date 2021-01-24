@@ -150,226 +150,231 @@ $ docker version --format '{{json .}}'
 
 ## Containers
 
-[Your basic isolated Docker process](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Containers are to Virtual Machines as threads are to processes. Or you can think of them as chroots on steroids.
+[O processo básico isolado do Docker](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). *Containers* são para máquinas virtuais o que *threads* são para processos. Ou você pode imaginá-los como *chroots* com esteróides.
 
-### Lifecycle
+### Ciclo de vida
 
-* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) creates a container but does not start it.
-* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) allows the container to be renamed.
-* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) creates and starts a container in one operation.
-* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deletes a container.
-* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) updates a container's resource limits.
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) cria um *container* mas não o inicia.
+* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) permite renomear um *container*.
+* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) cria e inicia um *container* em uma única operação
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deleta um *container*
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) atualiza os limites de recurso de um *container*.
 
-Normally if you run a container without options it will start and stop immediately, if you want keep it running you can use the command, `docker run -td container_id` this will use the option `-t` that will allocate a pseudo-TTY session and `-d` that will detach automatically the container (run container in background and print container ID).
+Normalmente, se você rodar um *container* sem utilizar nenhuma opção ele vai iniciar e parar imediatamente. Se você deseja que ele continue rodando você pode usar o comando `docker run -td <container_id>`. A opção `-t` vai alocar uma sessão pseudo-TTY e o `-d` vai desacomplar o *container* automaticamente (ou seja, vai rodar o *container* em background e imprimir o ID do container).
 
-If you want a transient container, `docker run --rm` will remove the container after it stops.
+Se você deseja um container transiente, `docker run --rm` vai remover o container assim que ele parar.
 
-If you want to map a directory on the host to a docker container, `docker run -v $HOSTDIR:$DOCKERDIR`. Also see [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+Se você deseja mapear um diretório da máquina *host* para o *container* do Docker, `docker run -v $HOSTDIR:$DOCKERDIR`. Saiba mais em [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
-If you want to remove also the volumes associated with the container, the deletion of the container must include the `-v` switch like in `docker rm -v`.
+Se você também deseja remover o  volume associado ao *container*, ao deletar o *container* você deve incluir a opção `-v`, por exemplo, `docker rm -v`.
 
-There's also a [logging driver](https://docs.docker.com/engine/admin/logging/overview/) available for individual containers in docker 1.10. To run docker with a custom log driver (i.e., to syslog), use `docker run --log-driver=syslog`.
+Também existe o [*logging driver*](https://docs.docker.com/engine/admin/logging/overview/), disponível para *containers* individuais no docker 1.10. Para rodar o docker com um *log driver* customizado (ou seja, para syslog), use `docker run --log-driver=syslog`.
 
-Another useful option is `docker run --name yourname docker_image` because when you specify the `--name` inside the run command this will allow you to start and stop a container by calling it with the name the you specified when you created it.
+Outra opção muito útil é o `docker run --name <yourname> <docker_image>` porque você pode especificar o `--name` dentro do comando `run` que vai lhe permite iniciar e parar o container através do nome que você especificou quando o criou.
 
-### Starting and Stopping
 
-* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) starts a container so it is running.
-* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) stops a running container.
-* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) stops and starts a container.
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pauses a running container, "freezing" it in place.
-* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) will unpause a running container.
-* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) blocks until running container stops.
-* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) sends a SIGKILL to a running container.
-* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) will connect to a running container.
+### Iniciando e parando 
 
-If you want to detach from a running container, use `Ctrl + p, Ctrl + q`.
-If you want to integrate a container with a [host process manager](https://docs.docker.com/engine/admin/host_integration/), start the daemon with `-r=false` then use `docker start -a`.
+* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) inicia um *container*, então ele passa a rodar.
+* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) para um *container* que esteja rodando.
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) para e inici um *container*.
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pausa um *container* que esteja rodando, "congelando" ele da maneira que está.
+* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) vai despausar um *container* que estava rodando.
+* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) bloqueia o *container* até que ele seja parado.
+* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) envia um SIGKILL para um *container* que esteja rodando.
+* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) vai se conectar a um *container* que esteja rodando.
 
-If you want to expose container ports through the host, see the [exposing ports](#exposing-ports) section.
+Se você deseja desacoplar um *container* que esteja rodando, utilize `Ctrl + p, Ctrl + q`. Se você deseja integrar um *container* com o [gerenciador de processos do host](https://docs.docker.com/engine/admin/host_integration/), inicialize o daemon com `-r=false` e depois use `docker start -a`.
 
-Restart policies on crashed docker instances are [covered here](http://container42.com/2014/09/30/docker-restart-policies/).
+Se você deseja expor portas do *container* través do *host*, veja a seção [expondo portas](#exposing-ports).
 
-#### CPU Constraints
+Políticas de reinicialização para instâncias "crashadas" do docker são [cobridas aqui](http://container42.com/2014/09/30/docker-restart-policies/).
 
-You can limit CPU, either using a percentage of all CPUs, or by using specific cores.  
+#### Restrições de CPU 
 
-For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See <https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu> for more:
+Você pode limitar o uso da CPU, seja usando uma porcentagem de todas as CPUs ou usando *cores* específicos.
+
+Por exemplo, você pode usar a configuração [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint). A configuração é um pouco estranha -- 1024 significa 100% da CPU, então se você quer um container que toma 50% de todos os *cores*, você deve utilizar 512. Veja <https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu> para mais:
 
 ```
 docker run -it -c 512 agileek/cpuset-test
 ```
 
-You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See <https://agileek.github.io/docker/2014/08/06/docker-cpuset/> for details and some nice videos:
+Você também pode usar alguns *cores* de uma CPU com o comando [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  Veja <https://agileek.github.io/docker/2014/08/06/docker-cpuset/> para mais detalhes e alguns vídeos bem legais:
 
 ```
 docker run -it --cpuset-cpus=0,4,6 agileek/cpuset-test
 ```
 
-Note that Docker can still **see** all of the CPUs inside the container -- it just isn't using all of them.  See <https://github.com/docker/docker/issues/20770> for more details.
+Observe que o Docker ainda pode **enxergar** todas as CPUs de dentro do *container* -- ele apenas não está usando todas elas. Veja <https://github.com/docker/docker/issues/20770> para mais detalhes.
 
-#### Memory Constraints
 
-You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
+#### Restrições de memória
+
+Você também pode setar [restrições de memória](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) no Docker:
 
 ```
 docker run -it -m 300M ubuntu:14.04 /bin/bash
 ```
 
-#### Capabilities
+#### *Capabilities*
 
-Linux capabilities can be set by using `cap-add` and `cap-drop`.  See <https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities> for details.  This should be used for greater security.
+Linux *capabilities* podem ser setadas utilizand as opções `cap-add` e `cap-drop`. Veja See <https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities> para mais detalhes. Elas devem ser utilizadas para aumentar a seguraça do sistema.
 
-To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
+Para montar um *filesystem* baseado no FUSE, você precisa combinar tanto `--cap-add` quanto `--device`:
 
 ```
 docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
-Give access to a single device:
+Para dar acesso a um único *device*:
 
 ```
 docker run -it --device=/dev/ttyUSB0 debian bash
 ```
 
-Give access to all devices:
+Para dar acesso a todos os *devices*:
 
 ```
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
 ```
 
-More info about privileged containers [here](
-https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities).
+Para mais informações sobre privilégios em *containers* [clique aqui](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities).
 
 ### Info
 
-* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) shows running containers.
-* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) gets logs from container.  (You can use a custom log driver, but logs is only available for `json-file` and `journald` in 1.10).
-* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) looks at all the info on a container (including IP address).
-* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) gets events from container.
-* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) shows public facing port of container.
-* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) shows running processes in container.
-* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) shows containers' resource usage statistics.
-* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) shows changed files in the container's FS.
+* [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps) motra os containers que estão rodando.
+* [`docker logs`](https://docs.docker.com/engine/reference/commandline/logs) obtém um log dos containers. (Você pode usar um log customizado, mas eles estão disponíveis apenas para `json-file` e `journald` na versão 1.10).
+* [`docker inspect`](https://docs.docker.com/engine/reference/commandline/inspect) olha para todas as informações de um container (incluindo o endereço IP).
+* [`docker events`](https://docs.docker.com/engine/reference/commandline/events) obtém os eventos de um container.
+* [`docker port`](https://docs.docker.com/engine/reference/commandline/port) mostra a porta pública de um container.
+* [`docker top`](https://docs.docker.com/engine/reference/commandline/top) mostra os processos rodando dentro de um container.
+* [`docker stats`](https://docs.docker.com/engine/reference/commandline/stats) mostra uma estatística dos recursos que o container está utilizando.
+* [`docker diff`](https://docs.docker.com/engine/reference/commandline/diff) mostra os arquivos alterados pelo FS de um container.
 
-`docker ps -a` shows running and stopped containers.
+`docker ps -a` mostra os containers que estão rodando e os que foram parados.
 
-`docker stats --all` shows a list of all containers, default shows just running.
+`docker stats --all` mostra uma lista de todos os containers. O padrão é mostrar apenas os que estão rodando.
 
-### Import / Export
+### Importar / Exportar
 
-* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copies files or folders between a container and the local filesystem.
-* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) turns container filesystem into tarball archive stream to STDOUT.
+* [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp) copia arquivos ou pastas entre o container e o *filesystem* local.
+* [`docker export`](https://docs.docker.com/engine/reference/commandline/export) transforma o *filesystem* do container em um fluxo de arquivo *tarball* para STDOUT.
 
-### Executing Commands
 
-* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) to execute a command in container.
+### Executando comandos
 
-To enter a running container, attach a new shell process to a running container called foo, use: `docker exec -it foo /bin/bash`.
+* [`docker exec`](https://docs.docker.com/engine/reference/commandline/exec) executa um comando dentro do container.
 
-## Images
+Por exemplo, para entrar em um container fictício, que esteja rodando, chamado foo, inclua um shell a ele da seguinte maneira: `docker exec -it foo /bin/bash`.
 
-Images are just [templates for docker containers](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
+## Imagens
 
-### Lifecycle
+Imagens são apenas [templates de um container docker](https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work).
 
-* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) shows all images.
-* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) creates an image from a tarball.
-* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) creates image from Dockerfile.
-* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) creates image from a container, pausing it temporarily if it is running.
-* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) removes an image.
-* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
-* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+### Ciclo de vida
+
+* [`docker images`](https://docs.docker.com/engine/reference/commandline/images) mostra todas as imagens.
+* [`docker import`](https://docs.docker.com/engine/reference/commandline/import) cria uma imagem a partir de um *tarball*.
+* [`docker build`](https://docs.docker.com/engine/reference/commandline/build) cria uma imagem a partir de um Dockerfile.
+* [`docker commit`](https://docs.docker.com/engine/reference/commandline/commit) cria uma imagem a partir de um container, pausando ele temporariamente caso ele esteja rodando.
+* [`docker rmi`](https://docs.docker.com/engine/reference/commandline/rmi) remove uma imagem.
+* [`docker load`](https://docs.docker.com/engine/reference/commandline/load) carrega uma imagem a partir de um arquivo tar no STDIN, incluindo imagess and tags (a partir da versão 0.7).
+* [`docker save`](https://docs.docker.com/engine/reference/commandline/save) salva uma imagem em um arquivo tar através do STDOUT com todas as camadas pais, tags e versões (a partir do 0.7).
 
 ### Info
 
-* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
-* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
+* [`docker history`](https://docs.docker.com/engine/reference/commandline/history) mostra o histórico de todas as imagens.
+* [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) dar uma tag a uma imagem (local ou *registry*)
 
-### Cleaning up
 
-While you can use the `docker rmi` command to remove specific images, there's a tool called [docker-gc](https://github.com/spotify/docker-gc) that will safely clean up images that are no longer used by any containers. As of docker 1.13, `docker image prune` is also available for removing unused images. See [Prune](#prune).
+### Fazendo uma limpeza
 
-### Load/Save image
+Você pode utilizar o comando `docker rmi` para remover imagens específicas, porém, existe uma ferramenta chamada [docker-gc](https://github.com/spotify/docker-gc), que de maneira segura, limpa as imagens que não está sendo utilizada por nenhum container. 
 
-Load an image from file:
+ that will safely clean up images that are no longer used by any containers. A partir do docker 1.13, o comando `docker image prune` também está disponível para remover imagens que não estão sendo usadas. Veja a seção [Prune](#prune).
+
+### Carregar/Salvar imagens
+
+Carregue uma imagem a partir do arquivo:
 ```
 docker load < my_image.tar.gz
 ```
 
-Save an existing image:
+Salve uma imagem existente usando:
 ```
 docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
 
-### Import/Export container
+### Importar/Exportar containers
 
-Import a container as an image from file:
+
+Importe um container com uma imagem a partir de um arquivo:
 ```
 cat my_container.tar.gz | docker import - my_image:my_tag
 ```
 
-Export an existing container:
+Exporte um container existente usando:
 ```
 docker export my_container | gzip > my_container.tar.gz
 ```
 
-### Difference between loading a saved image and importing an exported container as an image
+### Diferenças entre carregar uma imagem salva e importar um container exportado como uma imagem
 
-Loading an image using the `load` command creates a new image including its history.  
-Importing a container as an image using the `import` command creates a new image excluding the history which results in a smaller image size compared to loading an image.
+Carregar uma imagem usanfo o comando `load` cria uma nova imagem, incluindo o seu histórico. Importar um container como uma imagem usando o comando `import` cria uma nova imagem excluindo o seu histórico, o que resulta em uma imamgem de tamanho menor do que usando o comando anterior.
 
-## Networks
+## Rede
 
-Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) feature. Docker automatically creates 3 network interfaces when you install it (bridge, host none). A new container is launched into the bridge network by default. To enable communication between multiple containers, you can create a new network and launch containers in it. This enables containers to communicate to each other while being isolated from containers that are not connected to the network. Furthermore, it allows to map container names to their IP addresses. See [working with networks](https://docs.docker.com/engine/userguide/networking/work-with-networks/) for more details.
+O Docker possui *features* de [rede](https://docs.docker.com/engine/userguide/networking/). Automaticamente, ele cira 3 interfaces de rede quando você o instala (*bridge*, *host*, *none*). Um novo container é inicializado, por padrão, dentro da rede *bridge*. Para habilitar a comunicação entre multiplos containers, você pode criar uma nova rede e iniciarlizar o mesmo com ela. Isso vai habilitar a comunicação entre os containers dentro dela ao mesmo tempo que os isola dos outros containers que não estejam conectados nesta rede. Além disso, isso permite mapear os nomes dos containers com o seus respectivos endereços IP. Veja [trabalhando com redes](https://docs.docker.com/engine/userguide/networking/work-with-networks/) para mais detalhes.
 
-### Lifecycle
+### Ciclo de vida
 
-* [`docker network create`](https://docs.docker.com/engine/reference/commandline/network_create/) NAME Create a new network (default type: bridge).
-* [`docker network rm`](https://docs.docker.com/engine/reference/commandline/network_rm/) NAME Remove one or more networks by name or identifier. No containers can be connected to the network when deleting it.
+* [`docker network create <name>`](https://docs.docker.com/engine/reference/commandline/network_create/)  cria uma nova rede (tipo padrão: *bridge*).
+* [`docker network rm <name>`](https://docs.docker.com/engine/reference/commandline/network_rm/) remode uma ou mais redes especificadas pelo nome ou identificador. Nenhum container pode se conectar em uma rede quando deletada.
 
 ### Info
 
-* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/) List networks
-* [`docker network inspect`](https://docs.docker.com/engine/reference/commandline/network_inspect/) NAME Display detailed information on one or more networks.
+* [`docker network ls`](https://docs.docker.com/engine/reference/commandline/network_ls/) lista todas as redes.
+* [`docker network inspect <name>`](https://docs.docker.com/engine/reference/commandline/network_inspect/) mostra informações detalhadas de uma ou mais redes.
 
-### Connection
+### Conexão
 
-* [`docker network connect`](https://docs.docker.com/engine/reference/commandline/network_connect/) NETWORK CONTAINER Connect a container to a network
-* [`docker network disconnect`](https://docs.docker.com/engine/reference/commandline/network_disconnect/) NETWORK CONTAINER Disconnect a container from a network
+* [`docker network connect <network> <container>`](https://docs.docker.com/engine/reference/commandline/network_connect/) Conecta um container a uma rede
+* [`docker network disconnect <network> <container>`](https://docs.docker.com/engine/reference/commandline/network_disconnect/) Desconecta um container de uma rede
 
-You can specify a [specific IP address for a container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
+Você pode especificar um [endereço IP para um container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
 
 ```
-# create a new bridge network with your subnet and gateway for your ip block
+# cria uma nova rede bridge com sua subnet e gateway para seu bloco de endereço IP
 docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
 
-# run a nginx container with a specific ip in that block
+# roda um container nginx com um IP específico para o dado bloco
 $ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
 
-# curl the ip from any other place (assuming this is a public ip block duh)
+# da um culr no IP a partir de qualquer outro local (assumindo que este seja um IP público)
 $ curl 203.0.113.2
 ```
 
-## Registry & Repository
+## Registry & Repositório
 
-A repository is a *hosted* collection of tagged images that together create the file system for a container.
+Um repositório é uma coleção *hosteada* de imagens com tagas que juntas criam um sistema de arquivo para um container;
 
-A registry is a *host* -- a server that stores repositories and provides an HTTP API for [managing the uploading and downloading of repositories](https://docs.docker.com/engine/tutorials/dockerrepos/).
+Um *registry* é um *host* -- ou seja, um servidor que armazena repositórios e disponibiliza um API HTTP para [gerencias o upload e download dos repositórios](https://docs.docker.com/engine/tutorials/dockerrepos/).
 
-Docker.com hosts its own [index](https://hub.docker.com/) to a central registry which contains a large number of repositories.  Having said that, the central docker registry [does not do a good job of verifying images](https://titanous.com/posts/docker-insecurity) and should be avoided if you're worried about security.
+O Docker.com *hostea* seus prórpios [índices](https://hub.docker.com/) em uma central de *registries* qie contém um grande número de repositórios. Sendo assim, essa central [não é muito boa em verificar a procedência das imagens](https://titanous.com/posts/docker-insecurity) e deve ser evitada caso segurança seja algo crítico para você.
+ 
 
-* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) to login to a registry.
-* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) to logout from a registry.
-* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) searches registry for image.
-* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) pulls an image from registry to local machine.
-* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) pushes an image to the registry from local machine.
+* [`docker login`](https://docs.docker.com/engine/reference/commandline/login) efetua login em um *registry*.
+* [`docker logout`](https://docs.docker.com/engine/reference/commandline/logout) efetua logout de um *registry*.
+* [`docker search`](https://docs.docker.com/engine/reference/commandline/search) busca imagens dentro do *registry*.
+* [`docker pull`](https://docs.docker.com/engine/reference/commandline/pull) efetua um *pull* de uma imagem do *registry* para sua máquina local.
+* [`docker push`](https://docs.docker.com/engine/reference/commandline/push) efetua um *push* de uma imagem para o *registry* a partir da sua máquina local.
 
-### Run local registry
+### Rodando um *registry* local
 
-You can run a local registry by using the [docker distribution](https://github.com/docker/distribution) project and looking at the [local deploy](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md) instructions.
+Você pode rodar um *registry* local utilizando o projeto de [distribuição docker](https://github.com/docker/distribution) e seguindo as instruções de [*deploy* local](https://github.com/docker/docker.github.io/blob/master/registry/deploying.md).
 
-Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
+Além disso, você pode se interessar pela [lista de emails](https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution).
 
 ## Dockerfile
 
