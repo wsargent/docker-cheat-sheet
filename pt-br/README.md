@@ -378,123 +378,124 @@ Além disso, você pode se interessar pela [lista de emails](https://groups.goog
 
 ## Dockerfile
 
-[The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it. Vastly preferable to `docker commit`.  
+[O arquivo de configuração](https://docs.docker.com/engine/reference/builder/). Prepara um container Docker quando você executa o comando `docker build`. A maioria das pessoas preferem este comando do que o `docker commit`.  
 
-Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:
-* If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.
+Estes são alguns dos editores de texto que dão suporte, em termos de módulos que destacam a sintaxe, para criar Dockerfiles:
+* Se você utiliza o [jEdit](http://jedit.org), eu adicionei um módulo para destacar de sintaxe para o [Dockerfile](https://github.com/wsargent/jedit-docker-mode). Sinta-se livre para usar.
 * [Sublime Text 2](https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting)
 * [Atom](https://atom.io/packages/language-docker)
 * [Vim](https://github.com/ekalinin/Dockerfile.vim)
 * [Emacs](https://github.com/spotify/dockerfile-mode)
 * [TextMate](https://github.com/docker/docker/tree/master/contrib/syntax/textmate)
 * [VS Code](https://github.com/Microsoft/vscode-docker)
-* Also see [Docker meets the IDE](https://domeide.github.io/)
+* Veja também [Docker meets the IDE](https://domeide.github.io/)
 
-### Instructions
+### Instruções
 
 * [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
-* [FROM](https://docs.docker.com/engine/reference/builder/#from) Sets the Base Image for subsequent instructions.
-* [MAINTAINER (deprecated - use LABEL instead)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated) Set the Author field of the generated images.
-* [RUN](https://docs.docker.com/engine/reference/builder/#run) execute any commands in a new layer on top of the current image and commit the results.
-* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) provide defaults for an executing container.
-* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informs Docker that the container listens on the specified network ports at runtime.  NOTE: does not actually make ports accessible.
-* [ENV](https://docs.docker.com/engine/reference/builder/#env) sets environment variable.
-* [ADD](https://docs.docker.com/engine/reference/builder/#add) copies new files, directories or remote file to container.  Invalidates caches. Avoid `ADD` and use `COPY` instead.
-* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copies new files or directories to container.  By default this copies as root regardless of the USER/WORKDIR settings.  Use `--chown=<user>:<group>` to give ownership to another user/group.  (Same for `ADD`.)
-* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configures a container that will run as an executable.
-* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) creates a mount point for externally mounted volumes or other containers.
-* [USER](https://docs.docker.com/engine/reference/builder/#user) sets the user name for following RUN / CMD / ENTRYPOINT commands.
-* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) sets the working directory.
-* [ARG](https://docs.docker.com/engine/reference/builder/#arg) defines a build-time variable.
-* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) adds a trigger instruction when the image is used as the base for another build.
-* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) sets the system call signal that will be sent to the container to exit.
-* [LABEL](https://docs.docker.com/config/labels-custom-metadata/) apply key/value metadata to your images, containers, or daemons.
-* [SHELL](https://docs.docker.com/engine/reference/builder/#shell) override default shell is used by docker to run commands.
-* [HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) tells docker how to test a container to check that it is still working.
+* [FROM](https://docs.docker.com/engine/reference/builder/#from) Prepara a imagem base para as instruções subsequentes.
+* [MAINTAINER (depreciado - use a tag LABEL)](https://docs.docker.com/engine/reference/builder/#maintainer-deprecated) Define o autor que gerou a imagem.
+* [RUN](https://docs.docker.com/engine/reference/builder/#run) executa qualquer comando em uma nova camada em cima de uma imagem e *comita* o resultado.
+* [CMD](https://docs.docker.com/engine/reference/builder/#cmd) fornecer padrões para um container em execução.
+* [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose) informa o Docker que o container pode escutar uma determinada porta de rede durante o tempo de execução. NOTA: isso não faz com que a porta seja acessível.
+* [ENV](https://docs.docker.com/engine/reference/builder/#env) define uma variável de ambiente.
+* [ADD](https://docs.docker.com/engine/reference/builder/#add) copia novos arquivos, diretórios, ou arquivos remotos em um container. Invalida cache. Evite usar `ADD` e use o comando `COPY`.
+* [COPY](https://docs.docker.com/engine/reference/builder/#copy) copia um novo arquivo ou diretórios para dentro do container. Por padrão copia como root independente das configurações do USER/WORKDIR. Utilize `--chown=<user>:<group>` para poderes de acesso a outros usuários/grupos. (o mesmo é válido para o comando `ADD`.)
+* [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) configura um container que vai rodar como um executável.
+* [VOLUME](https://docs.docker.com/engine/reference/builder/#volume) cria um ponto de montagem para montar volumes externos ou outros containers.
+* [USER](https://docs.docker.com/engine/reference/builder/#user) define o nome de usuário para os seguintes comandos: RUN / CMD / ENTRYPOINT.
+* [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) define o diretório de trabalho.
+* [ARG](https://docs.docker.com/engine/reference/builder/#arg) define uma variável que existe durante o tempo de execução do *build*.
+* [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) adicionar uma instrução alarme que dispara quando a imagem está sendo usada como base para outra *build*.
+* [STOPSIGNAL](https://docs.docker.com/engine/reference/builder/#stopsignal) define o sinal de alerta do sistema que vai ser enviado para sair do container.
+* [LABEL](https://docs.docker.com/config/labels-custom-metadata/) aplica uma chave/valor para suas imagens, containers, ou *daemons*.
+* [SHELL](https://docs.docker.com/engine/reference/builder/#shell) sobrecarrega o shell padrão para rodar os comandos do docker.
+* [HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) informa docker como testar o container para testar se tudo está funcionando adequadamente.
 
 ### Tutorial
 
-* [Flux7's Dockerfile Tutorial](https://www.flux7.com/tutorial/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
+* [Tutorial do Flux7 para o Dockerfile](https://www.flux7.com/tutorial/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/)
 
-### Examples
+### Exemplos
 
-* [Examples](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
-* [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
-* [Michael Crosby](http://crosbymichael.com/) has some more [Dockerfiles best practices](http://crosbymichael.com/dockerfile-best-practices.html) / [take 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
-* [Building Good Docker Images](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Building Better Docker Images](http://jonathan.bergknoff.com/journal/building-better-docker-images)
-* [Managing Container Configuration with Metadata](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
-* [How to write excellent Dockerfiles](https://rock-it.pl/how-to-write-excellent-dockerfiles/)
+* [Exemplos](https://docs.docker.com/engine/reference/builder/#dockerfile-examples)
+* [Boas práticas para escrever Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Michael Crosby](http://crosbymichael.com/) tem mais algumas [boas práticas para criar Dockerfiles](http://crosbymichael.com/dockerfile-best-practices.html) / [parte 2](http://crosbymichael.com/dockerfile-best-practices-take-2.html).
+* [Construindo boas imagens Docker](http://jonathan.bergknoff.com/journal/building-good-docker-images) / [Construindo imagens Dockers ainda melhores](http://jonathan.bergknoff.com/journal/building-better-docker-images)
+* [Gerenciando a configuração de um container com metadados](https://speakerdeck.com/garethr/managing-container-configuration-with-metadata)
+* [Como escrever excelentes Dockerfiles](https://rock-it.pl/how-to-write-excellent-dockerfiles/)
 
-## Layers
+## Camadas
 
-The versioned filesystem in Docker is based on layers. They're like [git commits or changesets for filesystems](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
+O versionamento dos arquivos de sistema do docker é feito em camadas. Elas funcionam como [comits no git ou *changesets* para arquivos de sistemas](https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/).
 
 ## Links
 
-Links are how Docker containers talk to each other [through TCP/IP ports](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) show worked examples. You can also resolve [links by hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
+Links são como os containers Docker conversam uns com os outros [através de portas TCP/IP](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). [Atlassian](https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/) mostra alguns exemplos funcionais. Você também pode determinar [links pelo hostname](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file).
 
-This has been deprecated to some extent by [user-defined networks](https://docs.docker.com/network/).
+Este está depreciado para estender algumas [redes definidas por usuário](https://docs.docker.com/network/).
 
-NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with `-icc=false` to disable inter process communication.
+NOTA: se você deseja que os containers comuniquem uns com os outros apenas utilizando links, inicie o do docker daemon com `-icc=false` para desebilitar os processor de intra-comunicação. 
 
-If you have a container with the name CONTAINER (specified by `docker run --name CONTAINER`) and in the Dockerfile, it has an exposed port:
+Se você possui um container com nome CONTAINER (especificado por `docker run --name CONTAINER`) e em um Dockerfile, ele possui uma porta exposta:
 
 ```
 EXPOSE 1337
 ```
 
-Then if we create another container called LINKED like so:
+Então, se nós criarmos qualquer outro container chamado LINKED como este:
 
 ```
 docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
 
-Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
+Então, as portas expostas e os *aliases* do CONTAINER serão mostrados em LINKED com as seguintes variáveis de ambiente:
 
 ```
 $ALIAS_PORT_1337_TCP_PORT
 $ALIAS_PORT_1337_TCP_ADDR
 ```
 
-And you can connect to it that way.
+Você pode se conectar nele dessa maneira.
 
-To delete links, use `docker rm --link`.
+Para deletar os links, utilize o comando `docker rm --link`.
 
-Generally, linking between docker services is a subset of "service discovery", a big problem if you're planning to use Docker at scale in production.  Please read [The Docker Ecosystem: Service Discovery and Distributed Configuration Stores](https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores) for more info.
+Geralmente, a *linkagem* entre serviços docker é um subconjunto de um "descobrimento de serviço", um grande problema caso você esteja planejando usar Docker para escalar em produção. Você pode se referir ao livro [The Docker Ecosystem: Service Discovery and Distributed Configuration Stores](https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores) para mais informações.
 
 ## Volumes
 
-Docker volumes are [free-floating filesystems](https://docs.docker.com/engine/tutorials/dockervolumes/). They don't have to be connected to a particular container. You can use volumes mounted from [data-only containers](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) for portability. As of Docker 1.9.0, Docker has named volumes which replace data-only containers. Consider using named volumes to implement it rather than data containers.
+Os volumes no Docker são [arquivos de sistemas flutuantes](https://docs.docker.com/engine/tutorials/dockervolumes/). Eles não possuem uma conexão particular com um container. Você pode usar volumes montados a partir de [container somente de dados](https://medium.com/@ramangupta/why-docker-data-containers-are-good-589b3c6c749e) para fins de portabilidade. A partir do Docker 1.9.0, o Docker passou a nomear volumes que substituem containers apenas de dados. Considere usar volumes nomeados para implementar isso ao invés de containers de dados.
 
-### Lifecycle
+### Ciclo de vidar
 
 * [`docker volume create`](https://docs.docker.com/engine/reference/commandline/volume_create/)
 * [`docker volume rm`](https://docs.docker.com/engine/reference/commandline/volume_rm/)
 
-### Info
+### Informações
 
 * [`docker volume ls`](https://docs.docker.com/engine/reference/commandline/volume_ls/)
 * [`docker volume inspect`](https://docs.docker.com/engine/reference/commandline/volume_inspect/)
 
-Volumes are useful in situations where you can't use links (which are TCP/IP only). For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.
+Volumes são úteis em situações em que você não quer usar links (que são apenas TCP/IP). Por exemplo, se você precisar ter duas instancias docker comunicando através de algo deixado no arquivo de sistema.
 
-You can mount them in several docker containers at once, using `docker run --volumes-from`.
+Você pode montar vários containers docker de uma vez usando o comando `docker run --volumes-from`.
 
-Because volumes are isolated filesystems, they are often used to store state from computations between transient containers. That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.
+Como os volumes são sistemas de arquivos isolados, frequentemente, eles são usados para armazenar estados de alguma computação que é transiente no container. Isto é, você pode ter um container sem estado e transiente continuado de ponto que útimo container deixou.
 
-See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) for more details. [Container42](http://container42.com/2014/11/03/docker-indepth-volumes/) is also helpful.
+Veja [volumes avançados](http://crosbymichael.com/advanced-docker-volumes.html) para mais detalhes. [Container42](http://container42.com/2014/11/03/docker-indepth-volumes/) também é bem útil.
 
-You can [map MacOS host directories as docker volumes](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
+Você pode [mapear diretórios hosts do MacOS como volumes docker](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
 ```
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
-You can use remote NFS volumes if you're [feeling brave](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume).
+Você pode usar columes NFS remotos se você estiver se 
+You can use remote NFS volumes if you're [sentindo corajoso](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume).
 
-You may also consider running data-only containers as described [here](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) to provide some data portability.
+Você também pode considerar rodar containers apenas de dados como descrito [aqui](http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/) para obter uma certa portabilidade de dados.
 
-Be aware that you can [mount files as volumes](#volumes-can-be-files).
+Saiba que você pode [montar arquivos como volumes](#volumes-can-be-files).
 
 ## Exposing ports
 
