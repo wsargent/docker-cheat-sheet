@@ -16,7 +16,7 @@
 * [Links](#links)
 * [Volumes](#volumes)
 * [Expondo portas](#exposing-ports)
-* [Boas praticas](#best-practices)
+* [Boas práticas](#best-practices)
 * [Docker-Compose](#docker-compose)
 * [Segurança](#security)
 * [Dicas](#tips)
@@ -48,7 +48,7 @@ O kernel 3.10.x é [o requisito mínimo](https://docs.docker.com/engine/installa
 
 ### Windows Server
 
-Windows Server 2016 é a versão mínima necessária para instalar o docker e o docker-compose. Existem limitações nessa versão, como por exemplo múltiplas redes virtuais e *containers* Linux. Windows Server 2019 ou posterior é recomendado.
+Windows Server 2016 é a versão mínima necessária para instalar o docker e o docker-compose. Existem limitações nessa versão, como por exemplo múltiplas redes virtuais e containers Linux. Windows Server 2019 ou posterior é recomendado.
 
 ## Instalação
 
@@ -70,13 +70,13 @@ Baixe e instale o [*Docker Community Edition*](https://www.docker.com/community-
 
 > **NOTA** *Docker Toolbox* está no estado *legacy*. Você deveria usar o *Docker Community Edition*. Veja o [*Docker Toolbox*](https://docs.docker.com/toolbox/overview/).
 
-Assim que você instalar o *Docker Community Edition*, clique no ícone do Docker no *Launchpad*. Em seguida inicie um *container*:
+Assim que você instalar o *Docker Community Edition*, clique no ícone do Docker no *Launchpad*. Em seguida inicie um container:
 
 ```
 docker run hello-world
 ```
 
-É isso! Agora você tem um Docker *container* rodando.
+É isso! Agora você tem um Docker container rodando.
 
 Se você não sabe nada sobre Docker, provavelmente você deveria seguir essa [série de tutoriais](https://docs.docker.com/engine/getstarted/) antes de continuar.
 
@@ -95,12 +95,12 @@ docker run hello-world
 
 ```
 
-Para continuar as instruções neste *cheat sheet*, clique com botão direito do mouse no ícone do Docker -- no menu iniciar ou onde quer que seja -- e vá em configurações. Para montar volumes, você precisa habilitar o disco C:/ para que as informaçõe sejam transmitidas para os *containers* (que ainda será explicado neste artigo).
+Para continuar as instruções neste *cheat sheet*, clique com botão direito do mouse no ícone do Docker -- no menu iniciar ou onde quer que seja -- e vá em configurações. Para montar volumes, você precisa habilitar o disco C:/ para que as informaçõe sejam transmitidas para os containers (que ainda será explicado neste artigo).
 
-Para trocar entre *containers* Windows e Linux, clique com o botão direito no icone do Docker e, na sequência, clique no botão para trocar sistema operacional dos *containers*. Após fazer isso, todos os *containers* ques estiveram rodando serão desligados e ficaram inacessíveis até que o SO do *container* ser trocado novamente.
+Para trocar entre containers Windows e Linux, clique com o botão direito no icone do Docker e, na sequência, clique no botão para trocar sistema operacional dos containers. Após fazer isso, todos os containers ques estiveram rodando serão desligados e ficaram inacessíveis até que o SO do container ser trocado novamente.
 
 
-Além disso, se você possui WSL ou WSL2 instalado no seu desktop, você pode instalar o Kernel do Linux para Windows. Instruções para executar tal tarefa podem ser encontradas [aqui] [here](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). Atente-se ao fato de que para isso, é necessário o recurso do Subsistema Windows para Linux. Isso permitirá que os *containers* sejam acessados pelos sistemas operacionais WSL, bem como o ganho de eficiêcia da execução dos sistemas operacionais WSL no Docker. Por fim, tamém é preferível o uso do [terminal Windows](https://docs.microsoft.com/en-us/windows/terminal/get-started) para tal tarefa.
+Além disso, se você possui WSL ou WSL2 instalado no seu desktop, você pode instalar o Kernel do Linux para Windows. Instruções para executar tal tarefa podem ser encontradas [aqui] [here](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). Atente-se ao fato de que para isso, é necessário o recurso do Subsistema Windows para Linux. Isso permitirá que os containers sejam acessados pelos sistemas operacionais WSL, bem como o ganho de eficiêcia da execução dos sistemas operacionais WSL no Docker. Por fim, tamém é preferível o uso do [terminal Windows](https://docs.microsoft.com/en-us/windows/terminal/get-started) para tal tarefa.
 
 ### Windows Server 2016 / 2019
 
@@ -122,12 +122,12 @@ docker run hello-world
 
 O Windows Server 2016 não é capar de rodar images Linux.
 
-O Windows Server Build 2004 é capar de rodar *containers* Linux e Windows simultâneamente através do isolamento *Hyper-V*. Quando rodar os *containers*, utilize o comando ```--isolation=hyperv``` que vai isolar o *container* utilizando uma instância de kernel separada.
+O Windows Server Build 2004 é capar de rodar containers Linux e Windows simultâneamente através do isolamento *Hyper-V*. Quando rodar os containers, utilize o comando ```--isolation=hyperv``` que vai isolar o container utilizando uma instância de kernel separada.
 
  
 ### Checando a versão
 
-É muito importante que você sempre saiba a versão do Docker que você está utilizando. Isso é muito útil porque você vai saber quais *features* são compatíveis com aquilo que você está rodado. Além disso, isso também é importante pois você saberá quais *containers* você deve rodar a partir da *Docker store* quando você estiver tentando usar *containers templates*. Sendo assim, vamos dar um olhar em como saber a versão do Docker que você está rodando no momento.
+É muito importante que você sempre saiba a versão do Docker que você está utilizando. Isso é muito útil porque você vai saber quais *features* são compatíveis com aquilo que você está rodado. Além disso, isso também é importante pois você saberá quais containers você deve rodar a partir da *Docker store* quando você estiver tentando usar *containers templates*. Sendo assim, vamos dar um olhar em como saber a versão do Docker que você está rodando no momento.
 
 
 * [`docker version`](https://docs.docker.com/engine/reference/commandline/version/): mostra a versão do Docker que você está rodando
@@ -150,43 +150,43 @@ $ docker version --format '{{json .}}'
 
 ## Containers
 
-[O processo básico isolado do Docker](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). *Containers* são para máquinas virtuais o que *threads* são para processos. Ou você pode imaginá-los como *chroots* com esteróides.
+[O processo básico isolado do Docker](http://etherealmind.com/basics-docker-containers-hypervisors-coreos/). Containers são para máquinas virtuais o que *threads* são para processos. Ou você pode imaginá-los como *chroots* com esteróides.
 
 ### Ciclo de vida
 
-* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) cria um *container* mas não o inicia.
-* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) permite renomear um *container*.
-* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) cria e inicia um *container* em uma única operação
-* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deleta um *container*
-* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) atualiza os limites de recurso de um *container*.
+* [`docker create`](https://docs.docker.com/engine/reference/commandline/create) cria um container mas não o inicia.
+* [`docker rename`](https://docs.docker.com/engine/reference/commandline/rename/) permite renomear um container.
+* [`docker run`](https://docs.docker.com/engine/reference/commandline/run) cria e inicia um container em uma única operação
+* [`docker rm`](https://docs.docker.com/engine/reference/commandline/rm) deleta um container
+* [`docker update`](https://docs.docker.com/engine/reference/commandline/update/) atualiza os limites de recurso de um container.
 
-Normalmente, se você rodar um *container* sem utilizar nenhuma opção ele vai iniciar e parar imediatamente. Se você deseja que ele continue rodando você pode usar o comando `docker run -td <container_id>`. A opção `-t` vai alocar uma sessão pseudo-TTY e o `-d` vai desacomplar o *container* automaticamente (ou seja, vai rodar o *container* em background e imprimir o ID do container).
+Normalmente, se você rodar um container sem utilizar nenhuma opção ele vai iniciar e parar imediatamente. Se você deseja que ele continue rodando você pode usar o comando `docker run -td <container_id>`. A opção `-t` vai alocar uma sessão pseudo-TTY e o `-d` vai desacomplar o container automaticamente (ou seja, vai rodar o container em background e imprimir o ID do container).
 
 Se você deseja um container transiente, `docker run --rm` vai remover o container assim que ele parar.
 
-Se você deseja mapear um diretório da máquina *host* para o *container* do Docker, `docker run -v $HOSTDIR:$DOCKERDIR`. Saiba mais em [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
+Se você deseja mapear um diretório da máquina *host* para o container do Docker, `docker run -v $HOSTDIR:$DOCKERDIR`. Saiba mais em [Volumes](https://github.com/wsargent/docker-cheat-sheet/#volumes).
 
-Se você também deseja remover o  volume associado ao *container*, ao deletar o *container* você deve incluir a opção `-v`, por exemplo, `docker rm -v`.
+Se você também deseja remover o  volume associado ao container, ao deletar o container você deve incluir a opção `-v`, por exemplo, `docker rm -v`.
 
-Também existe o [*logging driver*](https://docs.docker.com/engine/admin/logging/overview/), disponível para *containers* individuais no docker 1.10. Para rodar o docker com um *log driver* customizado (ou seja, para syslog), use `docker run --log-driver=syslog`.
+Também existe o [*logging driver*](https://docs.docker.com/engine/admin/logging/overview/), disponível para containers individuais no docker 1.10. Para rodar o docker com um *log driver* customizado (ou seja, para syslog), use `docker run --log-driver=syslog`.
 
 Outra opção muito útil é o `docker run --name <yourname> <docker_image>` porque você pode especificar o `--name` dentro do comando `run` que vai lhe permite iniciar e parar o container através do nome que você especificou quando o criou.
 
 
 ### Iniciando e parando 
 
-* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) inicia um *container*, então ele passa a rodar.
-* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) para um *container* que esteja rodando.
-* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) para e inici um *container*.
-* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pausa um *container* que esteja rodando, "congelando" ele da maneira que está.
-* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) vai despausar um *container* que estava rodando.
-* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) bloqueia o *container* até que ele seja parado.
-* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) envia um SIGKILL para um *container* que esteja rodando.
-* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) vai se conectar a um *container* que esteja rodando.
+* [`docker start`](https://docs.docker.com/engine/reference/commandline/start) inicia um container, então ele passa a rodar.
+* [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) para um container que esteja rodando.
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) para e inici um container.
+* [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pausa um container que esteja rodando, "congelando" ele da maneira que está.
+* [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) vai despausar um container que estava rodando.
+* [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) bloqueia o container até que ele seja parado.
+* [`docker kill`](https://docs.docker.com/engine/reference/commandline/kill) envia um SIGKILL para um container que esteja rodando.
+* [`docker attach`](https://docs.docker.com/engine/reference/commandline/attach) vai se conectar a um container que esteja rodando.
 
-Se você deseja desacoplar um *container* que esteja rodando, utilize `Ctrl + p, Ctrl + q`. Se você deseja integrar um *container* com o [gerenciador de processos do host](https://docs.docker.com/engine/admin/host_integration/), inicialize o daemon com `-r=false` e depois use `docker start -a`.
+Se você deseja desacoplar um container que esteja rodando, utilize `Ctrl + p, Ctrl + q`. Se você deseja integrar um container com o [gerenciador de processos do host](https://docs.docker.com/engine/admin/host_integration/), inicialize o daemon com `-r=false` e depois use `docker start -a`.
 
-Se você deseja expor portas do *container* través do *host*, veja a seção [expondo portas](#exposing-ports).
+Se você deseja expor portas do container través do *host*, veja a seção [expondo portas](#exposing-ports).
 
 Políticas de reinicialização para instâncias "crashadas" do docker são [cobridas aqui](http://container42.com/2014/09/30/docker-restart-policies/).
 
@@ -206,7 +206,7 @@ Você também pode usar alguns *cores* de uma CPU com o comando [`cpuset-cpus`](
 docker run -it --cpuset-cpus=0,4,6 agileek/cpuset-test
 ```
 
-Observe que o Docker ainda pode **enxergar** todas as CPUs de dentro do *container* -- ele apenas não está usando todas elas. Veja <https://github.com/docker/docker/issues/20770> para mais detalhes.
+Observe que o Docker ainda pode **enxergar** todas as CPUs de dentro do container -- ele apenas não está usando todas elas. Veja <https://github.com/docker/docker/issues/20770> para mais detalhes.
 
 
 #### Restrições de memória
@@ -239,7 +239,7 @@ Para dar acesso a todos os *devices*:
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
 ```
 
-Para mais informações sobre privilégios em *containers* [clique aqui](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities).
+Para mais informações sobre privilégios em containers [clique aqui](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities).
 
 ### Info
 
@@ -497,29 +497,30 @@ Você também pode considerar rodar containers apenas de dados como descrito [aq
 
 Saiba que você pode [montar arquivos como volumes](#volumes-can-be-files).
 
-## Exposing ports
+## Expondo portas
 
-Exposing incoming ports through the host container is [fiddly but doable](https://docs.docker.com/engine/reference/run/#expose-incoming-ports).
 
-This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
+Expor as portas de entrada através do container *host* é [complicado, mas factível](https://docs.docker.com/engine/reference/run/#expose-incoming-ports).
+
+Isso é feito mapeando a porta do container para com a porta do *host* (apenas usando a interface *localhost*) usando a opção `-p`:
 
 ```
-docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t ALGUMA_IMAGEM
 ```
 
-You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
+Você pode informar ao Docker que o container escuta uma porta de rede específica durante a execução ao usar o comando [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
 
 ```
 EXPOSE <CONTAINERPORT>
 ```
 
-Note that EXPOSE does not expose the port itself -- only `-p` will do that. To expose the container's port on your localhost's port:
+Note que `EXPOSE` não expões a porta propriamente dita -- apenas a opção `-p` faz isso. Para expor uma porta do container na sua porta *localhost*:
 
 ```
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
 ```
 
-If you're running Docker in Virtualbox, you then need to forward the port there as well, using [forwarded_port](https://docs.vagrantup.com/v2/networking/forwarded_ports.html). Define a range of ports in your Vagrantfile like this so you can dynamically map them:
+Se você estiver rodando Docker em uma VirtualBox, então você precisa encaminha a porta para lá também usando uma [*forwarded_port*](https://docs.vagrantup.com/v2/networking/forwarded_ports.html). Defina um intervalo de portas que no seu *Vagrantfile* dessa maneira para que vcê possa mapeá-las dinamicamente:
 
 ```
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -533,137 +534,139 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ```
 
-If you forget what you mapped the port to on the host container, use `docker port` to show it:
+Se você esquecer o que você mapeou na porta do seu container *host*, utilize `docker port` para mostrar o que você fez:
 
 ```
 docker port CONTAINER $CONTAINERPORT
 ```
 
-## Best Practices
+## Boas práticas
 
-This is where general Docker best practices and war stories go:
+É aqui onde boas práticas gerais do Docker uma discusão começa:
 
-* [The Rabbit Hole of Using Docker in Automated Tests](http://gregoryszorc.com/blog/2014/10/16/the-rabbit-hole-of-using-docker-in-automated-tests/)
-* [Bridget Kromhout](https://twitter.com/bridgetkromhout) has a useful blog post on [running Docker in production](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) at Dramafever.
-* There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
-* [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
-* [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+* [A toca do coelho do uso do Docker em testes automatizados](http://gregoryszorc.com/blog/2014/10/16/the-rabbit-hole-of-using-docker-in-automated-tests/)
+* [Bridget Kromhout](https://twitter.com/bridgetkromhout) possui um post muito útil no  blog: [rodando Docker em produção](http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html) no Dramafever.
+* Também tem o [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) de boas práticas feito pela Lyst.
+* [Contruindo um ambiente de desenvolvimento com Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
+* [Discurso em um container Docker](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
 
 ## Docker-Compose
 
-Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. To learn more about all the features of Compose, see the [list of features](https://docs.docker.com/compose/overview/#features).
+*Compose* é uma ferramenta para definir e rodar aplicações em vários containers Docker. Com o *compose* você utiliza uma arquivo YAML para configurar os serviços de sua aplicação. Na sequência, com uum único comando, você cria e inicia todos os serviços a partir da sua configuração. Para aprender mais sobre todas as funcionalidades do *Compose*, veja a [lista de funcionalidades](https://docs.docker.com/compose/overview/#features).
 
-By using the following command you can start up your application:
+Ao usar este comando, você inicia sua aplicação:
 
 ```
 docker-compose -f <docker-compose-file> up
 ```
 
-You can also run docker-compose in detached mode using -d flag, then you can stop it whenever needed by the following command:
+Você também pode rodar `docker-compose` de maneira desacoplada usando a opção `-d` e parar ele quando quiser utilizando o comando:
 
 ```
 docker-compose stop
 ```
+Você pode desligar tudo
+Você pode desligar tudo, remover os containers inteiramente, com o comando `down`. Passe `--volumes` para remover também o dados.
 
-You can bring everything down, removing the containers entirely, with the down command. Pass `--volumes` to also remove the data volume.
+## Segurança
 
-## Security
+Aqui vão as dicas de segurança do Docker! A página sobre [segurança](https://docs.docker.com/engine/security/security/) do Docker fornece muito mais detalhes.
 
-This is where security tips about Docker go. The Docker [security](https://docs.docker.com/engine/security/security/) page goes into more detail.
+Começando do começo: Docker roda como root. Se você está dentro do `docker group`, você [possui acesso root](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host). Se você expor um unix socket do docker para um container, você está dando para este container [acesso root para o host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container/).
 
-First things first: Docker runs as root. If you are in the `docker` group, you effectively [have root access](https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host). If you expose the docker unix socket to a container, you are giving the container [root access to the host](https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container/).
+Docker não pode ser sua única defesa. Você deve protegê-lo da melhor maneira possível.
 
-Docker should not be your only defense. You should secure and harden it.
+Para entender o que os containers deixam exposto, você deveria ler o tutorial [Entendendo e Protegendo Containers Linux](https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-1-1.pdf) escrito por [Aaron Grattafiori](https://twitter.com/dyn___). Ele um guia completo e compreensível para as questões envolvendo containers com uma grande quantidade de links e notas de rodapés que te leva para conteúdos ainda mais úteis. As dicas de seguranças que vêm a seguir são úteis se você já vem aumentando a segurança dos seus conteiners. Entretanto, elas não substituem o conhecimento sobre o assunto.
 
-For an understanding of what containers leave exposed, you should read [Understanding and Hardening Linux Containers](https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-1-1.pdf) by [Aaron Grattafiori](https://twitter.com/dyn___). This is a complete and comprehensive guide to the issues involved with containers, with a plethora of links and footnotes leading on to yet more useful content. The security tips following are useful if you've already hardened containers in the past, but are not a substitute for understanding.
+### Dicas de segurança
 
-### Security Tips
+Para a maior segurança possível, é desejável rodar o Docker dentro de uma máquina virtual. Essa dica vem direto do líder do time de segurança do Docker -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notas](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/). 
+Na sequência, rode ele com  AppArmor / seccomp / SELinux / grsec etc para [limitar as permissões do container](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/). Veja as [funcionalidades de segurança do Docker 1.10](https://blog.docker.com/2016/02/docker-engine-1-10-security/) para mais detalhes.
 
-For greatest security, you want to run Docker inside a virtual machine. This is straight from the Docker Security Team Lead -- [slides](http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security) / [notes](http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/). Then, run with AppArmor / seccomp / SELinux / grsec etc to [limit the container permissions](http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/). See the [Docker 1.10 security features](https://blog.docker.com/2016/02/docker-engine-1-10-security/) for more details.
+As IDs de imagens do Docker são [informações sensíveis](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) e não devem serem expostas para o mundo. Trate elas como *passwords*.
 
-Docker image ids are [sensitive information](https://medium.com/@quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4) and should not be exposed to the outside world. Treat them like passwords.
+Veja o [*Cheat Sheet* de segurança do Docker](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc) por [Thomas Sjögren](https://github.com/konstruktoid): tem bastante coisa boa sobre aumentar a segurança em containers lá.
 
-See the [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc) by [Thomas Sjögren](https://github.com/konstruktoid): some good stuff about container hardening in there.
+Dê uma olhada no [script de segurança docker bench](https://github.com/docker/docker-bench-security), baixe os [*white papers*](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/).
 
-Check out the [docker bench security script](https://github.com/docker/docker-bench-security), download the [white papers](https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/).
+Veja as [10 melhores práticas de segurança para imagens Docker](https://snyk.io/blog/10-docker-image-security-best-practices/) do Snyk.
 
-Snyk's [10 Docker Image Security Best Practices cheat sheet](https://snyk.io/blog/10-docker-image-security-best-practices/)
 
-You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as [Alpine Linux](https://en.wikipedia.org/wiki/Alpine_Linux). If you are using grsecurity in production, you should spring for [commercial support](https://grsecurity.net/business_support.php) for the [stable patches](https://grsecurity.net/announce.php), same as you would do for RedHat. It's $200 a month, which is nothing to your devops budget.
+Você deve começar usando *kernels* com *patches* estáveis do grsecurity / pax compilados, por exemplo, no [Linux Alpine ](https://en.wikipedia.org/wiki/Alpine_Linux). Se você está usando grsecurity em produção, você deve adquirir o [suporte comercial](https://grsecurity.net/business_support.php) para ter [*patches* estáveis](https://grsecurity.net/announce.php), da mesma forma que você faria para o RedHat. Ele custa $200 por mês, o que pe nada para o seu orçamento de DevOps.
 
-Since docker 1.11 you can easily limit the number of active processes running inside a container to prevent fork bombs. This requires a linux kernel >= 4.3 with CGROUP_PIDS=y to be in the kernel configuration.
+Desde o Docker 1.11, é fácil limitar o número de processos ativos rodando dentro do container para evitar *fork bombs*. É necessário um kernel Linux >= 4.3 com `CGROUP_PIDS=y` estar na configuração do Kernel.
 
 ```
 docker run --pids-limit=64
 ```
 
-Also available since docker 1.11 is the ability to prevent processes from gaining new privileges. This feature have been in the linux kernel since version 3.5. You can read more about it in [this](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/) blog post.
+Também está disponível, desde a versão 1.11, uma maneira de prevenir que processos ganhem novos privilégios. Essa funcionalidade está no *kernel* Linux desde a versão 3.5. Saiba mais sobre ela neste [post](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/) blog post.
 
 ```
 docker run --security-opt=no-new-privileges
 ```
 
-From the [Docker Security Cheat Sheet](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (it's in PDF which makes it hard to use, so copying below) by [Container Solutions](http://container-solutions.com/is-docker-safe-for-production/):
+No [*Chear sheet* de segurança do Docker](http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf) (está em PDF, o que o torna difícil de usar, então esta copiado na sequência) por [Soluções para containers](http://container-solutions.com/is-docker-safe-for-production/):
 
-Turn off interprocess communication with:
+Desligue a comunicação entre processor usando:
+
 
 ```
 docker -d --icc=false --iptables
 ```
 
-Set the container to be read-only:
+Defina o container como apenas leitura:
 
 ```
 docker run --read-only
 ```
 
-Verify images with a hashsum:
+Verique as imagens usando `hashsum`:
 
 ```
 docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 ```
 
-Set volumes to be read only:
+Defina os volumes como apenas leitura:
 
 ```
 docker run -v $(pwd)/secrets:/secrets:ro debian
 ```
 
-Define and run a user in your Dockerfile so you don't run as root inside the container:
+Defina e roda um usuário no seu Dockerfile, assim você não vai rodar como root dentro do container:
 
 ```
 RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
 
-### User Namespaces
+### Usando *Namespaces*
 
-There's also work on [user namespaces](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/) -- it is in 1.10 but is not enabled by default.
+Também temos que trabalha no [*namespaces* do usuário](https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/) -- ele está na versão 1.1, mas não está disponível por padrão.
 
-To enable user namespaces ("remap the userns") in Ubuntu 15.10, [follow the blog example](https://raesene.github.io/blog/2016/02/04/Docker-User-Namespaces/).
+Para habilitar os *namespaces* do usuário no Ubuntu 15.10, [siga o exemplo descrito neste blog](https://raesene.github.io/blog/2016/02/04/Docker-User-Namespaces/).
 
-### Security Videos
+### Vídeos sobre segurança
 
-* [Using Docker Safely](https://youtu.be/04LOuMgNj9U)
-* [Securing your applications using Docker](https://youtu.be/KmxOXmPhZbk)
-* [Container security: Do containers actually contain?](https://youtu.be/a9lE9Urr6AQ)
-* [Linux Containers: Future or Fantasy?](https://www.youtube.com/watch?v=iN6QbszB1R8)
+* [Usando Docker de maneira segura](https://youtu.be/04LOuMgNj9U)
+* [Protegendo suas aplicações usando Docker](https://youtu.be/KmxOXmPhZbk)
+* [Segurança do container: eles realmente a tem?](https://youtu.be/a9lE9Urr6AQ)
+* [Linux Containers: Futuro ou Fantasia?](https://www.youtube.com/watch?v=iN6QbszB1R8)
 
-### Security Roadmap
+### Roteiro da Segurança
 
-The Docker roadmap talks about [seccomp support](https://github.com/docker/docker/blob/master/ROADMAP.md#11-security).
-There is an AppArmor policy generator called [bane](https://github.com/jfrazelle/bane), and they're working on [security profiles](https://github.com/docker/docker/issues/17142).
+O roteiro do Docker fala sobre [suporte ao `secomp`] (https://github.com/docker/docker/blob/master/ROADMAP.md#11-security). Existe também o gerador de política AppArmor chamado [bane](https://github.com/jfrazelle/bane), e eles estão rodando dentro dos [perfis de segurança](https://github.com/docker/docker/issues/17142).
 
-## Tips
+## Dicas
 
-Sources:
+Fontes:
 
-* [15 Docker Tips in 5 minutes](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
-* [CodeFresh Everyday Hacks Docker](https://codefresh.io/blog/everyday-hacks-docker/)
+* [15 dicas do Docjer em 5 minutos](http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes)
+* [Docker CodeFresh: hacks para o Docker](https://codefresh.io/blog/everyday-hacks-docker/)
 
-### Prune
+### *Prune*
 
-The new [Data Management Commands](https://github.com/docker/docker/pull/26108) have landed as of Docker 1.13:
+Os novos [comandos de gerenciamento de dados](https://github.com/docker/docker/pull/26108) chegaram no Docker 1.13:
 
 * `docker system prune`
 * `docker volume prune`
@@ -673,7 +676,7 @@ The new [Data Management Commands](https://github.com/docker/docker/pull/26108) 
 
 ### df
 
-`docker system df` presents a summary of the space currently used by different docker objects.
+`docker system df` apresenta um resumo do espaço utilizado pelos objetos do Docker.
 
 ### Heredoc Docker Container
 
@@ -684,7 +687,7 @@ RUN apk --no-cache add htop
 EOF
 ```
 
-### Last Ids
+### Últimos IDs
 
 ```
 alias dl='docker ps -l -q'
@@ -692,31 +695,31 @@ docker run ubuntu echo hello world
 docker commit $(dl) helloworld
 ```
 
-### Commit with command (needs Dockerfile)
+### Comitar com comandos (precisa de um Dockerfile)
 
 ```
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
-### Get IP address
+### Obter o endereço IP
 
 ```
 docker inspect $(dl) | grep -wm1 IPAddress | cut -d '"' -f 4
 ```
 
-or with [jq](https://stedolan.github.io/jq/) installed:
+ou com [jq](https://stedolan.github.io/jq/) instalado:
 
 ```
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect):
+ou usando o [template go](https://docs.docker.com/engine/reference/commandline/inspect):
 
 ```
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-or when building an image from Dockerfile, when you want to pass in a build argument:
+ou quando *buildando* um imagem com Dockerfile, quando você quiser passar um argumento de build:
 
 ```
 DOCKER_HOST_IP=`ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1`
@@ -727,67 +730,67 @@ docker build \
   some-directory/
 ```
 
-### Get port mapping
+### Obter mapeamento de porta 
 
 ```
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
-### Find containers by regular expression
+### Encontrar container com expressão regular
 
 ```
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
 ```
 
-### Get Environment Settings
+### Obter configurações de ambiente
 
 ```
 docker run --rm ubuntu env
 ```
 
-### Kill running containers
+### Matar containers que estão rodando 
 
 ```
 docker kill $(docker ps -q)
 ```
 
-### Delete all containers (force!! running or stopped containers)
+### Deletar todos os containers (Forçado!! containers que esteja parados ou rodando)
 
 ```
 docker rm -f $(docker ps -qa)
 ```
 
-### Delete old containers
+### Deletar containers antigos
 
 ```
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
-### Delete stopped containers
+### Deletar containers parados
 
 ```
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
-### Delete containers after stopping
+### Deletar containers depois de para-los
 
 ```
 docker stop $(docker ps -aq) && docker rm -v $(docker ps -aq)
 ```
 
-### Delete dangling images
+### Deletar imagens pendentes
 
 ```
 docker rmi $(docker images -q -f dangling=true)
 ```
 
-### Delete all images
+### Delete todas as imagens
 
 ```
 docker rmi $(docker images -q)
 ```
 
-### Delete dangling volumes
+### Deletar volumes pendentes
 
 As of Docker 1.9:
 
@@ -797,18 +800,17 @@ docker volume rm $(docker volume ls -q -f dangling=true)
 
 In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will list all volumes.
 
-### Show image dependencies
+### Mostrar dependências das imagens
 
 ```
 docker images -viz | dot -Tpng -o docker.png
 ```
 
-### Slimming down Docker containers
+### Reduzingo o tamanho dos containers
 
-- Cleaning APT in a RUN layer
+- Limpando APT em uma camada RUN
 
-This should be done in the same layer as other apt commands.
-Otherwise, the previous layers still persist the original information and your images will still be fat.
+Isso deve ser feito na mesma camada dos outros comandos `apt`. Caso contrário, as camadas anteriores irão persistir e as informações originais das suas imagens vão contiuar grandes.
 
 ```
 RUN {apt commands} \
@@ -816,87 +818,88 @@ RUN {apt commands} \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 
-- Flatten an image
+- Achatar uma imagem
 ```
 ID=$(docker run -d image-name /bin/bash)
 docker export $ID | docker import – flat-image-name
 ```
 
-- For backup
+- Fazendo backup
 ```
 ID=$(docker run -d image-name /bin/bash)
 (docker export $ID | gzip -c > image.tgz)
 gzip -dc image.tgz | docker import - flat-image-name
 ```
 
-### Monitor system resource utilization for running containers
+### Monitorar os recursos utilizados pelos containers
 
+Para verificar CPU, memória, ou I/O de rede em um único container, você pode usar:
 To check the CPU, memory, and network I/O usage of a single container, you can use:
 ```
 docker stats <container>
 ```
 
-For all containers listed by id:
+Para todos os containers listados por ID:
 ```
 docker stats $(docker ps -q)
 ```
 
-For all containers listed by name:
+Para todos os containers listados por nome:
 ```
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
-For all containers listed by image:
+Para todos os containers listados por imagem:
 ```
 docker ps -a -f ancestor=ubuntu
 ```
 
-Remove all untagged images:
+Remover todas imagens sem tag:
 ```
 docker rmi $(docker images | grep “^” | awk '{split($0,a," "); print a[3]}')
 ```
 
-Remove container by a regular expression:
+Remover um container usando expressão regular:
 ```
 docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
 ```
 
-Remove all exited containers:
+Remover todos os containers *exitados*:
 ```
 docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 ```
 
-### Volumes can be files
+### Volumes podem ser arquivos
 
-Be aware that you can mount files as volumes. For example you can inject a configuration file like this:
+Saiba que você pode montar arquivos como volumes. Por exemplo, se você pode injetar uma configuração dessa forma:
 
 ``` bash
-# copy file from container
+# copia o arquivo para o container
 docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
 
-# edit file
+# edita o arquivo
 vim httpd.conf
 
-# start container with modified configuration
+# inicia o container com a configuração que foi modificada
 docker run --rm -it -v "$PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro" -p "80:80" httpd
 ```
 
-## Contributing
+## Contrinbuindo com este *chear sheet*
 
-Here's how to contribute to this cheat sheet.
+Aqui está um pequeno tutorial de como contribuir com este documento.
 
-### Open README.md
+### Abra o README.md
 
-Click [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- this link
+Clique em [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- neste link
 
-![Click This](images/click.png)
+![Clique aqui](../images/click.png)
 
-### Edit Page
+### Edite a página
 
-![Edit This](images/edit.png)
+![Edite aqui](../images/edit.png)
 
-### Make Changes and Commit
+### Faça as mudanças e commit elas
 
-![Change This](images/change.png)
+![Mude aqui](../images/change.png)
 
-![Commit](images/commit.png)
+![Commit](../images/commit.png)
