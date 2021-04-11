@@ -24,11 +24,11 @@
 
 ## Porque usar Docker
 
-"Com Docker, desenvolvedores podem construir qualquer app em qualquer linguagem usando quanquer conjunto de ferramentas. Apps *Dockerizados* são completamente portáveis e podem rodar em qualquer lugar -- OS X e Windows laptops, servidores QA rodando Ubuntu na nuvem e *data centers* em produção rodando Red Hat em Máquinas Virtuais.
+"Com Docker, desenvolvedores podem construir qualquer app em qualquer linguagem usando qualquer conjunto de ferramentas. Apps *Dockerizados* são completamente portáveis e podem rodar em qualquer lugar -- OS X e Windows laptops, servidores QA rodando Ubuntu na nuvem e *data centers* em produção rodando Red Hat em Máquinas Virtuais.
 
 Desenvolverodes podem iniciar a utilizá-lo rapidamente com um dos mais de 13.000 apps disponíveis no Docker hub. Docker gerencia e rastreia alterações e dependências, tornando mais fácil para *sysadmins* o entendimento do funcionamento de apps construido pelos desenvolvedores. Além disso, com Docker Hub, desenvolvedores podem automatizar o pipeline de *build* e compartilhar *artifacts* com colaboradores através de repositórios públicos ou privados.
 
-Docker auxilia desenvilvedores a construir e entregar aplicações de alta qualidade de maneira mais rápida." -- [O que é Docker (*What is Docker*)](https://www.docker.com/what-docker#copy1)
+Docker auxilia desenvolvedores a construir e entregar aplicações de alta qualidade de maneira mais rápida." -- [O que é Docker (*What is Docker*)](https://www.docker.com/what-docker#copy1)
 
 ## Pré-requisitos
 
@@ -177,7 +177,7 @@ Outra opção muito útil é o `docker run --name <yourname> <docker_image>` por
 
 * [`docker start`](https://docs.docker.com/engine/reference/commandline/start) inicia um container, então ele passa a rodar.
 * [`docker stop`](https://docs.docker.com/engine/reference/commandline/stop) para um container que esteja rodando.
-* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) para e inici um container.
+* [`docker restart`](https://docs.docker.com/engine/reference/commandline/restart) para e inicia um container.
 * [`docker pause`](https://docs.docker.com/engine/reference/commandline/pause/) pausa um container que esteja rodando, "congelando" ele da maneira que está.
 * [`docker unpause`](https://docs.docker.com/engine/reference/commandline/unpause/) vai despausar um container que estava rodando.
 * [`docker wait`](https://docs.docker.com/engine/reference/commandline/wait) bloqueia o container até que ele seja parado.
@@ -325,7 +325,7 @@ Carregar uma imagem usanfo o comando `load` cria uma nova imagem, incluindo o se
 
 ## Rede
 
-O Docker possui *features* de [rede](https://docs.docker.com/engine/userguide/networking/). Automaticamente, ele cira 3 interfaces de rede quando você o instala (*bridge*, *host*, *none*). Um novo container é inicializado, por padrão, dentro da rede *bridge*. Para habilitar a comunicação entre multiplos containers, você pode criar uma nova rede e iniciarlizar o mesmo com ela. Isso vai habilitar a comunicação entre os containers dentro dela ao mesmo tempo que os isola dos outros containers que não estejam conectados nesta rede. Além disso, isso permite mapear os nomes dos containers com o seus respectivos endereços IP. Veja [trabalhando com redes](https://docs.docker.com/engine/userguide/networking/work-with-networks/) para mais detalhes.
+O Docker possui *features* de [rede](https://docs.docker.com/engine/userguide/networking/). Automaticamente, ele cria 3 interfaces de rede quando você o instala (*bridge*, *host*, *none*). Um novo container é inicializado, por padrão, dentro da rede *bridge*. Para habilitar a comunicação entre multiplos containers, você pode criar uma nova rede e iniciarlizar o mesmo com ela. Isso vai habilitar a comunicação entre os containers dentro dela ao mesmo tempo que os isola dos outros containers que não estejam conectados nesta rede. Além disso, isso permite mapear os nomes dos containers com o seus respectivos endereços IP. Veja [trabalhando com redes](https://docs.docker.com/engine/userguide/networking/work-with-networks/) para mais detalhes.
 
 ### Ciclo de vida
 
