@@ -547,6 +547,13 @@ Compose is a tool for defining and running multi-container Docker applications. 
 By using the following command you can start up your application:
 
 ```
+docker-compose up
+```
+
+You can start your application from another location with the following command:  
+With the -f Flag you can specify the path to the docker-compose.yml File.
+
+```
 docker-compose -f <docker-compose-file> up
 ```
 
