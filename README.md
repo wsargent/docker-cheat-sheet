@@ -45,19 +45,20 @@ The 3.10.x kernel is [the minimum requirement](https://docs.docker.com/engine/in
 ### Windows 10
 
 Hyper-V must be enabled in BIOS
-VT-D must also be enabled if available (Intel Processors)
+
+VT-D must also be enabled if available (Intel Processors).
 
 ### Windows Server
 
-Windows Server 2016 is the minimum version required to install docker and docker-compose. Limitations exist on this version, such as multiple virtual networks and linux containers. Windows Server 2019 and later are recommended. 
+Windows Server 2016 is the minimum version required to install docker and docker-compose. Limitations exist on this version, such as multiple virtual networks and Linux containers. Windows Server 2019 and later are recommended. 
 
 ## Installation
 
 ### Linux
 
-Quick and easy install script provided by Docker:
+Run this quick and easy install script provided by Docker:
 
-```
+```sh
 curl -sSL https://get.docker.com/ | sh
 ```
 
@@ -73,7 +74,7 @@ Download and install [Docker Community Edition](https://www.docker.com/community
 
 Once you've installed Docker Community Edition, click the docker icon in Launchpad. Then start up a container:
 
-```
+```sh
 docker run hello-world
 ```
 
@@ -85,21 +86,19 @@ If you are a complete Docker newbie, you should probably follow the [series of t
 
 Instructions to install Docker Desktop for Windows can be found [here](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
 
-Once insalled, open powershell as administrator
+Once installed, open powershell as administrator and run:
 
 ```powershell
-#Display the version of docker installed:
+# Display the version of docker installed:
 docker version
 
-##Pull, create, and run 'hello-world' all in one command:
+# Pull, create, and run 'hello-world':
 docker run hello-world
-
 ```
 
 To continue with this cheat sheet, right click the Docker icon in the system tray, and go to settings. In order to mount volumes, the C:/ drive will need to be enabled in the settings to that information can be passed into the containers (later described in this article). 
 
 To switch between Windows containers and Linux containers, right click the icon in the system tray and click the button to switch container operating system Doing this will stop the current containers that are running, and make them unaccessible until the container OS is switched back.
-
 
 Additionally, if you have WSL or WSL2 installed on your desktop, you might want to install the Linux Kernel for Windows. Instructions can be found [here](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). This requires the Windows Subsystem for Linux feature. This will allow for containers to be accessed by WSL operating systems, as well as the efficiency gain from running WSL operating systems in docker. It is also preferred to use [Windows terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started) for this.
 
@@ -110,16 +109,16 @@ Follow Microsoft's instructions that can be found [here](https://docs.microsoft.
 If using the latest edge version of 2019, be prepared to only work in powershell, as it is only a servercore image (no desktop interface). When starting this machine, it will login and go straight to a powershell window. It is reccomended to install text editors and other tools using [Chocolatey](https://chocolatey.org/install).
 
 After installing, these commands will work:
+
 ```powershell
-#Display the version of docker installed:
+# Display the version of docker installed:
 docker version
 
-##Pull, create, and run 'hello-world' all in one command:
+# Pull, create, and run 'hello-world':
 docker run hello-world
-
 ```
 
-Windows Server 2016 is not able to run linux images. 
+Windows Server 2016 is not able to run Linux images. 
 
 Windows Server Build 2004 is capable of running both linux and windows containers simultaneously through Hyper-V isolation. When running containers, use the ```--isolation=hyperv``` command, which will isolate the container using a seperate kernel instance. 
 
@@ -131,17 +130,15 @@ It is very important that you always know the current version of Docker you are 
 
 Get the server version:
 
-```
+```console
 $ docker version --format '{{.Server.Version}}'
-
 1.8.0
 ```
 
 You can also dump raw JSON data:
 
-```
+```console
 $ docker version --format '{{json .}}'
-
 {"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
 ```
 
@@ -193,13 +190,13 @@ You can limit CPU, either using a percentage of all CPUs, or by using specific c
 
 For example, you can tell the [`cpu-shares`](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint) setting.  The setting is a bit strange -- 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512.  See <https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu> for more:
 
-```
+```sh
 docker run -it -c 512 agileek/cpuset-test
 ```
 
 You can also only use some CPU cores using [`cpuset-cpus`](https://docs.docker.com/engine/reference/run/#/cpuset-constraint).  See <https://agileek.github.io/docker/2014/08/06/docker-cpuset/> for details and some nice videos:
 
-```
+```sh
 docker run -it --cpuset-cpus=0,4,6 agileek/cpuset-test
 ```
 
@@ -209,7 +206,7 @@ Note that Docker can still **see** all of the CPUs inside the container -- it ju
 
 You can also set [memory constraints](https://docs.docker.com/engine/reference/run/#/user-memory-constraints) on Docker:
 
-```
+```sh
 docker run -it -m 300M ubuntu:14.04 /bin/bash
 ```
 
@@ -219,19 +216,19 @@ Linux capabilities can be set by using `cap-add` and `cap-drop`.  See <https://d
 
 To mount a FUSE based filesystem, you need to combine both --cap-add and --device:
 
-```
+```sh
 docker run --rm -it --cap-add SYS_ADMIN --device /dev/fuse sshfs
 ```
 
 Give access to a single device:
 
-```
+```sh
 docker run -it --device=/dev/ttyUSB0 debian bash
 ```
 
 Give access to all devices:
 
-```
+```sh
 docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb debian bash
 ```
 
@@ -290,24 +287,28 @@ While you can use the `docker rmi` command to remove specific images, there's a 
 ### Load/Save image
 
 Load an image from file:
-```
+
+```sh
 docker load < my_image.tar.gz
 ```
 
 Save an existing image:
-```
+
+```sh
 docker save my_image:my_tag | gzip > my_image.tar.gz
 ```
 
 ### Import/Export container
 
 Import a container as an image from file:
-```
+
+```sh
 cat my_container.tar.gz | docker import - my_image:my_tag
 ```
 
 Export an existing container:
-```
+
+```sh
 docker export my_container | gzip > my_container.tar.gz
 ```
 
@@ -337,7 +338,7 @@ Docker has a [networks](https://docs.docker.com/engine/userguide/networking/) fe
 
 You can specify a [specific IP address for a container](https://blog.jessfraz.com/post/ips-for-all-the-things/):
 
-```
+```sh
 # create a new bridge network with your subnet and gateway for your ip block
 docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
 
@@ -373,6 +374,7 @@ Also see the [mailing list](https://groups.google.com/a/dockerproject.org/forum/
 [The configuration file](https://docs.docker.com/engine/reference/builder/). Sets up a Docker container when you run `docker build` on it. Vastly preferable to `docker commit`.  
 
 Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:
+
 * If you use [jEdit](http://jedit.org), I've put up a syntax highlighting module for [Dockerfile](https://github.com/wsargent/jedit-docker-mode) you can use.
 * [Sublime Text 2](https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting)
 * [Atom](https://atom.io/packages/language-docker)
@@ -437,13 +439,13 @@ EXPOSE 1337
 
 Then if we create another container called LINKED like so:
 
-```
+```sh
 docker run -d --link CONTAINER:ALIAS --name LINKED user/wordpress
 ```
 
 Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:
 
-```
+```sh
 $ALIAS_PORT_1337_TCP_PORT
 $ALIAS_PORT_1337_TCP_ADDR
 ```
@@ -478,7 +480,7 @@ See [advanced volumes](http://crosbymichael.com/advanced-docker-volumes.html) fo
 
 You can [map MacOS host directories as docker volumes](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume):
 
-```
+```sh
 docker run -v /Users/wsargent/myapp/src:/src
 ```
 
@@ -494,19 +496,23 @@ Exposing incoming ports through the host container is [fiddly but doable](https:
 
 This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
 
-```
-docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+```sh
+docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT \
+  --name CONTAINER \
+  -t someimage
 ```
 
 You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
 
-```
+```Dockerfile
 EXPOSE <CONTAINERPORT>
 ```
 
-Note that EXPOSE does not expose the port itself -- only `-p` will do that. To expose the container's port on your localhost's port:
+Note that `EXPOSE` does not expose the port itself - only `-p` will do that. 
 
-```
+To expose the container's port on your localhost's port, run:
+
+```sh
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
 ```
 
@@ -526,7 +532,7 @@ end
 
 If you forget what you mapped the port to on the host container, use `docker port` to show it:
 
-```
+```sh
 docker port CONTAINER $CONTAINERPORT
 ```
 
@@ -546,13 +552,13 @@ Compose is a tool for defining and running multi-container Docker applications. 
 
 By using the following command you can start up your application:
 
-```
+```sh
 docker-compose -f <docker-compose-file> up
 ```
 
 You can also run docker-compose in detached mode using -d flag, then you can stop it whenever needed by the following command:
 
-```
+```sh
 docker-compose stop
 ```
 
@@ -584,13 +590,13 @@ You should start off by using a kernel with unstable patches for grsecurity / pa
 
 Since docker 1.11 you can easily limit the number of active processes running inside a container to prevent fork bombs. This requires a linux kernel >= 4.3 with CGROUP_PIDS=y to be in the kernel configuration.
 
-```
+```sb
 docker run --pids-limit=64
 ```
 
 Also available since docker 1.11 is the ability to prevent processes from gaining new privileges. This feature have been in the linux kernel since version 3.5. You can read more about it in [this](http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/) blog post.
 
-```
+```sh
 docker run --security-opt=no-new-privileges
 ```
 
@@ -598,31 +604,31 @@ From the [Docker Security Cheat Sheet](http://container-solutions.com/content/up
 
 Turn off interprocess communication with:
 
-```
+```sh
 docker -d --icc=false --iptables
 ```
 
 Set the container to be read-only:
 
-```
+```sh
 docker run --read-only
 ```
 
 Verify images with a hashsum:
 
-```
+```sh
 docker pull debian@sha256:a25306f3850e1bd44541976aa7b5fd0a29be
 ```
 
 Set volumes to be read only:
 
-```
+```sh
 docker run -v $(pwd)/secrets:/secrets:ro debian
 ```
 
 Define and run a user in your Dockerfile so you don't run as root inside the container:
 
-```
+```Dockerfile
 RUN groupadd -r user && useradd -r -g user user
 USER user
 ```
@@ -668,16 +674,16 @@ The new [Data Management Commands](https://github.com/docker/docker/pull/26108) 
 
 ### Heredoc Docker Container
 
-```
+```sh
 docker build -t htop - << EOF
 FROM alpine
 RUN apk --no-cache add htop
 EOF
 ```
 
-### Last Ids
+### Last IDs
 
-```
+```sh
 alias dl='docker ps -l -q'
 docker run ubuntu echo hello world
 docker commit $(dl) helloworld
@@ -685,31 +691,31 @@ docker commit $(dl) helloworld
 
 ### Commit with command (needs Dockerfile)
 
-```
+```sh
 docker commit -run='{"Cmd":["postgres", "-too -many -opts"]}' $(dl) postgres
 ```
 
 ### Get IP address
 
-```
+```sh
 docker inspect $(dl) | grep -wm1 IPAddress | cut -d '"' -f 4
 ```
 
-or with [jq](https://stedolan.github.io/jq/) installed:
+Or with [jq](https://stedolan.github.io/jq/) installed:
 
-```
+```sh
 docker inspect $(dl) | jq -r '.[0].NetworkSettings.IPAddress'
 ```
 
-or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect):
+Or using a [go template](https://docs.docker.com/engine/reference/commandline/inspect):
 
-```
+```sh
 docker inspect -f '{{ .NetworkSettings.IPAddress }}' <container_name>
 ```
 
-or when building an image from Dockerfile, when you want to pass in a build argument:
+Or when building an image from Dockerfile, when you want to pass in a build argument:
 
-```
+```sh
 DOCKER_HOST_IP=`ifconfig | grep -E "([0-9]{1,3}\.){3}[0-9]{1,3}" | grep -v 127.0.0.1 | awk '{ print $2 }' | cut -f2 -d: | head -n1`
 echo DOCKER_HOST_IP = $DOCKER_HOST_IP
 docker build \
@@ -720,61 +726,61 @@ docker build \
 
 ### Get port mapping
 
-```
+```sh
 docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' <containername>
 ```
 
 ### Find containers by regular expression
 
-```
+```sh
 for i in $(docker ps -a | grep "REGEXP_PATTERN" | cut -f1 -d" "); do echo $i; done
 ```
 
 ### Get Environment Settings
 
-```
+```sh
 docker run --rm ubuntu env
 ```
 
 ### Kill running containers
 
-```
+```sh
 docker kill $(docker ps -q)
 ```
 
 ### Delete all containers (force!! running or stopped containers)
 
-```
+```sh
 docker rm -f $(docker ps -qa)
 ```
 
 ### Delete old containers
 
-```
+```sh
 docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm
 ```
 
 ### Delete stopped containers
 
-```
+```sh
 docker rm -v $(docker ps -a -q -f status=exited)
 ```
 
 ### Delete containers after stopping
 
-```
+```sh
 docker stop $(docker ps -aq) && docker rm -v $(docker ps -aq)
 ```
 
 ### Delete dangling images
 
-```
+```sh
 docker rmi $(docker images -q -f dangling=true)
 ```
 
 ### Delete all images
 
-```
+```sh
 docker rmi $(docker images -q)
 ```
 
@@ -782,7 +788,7 @@ docker rmi $(docker images -q)
 
 As of Docker 1.9:
 
-```
+```sh
 docker volume rm $(docker volume ls -q -f dangling=true)
 ```
 
@@ -790,70 +796,71 @@ In 1.9.0, the filter `dangling=false` does _not_ work - it is ignored and will l
 
 ### Show image dependencies
 
-```
+```sh
 docker images -viz | dot -Tpng -o docker.png
 ```
 
 ### Slimming down Docker containers
 
-- Cleaning APT in a RUN layer
-
-This should be done in the same layer as other apt commands.
-Otherwise, the previous layers still persist the original information and your images will still be fat.
-
-```
-RUN {apt commands} \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-```
-
+- Cleaning APT in a `RUN` layer - This should be done in the same layer as other `apt` commands. Otherwise, the previous layers still persist the original information and your images will still be fat.
+    ```Dockerfile
+    RUN {apt commands} \
+      && apt-get clean \
+      && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    ```
 - Flatten an image
-```
-ID=$(docker run -d image-name /bin/bash)
-docker export $ID | docker import – flat-image-name
-```
-
+    ```sh
+    ID=$(docker run -d image-name /bin/bash)
+    docker export $ID | docker import – flat-image-name
+    ```
 - For backup
-```
-ID=$(docker run -d image-name /bin/bash)
-(docker export $ID | gzip -c > image.tgz)
-gzip -dc image.tgz | docker import - flat-image-name
-```
+    ```sh
+    ID=$(docker run -d image-name /bin/bash)
+    (docker export $ID | gzip -c > image.tgz)
+    gzip -dc image.tgz | docker import - flat-image-name
+    ```
 
 ### Monitor system resource utilization for running containers
 
 To check the CPU, memory, and network I/O usage of a single container, you can use:
-```
+
+```sh
 docker stats <container>
 ```
 
-For all containers listed by id:
-```
+For all containers listed by ID:
+
+```sh
 docker stats $(docker ps -q)
 ```
 
 For all containers listed by name:
-```
+
+```sh
 docker stats $(docker ps --format '{{.Names}}')
 ```
 
 For all containers listed by image:
-```
+
+```sh
 docker ps -a -f ancestor=ubuntu
 ```
 
 Remove all untagged images:
-```
+
+```sh
 docker rmi $(docker images | grep “^” | awk '{split($0,a," "); print a[3]}')
 ```
 
 Remove container by a regular expression:
-```
+
+```sh
 docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
 ```
 
 Remove all exited containers:
-```
+
+```sh
 docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 ```
 
@@ -861,7 +868,7 @@ docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
 
 Be aware that you can mount files as volumes. For example you can inject a configuration file like this:
 
-``` bash
+```sh
 # copy file from container
 docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
 
