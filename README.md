@@ -497,16 +497,20 @@ Exposing incoming ports through the host container is [fiddly but doable](https:
 This is done by mapping the container port to the host port (only using localhost interface) using `-p`:
 
 ```sh
-docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT \
+  --name CONTAINER \
+  -t someimage
 ```
 
 You can tell Docker that the container listens on the specified network ports at runtime by using [EXPOSE](https://docs.docker.com/engine/reference/builder/#expose):
 
-```
+```Dockerfile
 EXPOSE <CONTAINERPORT>
 ```
 
-Note that EXPOSE does not expose the port itself -- only `-p` will do that. To expose the container's port on your localhost's port:
+Note that `EXPOSE` does not expose the port itself - only `-p` will do that. 
+
+To expose the container's port on your localhost's port, run:
 
 ```sh
 iptables -t nat -A DOCKER -p tcp --dport <LOCALHOSTPORT> -j DNAT --to-destination <CONTAINERIP>:<PORT>
@@ -798,20 +802,17 @@ docker images -viz | dot -Tpng -o docker.png
 
 ### Slimming down Docker containers
 
-- Cleaning APT in a RUN layer
-    This should be done in the same layer as other apt commands.
-    Otherwise, the previous layers still persist the original information and your images will still be fat.
-
+- Cleaning APT in a `RUN` layer - This should be done in the same layer as other `apt` commands. Otherwise, the previous layers still persist the original information and your images will still be fat.
     ```Dockerfile
-     RUN {apt commands} \
-       && apt-get clean \
-       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-     ```
+    RUN {apt commands} \
+      && apt-get clean \
+      && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    ```
 - Flatten an image
-     ```sh
-     ID=$(docker run -d image-name /bin/bash)
-     docker export $ID | docker import – flat-image-name
-     ```
+    ```sh
+    ID=$(docker run -d image-name /bin/bash)
+    docker export $ID | docker import – flat-image-name
+    ```
 - For backup
     ```sh
     ID=$(docker run -d image-name /bin/bash)
