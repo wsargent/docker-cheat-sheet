@@ -895,14 +895,14 @@ Aquí tienes como contribuír a esta chuleta.
 
 hack click en el [README.md](https://github.com/wsargent/docker-cheat-sheet/blob/master/README.md) <-- este link
 
-![Clicka aquí](images/click.png)
+![Click](../images/click.png)
 
 ### Edit Page
 
-![Edita aquí](images/edit.png)
+![Edit](../images/edit.png)
 
 ### Make Changes and Commit
 
-![Cambia aquí](images/change.png)
+![Cambios](../images/change.png)
 
-![Commit](images/commit.png)
+![Commit](../images/commit.png)
