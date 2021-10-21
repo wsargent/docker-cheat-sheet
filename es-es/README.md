@@ -26,31 +26,33 @@
 
 "Con Docker, los desarrolladores (y desarrolladoras) pueden construir cualquier aplicación en cualquier lenguaje usando cualquier herramienta. Las aplicaciones "Dockerizadas" son totalmente portables y pueden funcionar en cualquier lugar: En portátiles con OS X y Windows de compañeros; servidores de QA con Ubuntu en el cloud; y VMs de los datacenters de producción que funcionan con Red Hat.
 
-Los desarrolladores pueden empezar a trabajar rápidamente a partir de cualquiera de las más de 13.000 aplicaciones disponibles en Docker Hub. Docker gestiona y sigue cambios y dependencias, facilitando el trabajo a los Administradores de Sistemas a la hora de entender cómo las aplicaciones hechas por los desarrolladores funcionan. Y, con Docker Hub, los desarrolladores puedes automatizar la *pipeline* y compartir los artefactos con colaboradores a través de repositorios públicos o privados.
+Los desarrolladores pueden empezar a trabajar rápidamente a partir de cualquiera de las más de 13.000 aplicaciones disponibles en Docker Hub. Docker gestiona y guarda los cambios y dependencias, facilitando el trabajo a los Administradores de Sistemas a la hora de entender cómo funcionan las aplicaciones hechas por los desarrolladores. Y, con Docker Hub, los desarrolladores puedes automatizar el despliegue y compartir el trabajo con colaboradores a través de repositorios públicos o privados.
 
-Docker ayuda a los desarrolladores a trabajar y lograr aplicaciones de mejor calidad de forma más rápida." -- [Qué es docker](https://www.docker.com/what-docker#copy1)
+Docker ayuda a los desarrolladores a trabajar y conseguir aplicaciones de mejor calidad de forma más rápida." -- [Qué es docker](https://www.docker.com/what-docker#copy1)
 
 ## Prerrequisitos
 
-Se puede hacer uso de [Oh My Zsh](https://github.com/ohmyzsh/oh-my-zsh) con el [plugin de Docker](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) para autocompletar los comandos de Docker. (Opcional y subjetivo)
+De forma opcional, se puede hacer utilizar [Oh My Zsh](https://github.com/ohmyzsh/oh-my-zsh) con el [plugin de Docker](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) para autocompletar los comandos de Docker.
 
 ### Linux
 
-La versión de kernel(núcleo) 3.10.x es [el requisito mínimo](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) para Docker.
+[El requisito mínimo](https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies) para Docker es utilizar una versión de Kernel (núcleo) posterior a la 3.10.x.
 
 ### MacOS
 
-10.8 “Mountain Lion” o posterior es requerido.
+Se requiere de la versión 10.8 “Mountain Lion” o posterior.
 
 ### Windows 10
 
-Hyper-V debe haber sido activado en la BIOS.
+Se debe activar Hyper-V en la BIOS.
 
-VT-D también debe ser activado si está disponible (Procesadores Intel).
+En caso de estar disponible, también se debe activar VT-D (Procesadores Intel).
 
 ### Windows Server
 
-Windows Server 2016 es la versión mínima requerida para instalar docker y docker-compose. Existen limitaciones en esta versión, como limitaciones al utilizar múltiples redes virtualizadas y contenedores Linux. Se recomienda Windows 2019 y posteriores.
+Como mínimo se requiere la versiín de Windows Server 2016 para instalar Docker y Docker Compose. No obstante, existen limitaciones en esta versión, como a la hora de utilizar redes virtualizadas y contenedores Linux.
+
+Se recomienda utilizar Windows Server 2019 o posteriores.
 
 ## Instalación
 
@@ -62,13 +64,13 @@ Ejecuta este comando rápido y sencillo proporcionado por Docker:
 curl -sSL https://get.docker.com/ | sh
 ```
 
-So no estás dispuesto a ejecutar un shell script cualquiera, por favor: revisa las instrucciones de [instalación](https://docs.docker.com/engine/installation/linux/) para tu distribución.
+Si no estás dispuesto a ejecutar un shell script que no sabes lo que trae, por favor: revisa las instrucciones de [instalación](https://docs.docker.com/engine/installation/linux/) de tu distribución.
 
-Si eres totalmente nuevo en Docker, te recomendamos seguir esta [serie de tutoriales](https://docs.docker.com/engine/getstarted/) ahora.
+Si eres totalmente nuevo en Docker, te recomendamos seguir esta [serie de tutoriales](https://docs.docker.com/engine/getstarted/).
 
 ### macOS
 
-Descarga e instala [Docker Community Edition](https://www.docker.com/community-edition). Si tienes Homebrew-Cask, simplemente escribe `brew cask install docker`. O descarga e instala [Docker Toolbox](https://docs.docker.com/toolbox/overview/). [Docker For Mac](https://docs.docker.com/docker-for-mac/) está bien, pero no está tan pulido como como la instalación de VirtualBox. [Revisa la comparación](https://docs.docker.com/docker-for-mac/docker-toolbox/).
+Descarga e instala [Docker Community Edition](https://www.docker.com/community-edition). Si tienes Homebrew-Cask, simplemente escribe `brew cask install docker`. O descarga e instala [Docker Toolbox](https://docs.docker.com/toolbox/overview/). [Docker For Mac](https://docs.docker.com/docker-for-mac/) está bien, pero no está tan pulido como como la instalación de VirtualBox. [Revisa la comparación aquí](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
 > **NOTA:** Docker Toolbox está deprecado. Deberías utilizar Docker Community Edition, revisa [Docker Toolbox](https://docs.docker.com/toolbox/overview/).
 
@@ -80,7 +82,7 @@ docker run hello-world
 
 ¡Y ya estaría! Ya tienes un contenedor de docker funcionando.
 
-Si eres totalmente nuevo en Docker, te recomendamos seguir esta [serie de tutoriales](https://docs.docker.com/engine/getstarted/) ahora.
+Si eres totalmente nuevo en Docker, te recomendamos seguir esta [serie de tutoriales](https://docs.docker.com/engine/getstarted/).
 
 ### Windows 10
 
@@ -100,11 +102,11 @@ Para continuar con esta chuleta, haz click derecho sobre el icono de Docker en l
 
 Para alternar entre contenedores Windows y Linux, haz botón derecho en el icono de Docker en la sección de notificaciones y haz click en el botón de cambiar el sistema operativo del contenedor. Hacer esto parará los contenedores que estén funcionando y serán inaccesibles hasta que el SO del contenedor vuelva a cambiar.
 
-Adicionalmente, si tienes WSL (Subsitema de Windows para Linux) o WSL2 instalado en tu equipo, quizás también quieras instalar el Kernel de Linux para Windows. Las instrucciones para ello pueden encontrarse [aquí](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). Esto requiere la característica de Subsistema de Windows para Linux. Esto permitirá que los contenedores sean accesibles desde los sistemas operativos WSL, así como mejorar la oficiencia ekecutamdp sistemas operaviso WSL en docker. También es preferible utilizar la [terminal de Windows](https://docs.microsoft.com/en-us/windows/terminal/get-started) para esto
+Adicionalmente, si tienes WSL (Subsitema de Windows para Linux) o WSL2 instalado en tu equipo, quizás también quieras instalar el Kernel de Linux para Windows. Las instrucciones para ello pueden encontrarse [aquí](https://techcommunity.microsoft.com/t5/windows-dev-appconsult/using-wsl2-in-a-docker-linux-container-on-windows-to-run-a/ba-p/1482133). Esto requiere la característica de Subsistema de Windows para Linux. Esto permitirá que los contenedores sean accesibles desde los sistemas operativos WSL, así como mejorar la eficiencia ejecutando sistemas operaviso WSL en docker. También es preferible utilizar la [terminal de Windows](https://docs.microsoft.com/en-us/windows/terminal/get-started) para esto.
 
 ### Windows Server 2016 / 2019
 
-Sigue las instrucciones de Microsoft que pueden encontrarse [aquí](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server#install-docker)
+Sigue las instrucciones de Microsoft que puedes encontrar [aquí](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server#install-docker)
 
 Si haces uso de la última versión de 2019, prepárate para trabajar solo con powershell, dado que es solo una imágen del núcleo del servidor (sin interfaz de escritorio). Cuando inicies esta máquina, se logueará y mostrará una ventana de powerhell. Se recomienda instalar editores de texto y otras herramientas utilizando [Chocolatey](https://chocolatey.org/install)
 
@@ -120,11 +122,11 @@ docker run hello-world
 
 Windows Server 2016 no puede ejecutar imágenes de Linux.
 
-Windows Server Build 2004 es capaz de ejecutar contenedores de Linux y Windows simultáneamente a través del aislamiento de Hyper-V. Cuando se ejecuten los contenedores, utiliza el comando ```isolation=hyperv```, el cual lo aislará utilizando distintas instancias de kernel.
+Windows Server Build 2004 es capaz de ejecutar contenedores de Linux y Windows simultáneamente a través del aislamiento de Hyper-V. Cuando se ejecuten los contenedores, utiliza el comando ```isolation=hyperv```, el cual lo aislará utilizando distintas instancias de kernel para cada contenedor.
 
 ### Revisar la versión
 
-Es muy importante que siempre conozcas la versión de Docker que estás utilizando en cualquier momento. Es miu úti dado que permite saber las características compatibles con lo que estés ejecutando. Esto también es importante para conocer que contenedores puedes ejecutar de la docker store cuando estés intentando utilizar un contenedor como plantilla. Dicho esto, veamos como recuperar la versión de Docker que está ejecutándose actualmente.
+Es muy importante que siempre conozcas la versión de Docker que estás utilizando en cualquier momento. Es muy útil dado que permite saber las características compatibles con lo que estés ejecutando. Esto también es importante para conocer que contenedores puedes ejecutar de la docker store cuando estés intentando utilizar un contenedor como plantilla. Dicho esto, veamos como recuperar la versión de Docker que está ejecutándose actualmente.
 
 * [`docker version`](https://docs.docker.com/engine/reference/commandline/version/) muestra que versión de docker está ejecutándose.
 
