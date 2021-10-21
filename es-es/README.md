@@ -4,23 +4,23 @@
 
 ## Tabla de Contenidos
 
-* [Por qué Docker](#why-docker)
-* [Prerrequisitos](#prerequisites)
-* [Instalación](#installation)
-* [Contenedores](#containers)
-* [Imágenes](#images)
-* [Redes](#networks)
-* [Registry y Repositorios](#registry--repository)
+* [Por qué Docker](#por-qué-Docker)
+* [Prerrequisitos](#prerrequisitos)
+* [Instalación](#instalación)
+* [Contenedores](#contenedores)
+* [Imágenes](#imágenes)
+* [Redes](#redes)
+* [Registry y Repositorios](#Registry-y-Repositorios)
 * [Dockerfile](#dockerfile)
-* [Capas](#layers)
-* [Links](#links)
-* [Volúmenes](#volumes)
-* [Exponiendo Puertos](#exposing-ports)
-* [Buenas prácticas](#best-practices)
+* [Capas](#capas)
+* [Enlaces](#enlaces)
+* [Volúmenes](#volúmenes)
+* [Exponiendo Puertos](#Exponiendo-Puertos)
+* [Buenas prácticas](#buenas-prácticas)
 * [Docker-Compose](#docker-compose)
-* [Seguridad](#security)
-* [Consejos](#tips)
-* [Contribución](#contributing)
+* [Seguridad](#seguridad)
+* [Consejos](#consejos)
+* [Contribución](#contribución)
 
 ## Por qué Docker
 
@@ -30,7 +30,7 @@ Los desarrolladores pueden empezar a trabajar rápidamente a partir de cualquier
 
 Docker ayuda a los desarrolladores a trabajar y lograr aplicaciones de mejor calidad de forma más rápida." -- [Qué es docker](https://www.docker.com/what-docker#copy1)
 
-## Prerrequistos
+## Prerrequisitos
 
 Se puede hacer uso de [Oh My Zsh](https://github.com/ohmyzsh/oh-my-zsh) con el [plugin de Docker](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker) para autocompletar los comandos de Docker. (Opcional y subjetivo)
 
