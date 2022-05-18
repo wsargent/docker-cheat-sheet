@@ -86,7 +86,7 @@ Si eres totalmente nuevo en Docker, te recomendamos seguir esta [serie de tutori
 
 ### Windows 10
 
-Las instrucciones para instalar Docker Desktop para Windows se encuentran [aquí](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
+Las instrucciones para instalar Docker Desktop para Windows se encuentran [aquí](https://docs.docker.com/desktop/windows/install/)
 
 Una vez instalado, abre Powershell como administrador y ejecuta:
 
