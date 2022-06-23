@@ -66,7 +66,7 @@ Se você não sabe nada sobre Docker, provavelmente você deveria seguir essa [s
 
 ### macOS
 
-Baixe e instale o [*Docker Community Edition*](https://www.docker.com/community-edition). Se você possui o Homebrew-Cask, apenas utilize o comando `brew cask install docker`. Ou baixe e instale o [*Docker Toolbox*](https://docs.docker.com/toolbox/overview/).  [Docker para Mac](https://docs.docker.com/docker-for-mac/) é ok, mas ele ainda não é tão pronto quanto a instalação da VirtualBox. [Veja a comparação](https://docs.docker.com/docker-for-mac/docker-toolbox/).
+Baixe e instale o [*Docker Community Edition*](https://www.docker.com/community-edition). Se você possui o Homebrew-Cask, apenas utilize o comando `brew install --cask docker`. Ou baixe e instale o [*Docker Toolbox*](https://docs.docker.com/toolbox/overview/).  [Docker para Mac](https://docs.docker.com/docker-for-mac/) é ok, mas ele ainda não é tão pronto quanto a instalação da VirtualBox. [Veja a comparação](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
 > **NOTA** *Docker Toolbox* está no estado *legacy*. Você deveria usar o *Docker Community Edition*. Veja o [*Docker Toolbox*](https://docs.docker.com/toolbox/overview/).
 
@@ -82,7 +82,7 @@ Se você não sabe nada sobre Docker, provavelmente você deveria seguir essa [s
 
 ### Windows 10
 
-Você encontra instruções para instalar o Docker Desktop para Windows [neste link](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+Você encontra instruções para instalar o Docker Desktop para Windows [neste link](https://docs.docker.com/desktop/windows/install/).
 
 Uma vez instalado, abra o *powershell* como administrador
 

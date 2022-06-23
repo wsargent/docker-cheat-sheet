@@ -83,7 +83,7 @@ curl -sSL https://get.docker.com/ | sh
 
 ### macOS
 
-下载并安装 [Docker Community Edition](https://www.docker.com/community-edition)。如果你在使用 Homebrew-Cask，只需在命令行输入 `brew cask install docker` 即可。下载安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/) 亦可。[Docker For Mac](https://docs.docker.com/docker-for-mac/) 很赞，但是它的安装过程与 VirtualBox 不太一样。详情请查阅 [比较](https://docs.docker.com/docker-for-mac/docker-toolbox/)。
+下载并安装 [Docker Community Edition](https://www.docker.com/community-edition)。如果你在使用 Homebrew-Cask，只需在命令行输入 `brew install --cask docker` 即可。下载安装 [Docker Toolbox](https://docs.docker.com/toolbox/overview/) 亦可。[Docker For Mac](https://docs.docker.com/docker-for-mac/) 很赞，但是它的安装过程与 VirtualBox 不太一样。详情请查阅 [比较](https://docs.docker.com/docker-for-mac/docker-toolbox/)。
 
 > **注意**：Docker Toolbox 已经过时。你应当使用 Docker Community Edition，详见 [Docker Toolbox](https://docs.docker.com/toolbox/overview/)
 
