@@ -56,7 +56,7 @@ curl -sSL https://get.docker.com/ | sh
 Если вы являетесь полноправным новичком Docker, вы должны следовать [сериям учебников](https://docs.docker.com/engine/getstarted/) сейчас.
 
 ### macOS
-Скачать и установить [Docker Community Edition](https://www.docker.com/community-edition). если у вас есть Homebrew-Cask, просто введите `brew cask install docker`.
+Скачать и установить [Docker Community Edition](https://www.docker.com/community-edition). если у вас есть Homebrew-Cask, просто введите `brew install --cask docker`.
 Или загрузите и установите [Docker Toolbox](https://docs.docker.com/toolbox/overview/).  [Docker для Mac](https://docs.docker.com/docker-for-mac/) это хорошо, но это не совсем так, как установка VirtualBox.  [
 См. Сравнение](https://docs.docker.com/docker-for-mac/docker-toolbox/).
 
