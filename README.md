@@ -106,7 +106,7 @@ Additionally, if you have WSL or WSL2 installed on your desktop, you might want 
 
 Follow Microsoft's instructions that can be found [here](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server#install-docker)
 
-If using the latest edge version of 2019, be prepared to only work in powershell, as it is only a servercore image (no desktop interface). When starting this machine, it will login and go straight to a powershell window. It is reccomended to install text editors and other tools using [Chocolatey](https://chocolatey.org/install).
+If using the latest edge version of 2019, be prepared to only work in powershell, as it is only a servercore image (no desktop interface). When starting this machine, it will login and go straight to a powershell window. It is recommended to install text editors and other tools using [Chocolatey](https://chocolatey.org/install).
 
 After installing, these commands will work:
 
@@ -120,7 +120,7 @@ docker run hello-world
 
 Windows Server 2016 is not able to run Linux images. 
 
-Windows Server Build 2004 is capable of running both linux and windows containers simultaneously through Hyper-V isolation. When running containers, use the ```--isolation=hyperv``` command, which will isolate the container using a seperate kernel instance. 
+Windows Server Build 2004 is capable of running both linux and windows containers simultaneously through Hyper-V isolation. When running containers, use the ```--isolation=hyperv``` command, which will isolate the container using a separate kernel instance. 
 
 ### Check Version
 
