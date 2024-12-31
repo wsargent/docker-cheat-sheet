@@ -745,13 +745,15 @@ docker run --rm ubuntu env
 ### Kill running containers
 
 ```sh
-docker kill $(docker ps -q)
+if [ "$(docker ps -q)" ]; then docker kill $(docker ps -q); else echo "No running containers."; fi
+
 ```
 
 ### Delete all containers (force!! running or stopped containers)
 
 ```sh
-docker rm -f $(docker ps -qa)
+if [ "$(docker ps -qa)" ]; then docker rm -f $(docker ps -qa); else echo "No containers to delete."; fi
+
 ```
 
 ### Delete old containers
